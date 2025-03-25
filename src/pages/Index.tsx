@@ -447,12 +447,6 @@ const Index = () => {
             
             <ProcessStep number={4} title="Instant Disbursal" description="Receive funds instantly in your bank account once approved." delay={600} icon={<Wallet className="w-10 h-10" />} />
           </div>
-          
-          <AnimatedElement delay={800} className="mt-12 text-center">
-            <Button className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none group">
-              Get Started Now <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-            </Button>
-          </AnimatedElement>
         </div>
       </section>
       
@@ -694,7 +688,7 @@ const Index = () => {
             
             <AnimatedElement delay={600} className="mt-12 text-center">
               <Button className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none group">
-                Apply for Loan Against Mutual Funds <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                Apply for Loan Against Mutual Funds <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
             </AnimatedElement>
           </div>
