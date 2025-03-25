@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
 
-type AnimationType = 'fade-up' | 'fade-down' | 'fade-left' | 'fade-right' | 'zoom-in' | 'zoom-out' | 'flip' | 'bounce';
+type AnimationType = 'fade-up' | 'fade-down' | 'fade-left' | 'fade-right' | 'zoom-in' | 'zoom-out' | 'flip' | 'bounce' | 'fade-in';
 
 interface AnimatedElementProps {
   children: React.ReactNode;
