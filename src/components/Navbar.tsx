@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -43,9 +42,6 @@ const Navbar = () => {
           </nav>
           
           <div className="hidden lg:flex items-center space-x-4">
-            <Button variant="outline" className="border-fluidpe-teal text-fluidpe-teal hover:bg-fluidpe-light-teal">
-              Login
-            </Button>
             <Button className="bg-fluidpe-teal hover:bg-fluidpe-medium-teal text-white">
               Apply Now
             </Button>
@@ -72,9 +68,6 @@ const Navbar = () => {
               <NavLinks mobile onClick={() => setIsMenuOpen(false)} />
             </nav>
             <div className="flex flex-col space-y-2">
-              <Button variant="outline" className="border-fluidpe-teal text-fluidpe-teal w-full">
-                Login
-              </Button>
               <Button className="bg-fluidpe-teal hover:bg-fluidpe-medium-teal text-white w-full">
                 Apply Now
               </Button>
