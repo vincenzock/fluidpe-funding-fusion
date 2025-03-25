@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -190,15 +191,15 @@
 }
 
 .calculator-slider [data-orientation=horizontal] {
-  @apply h-2 bg-gray-200 rounded-full;
+  @apply h-2.5 bg-gray-200 rounded-full shadow-inner;
 }
 
 .calculator-slider [data-orientation=horizontal] span {
-  @apply bg-fluidpe-teal rounded-full h-full;
+  @apply bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal rounded-full h-full transition-all duration-300;
 }
 
 .calculator-slider [data-orientation=horizontal] span span {
-  @apply shadow-md bg-white border-2 border-fluidpe-teal w-5 h-5 -top-1.5;
+  @apply shadow-lg bg-white border-2 border-fluidpe-teal w-6 h-6 -top-1.5 transition-all duration-300 hover:scale-110;
 }
 
 .gradient-text-animate {
@@ -233,7 +234,7 @@
   background: linear-gradient(
     to right,
     rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.4) 50%,
     rgba(255, 255, 255, 0) 100%
   );
   transform: rotate(30deg);
@@ -265,4 +266,61 @@
 
 .pulse-highlight:hover {
   background-color: rgba(0, 77, 77, 0.05);
+}
+
+/* Elegant slider styles - additional customization */
+.calculator-slider {
+  padding: 8px 0;
+}
+
+.calculator-slider [data-orientation=horizontal] span span:hover {
+  @apply border-fluidpe-medium-teal shadow-fluidpe-light-teal/50;
+  box-shadow: 0 0 0 5px rgba(0, 77, 77, 0.1);
+}
+
+/* Hover animations for table cells */
+tr.pulse-highlight td {
+  transition: all 0.3s ease;
+}
+
+tr.pulse-highlight:hover td {
+  @apply bg-opacity-20;
+  transform: scale(1.01);
+}
+
+/* Card hover effects */
+.hover-card-content {
+  @apply shadow-lg border border-fluidpe-light-teal/20;
+  animation: card-in 0.3s ease-out;
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Better table aesthetics */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+thead tr {
+  background: linear-gradient(to right, rgba(0, 77, 77, 0.02), rgba(0, 77, 77, 0.05));
+}
+
+tbody tr {
+  border-bottom: 1px solid rgba(0, 77, 77, 0.1);
+}
+
+/* Gradient overlay for summaries */
+.summary-gradient {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(227, 255, 253, 0.8));
+  backdrop-filter: blur(4px);
 }

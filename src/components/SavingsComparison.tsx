@@ -33,7 +33,7 @@ const SavingsComparison = ({ loanAmount, loanDuration, interestRate }: SavingsCo
   return (
     <AnimatedElement animation="fade-up" duration={800} className="h-full">
       <div className="bg-white rounded-xl shadow-md overflow-hidden h-full transition-all duration-300 interactive-card">
-        <div className="bg-fluidpe-teal p-4 text-white shine-effect">
+        <div className="bg-fluidpe-teal p-5 text-white shine-effect">
           <h3 className="text-xl font-semibold flex items-center">
             <TrendingUp className="w-5 h-5 mr-2" /> Savings Comparison
           </h3>
@@ -44,11 +44,11 @@ const SavingsComparison = ({ loanAmount, loanDuration, interestRate }: SavingsCo
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-gray-200">
-                  <th className="text-left py-2 font-medium text-gray-600">Loan Type</th>
-                  <th className="text-center py-2 font-medium text-gray-600">Interest Rate</th>
-                  <th className="text-center py-2 font-medium text-gray-600">Total Interest</th>
-                  <th className="text-center py-2 font-medium text-gray-600">Comparison</th>
+                <tr className="border-b-2 border-gray-200">
+                  <th className="text-left py-3 font-semibold text-gray-600">Loan Type</th>
+                  <th className="text-center py-3 font-semibold text-gray-600">Interest Rate</th>
+                  <th className="text-center py-3 font-semibold text-gray-600">Total Interest</th>
+                  <th className="text-center py-3 font-semibold text-gray-600">Comparison</th>
                 </tr>
               </thead>
               <tbody>
@@ -59,8 +59,8 @@ const SavingsComparison = ({ loanAmount, loanDuration, interestRate }: SavingsCo
                 >
                   <td className="py-4 text-left">
                     <div className="flex items-center shine-effect">
-                      <div className="bg-fluidpe-light-teal w-8 h-8 rounded-full flex items-center justify-center mr-2">
-                        <TrendingUp className="w-4 h-4 text-fluidpe-teal" />
+                      <div className="bg-fluidpe-light-teal w-10 h-10 rounded-full flex items-center justify-center mr-3 shadow-md">
+                        <TrendingUp className="w-5 h-5 text-fluidpe-teal" />
                       </div>
                       <div>
                         <p className="font-medium text-gray-800">Fluidpe Loan</p>
@@ -73,9 +73,9 @@ const SavingsComparison = ({ loanAmount, loanDuration, interestRate }: SavingsCo
                       <HoverCardTrigger>
                         <span className="font-medium text-fluidpe-teal underline decoration-dotted cursor-help">{interestRate}%</span>
                       </HoverCardTrigger>
-                      <HoverCardContent className="w-80">
+                      <HoverCardContent className="w-80 shadow-lg p-4 border border-fluidpe-light-teal/20">
                         <div className="space-y-2">
-                          <h4 className="font-semibold">Fluidpe's Best Rate</h4>
+                          <h4 className="font-semibold text-fluidpe-teal">Fluidpe's Best Rate</h4>
                           <p className="text-sm">This competitive rate is available for loans against your mutual fund investments.</p>
                         </div>
                       </HoverCardContent>
@@ -83,7 +83,7 @@ const SavingsComparison = ({ loanAmount, loanDuration, interestRate }: SavingsCo
                   </td>
                   <td className="py-4 text-center font-medium text-fluidpe-teal shine-effect">₹{fluidpeInterest.toLocaleString()}</td>
                   <td className="py-4 text-center">
-                    <span className="inline-flex items-center bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium shine-effect">
+                    <span className="inline-flex items-center bg-green-100 text-green-800 px-3 py-1.5 rounded-full text-xs font-medium shine-effect">
                       <CheckCircle className="w-3 h-3 mr-1" /> Best Option
                     </span>
                   </td>
@@ -96,8 +96,8 @@ const SavingsComparison = ({ loanAmount, loanDuration, interestRate }: SavingsCo
                 >
                   <td className="py-4 text-left">
                     <div className="flex items-center shine-effect">
-                      <div className="bg-yellow-100 w-8 h-8 rounded-full flex items-center justify-center mr-2">
-                        <CreditCard className="w-4 h-4 text-yellow-700" />
+                      <div className="bg-yellow-100 w-10 h-10 rounded-full flex items-center justify-center mr-3 shadow-md">
+                        <CreditCard className="w-5 h-5 text-yellow-700" />
                       </div>
                       <div>
                         <p className="font-medium text-gray-800">Personal Loan</p>
@@ -109,9 +109,9 @@ const SavingsComparison = ({ loanAmount, loanDuration, interestRate }: SavingsCo
                       <HoverCardTrigger>
                         <span className="font-medium text-gray-700 underline decoration-dotted cursor-help">14%</span>
                       </HoverCardTrigger>
-                      <HoverCardContent className="w-80">
+                      <HoverCardContent className="w-80 shadow-lg p-4 border border-yellow-100">
                         <div className="space-y-2">
-                          <h4 className="font-semibold">Standard Personal Loan Rate</h4>
+                          <h4 className="font-semibold text-yellow-700">Standard Personal Loan Rate</h4>
                           <p className="text-sm">Personal loans typically charge higher interest rates due to their unsecured nature.</p>
                         </div>
                       </HoverCardContent>
@@ -132,8 +132,8 @@ const SavingsComparison = ({ loanAmount, loanDuration, interestRate }: SavingsCo
                 >
                   <td className="py-4 text-left">
                     <div className="flex items-center shine-effect">
-                      <div className="bg-red-100 w-8 h-8 rounded-full flex items-center justify-center mr-2">
-                        <CreditCard className="w-4 h-4 text-red-700" />
+                      <div className="bg-red-100 w-10 h-10 rounded-full flex items-center justify-center mr-3 shadow-md">
+                        <CreditCard className="w-5 h-5 text-red-700" />
                       </div>
                       <div>
                         <p className="font-medium text-gray-800">Credit Card</p>
@@ -145,9 +145,9 @@ const SavingsComparison = ({ loanAmount, loanDuration, interestRate }: SavingsCo
                       <HoverCardTrigger>
                         <span className="font-medium text-gray-700 underline decoration-dotted cursor-help">36%</span>
                       </HoverCardTrigger>
-                      <HoverCardContent className="w-80">
+                      <HoverCardContent className="w-80 shadow-lg p-4 border border-red-100">
                         <div className="space-y-2">
-                          <h4 className="font-semibold">High Credit Card APR</h4>
+                          <h4 className="font-semibold text-red-600">High Credit Card APR</h4>
                           <p className="text-sm">Credit cards typically charge very high annual percentage rates when you carry a balance.</p>
                         </div>
                       </HoverCardContent>
@@ -167,9 +167,9 @@ const SavingsComparison = ({ loanAmount, loanDuration, interestRate }: SavingsCo
           <Collapsible 
             open={!isCollapsed} 
             onOpenChange={(isOpen) => setIsCollapsed(!isOpen)}
-            className="mt-6"
+            className="mt-8"
           >
-            <CollapsibleTrigger className="w-full flex items-center justify-between bg-fluidpe-light-teal/20 rounded-lg p-4 mb-3 hover:bg-fluidpe-light-teal/30 transition-colors shine-effect cursor-pointer">
+            <CollapsibleTrigger className="w-full flex items-center justify-between bg-fluidpe-light-teal/20 rounded-lg p-4 mb-3 hover:bg-fluidpe-light-teal/30 transition-colors shine-effect cursor-pointer shadow-sm hover:shadow-md">
               <h4 className="text-lg font-semibold text-fluidpe-teal flex items-center">
                 <TrendingUp className="w-5 h-5 mr-2" /> Highest Savings Potential
               </h4>
@@ -177,13 +177,13 @@ const SavingsComparison = ({ loanAmount, loanDuration, interestRate }: SavingsCo
             </CollapsibleTrigger>
             
             <CollapsibleContent className="space-y-4 animate-accordion-down">
-              <div className="bg-gradient-to-br from-white to-fluidpe-light-teal/20 rounded-lg p-4 shadow-sm transition-all duration-300 hover:shadow-md interactive-card">
+              <div className="bg-gradient-to-br from-white to-fluidpe-light-teal/20 rounded-lg p-5 shadow-sm transition-all duration-300 hover:shadow-md interactive-card">
                 <div className="mb-3">
                   <p className="font-medium text-gray-700">
                     By choosing Fluidpe instead of Credit Card financing:
                   </p>
-                  <div className="mt-2 flex items-center">
-                    <CheckCircle className="text-green-500 w-5 h-5 mr-2 flex-shrink-0" />
+                  <div className="mt-3 flex items-center">
+                    <CheckCircle className="text-green-500 w-5 h-5 mr-3 flex-shrink-0" />
                     <div className="shine-effect">
                       <p className="text-lg font-bold text-green-600">You save ₹{savingsVsCredit.toLocaleString()}</p>
                       <p className="text-sm text-gray-600">That's {Math.round((savingsVsCredit/creditCardInterest) * 100)}% in interest savings!</p>
@@ -191,10 +191,10 @@ const SavingsComparison = ({ loanAmount, loanDuration, interestRate }: SavingsCo
                   </div>
                 </div>
                 
-                <div className="pt-3 border-t border-fluidpe-light-teal/30">
-                  <div className="bg-red-50 p-3 rounded-lg border border-red-100 mb-3 hover:bg-red-100 transition-colors shine-effect">
+                <div className="pt-4 border-t border-fluidpe-light-teal/30">
+                  <div className="bg-red-50 p-4 rounded-lg border border-red-100 mb-4 hover:bg-red-100 transition-colors shine-effect shadow-sm hover:shadow-md">
                     <div className="flex items-start">
-                      <AlertTriangle className="text-red-500 w-5 h-5 mr-2 flex-shrink-0 mt-0.5" />
+                      <AlertTriangle className="text-red-500 w-5 h-5 mr-3 flex-shrink-0 mt-0.5" />
                       <div>
                         <p className="font-medium text-red-700">Avoid Credit Card Financing</p>
                         <p className="text-sm text-red-600">You'll pay ₹{savingsVsCredit.toLocaleString()} more in interest with credit cards at 36% rate</p>
@@ -202,9 +202,9 @@ const SavingsComparison = ({ loanAmount, loanDuration, interestRate }: SavingsCo
                     </div>
                   </div>
                   
-                  <div className="bg-yellow-50 p-3 rounded-lg border border-yellow-100 hover:bg-yellow-100 transition-colors shine-effect">
+                  <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-100 hover:bg-yellow-100 transition-colors shine-effect shadow-sm hover:shadow-md">
                     <div className="flex items-start">
-                      <AlertTriangle className="text-yellow-500 w-5 h-5 mr-2 flex-shrink-0 mt-0.5" />
+                      <AlertTriangle className="text-yellow-500 w-5 h-5 mr-3 flex-shrink-0 mt-0.5" />
                       <div>
                         <p className="font-medium text-yellow-700">Personal Loans Cost More</p>
                         <p className="text-sm text-yellow-600">You'll pay ₹{savingsVsPersonal.toLocaleString()} more in interest with personal loans at 14% rate</p>
@@ -214,9 +214,9 @@ const SavingsComparison = ({ loanAmount, loanDuration, interestRate }: SavingsCo
                 </div>
               </div>
               
-              <div className="bg-green-50 p-3 rounded-lg border border-green-100 hover:bg-green-100 transition-colors shine-effect">
+              <div className="bg-green-50 p-4 rounded-lg border border-green-100 hover:bg-green-100 transition-colors shine-effect shadow-sm hover:shadow-md">
                 <div className="flex items-start">
-                  <Info className="text-green-500 w-5 h-5 mr-2 flex-shrink-0 mt-0.5" />
+                  <Info className="text-green-500 w-5 h-5 mr-3 flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="font-medium text-green-700">Why Fluidpe is Better</p>
                     <p className="text-sm text-green-600">Fluidpe offers the lowest interest rates by using your mutual funds as collateral, while still allowing your investments to grow.</p>
