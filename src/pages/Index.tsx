@@ -294,24 +294,35 @@ const Index = () => {
         </div>
       </section>
       
-      <section id="features" className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <AnimatedElement>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">Why Choose Fluidpe</h2>
+      <section id="features" className="py-16 md:py-24 bg-gradient-to-b from-white to-fluidpe-light-teal/10 relative overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <div className="absolute -right-[10%] top-[20%] w-[600px] h-[600px] rounded-full bg-fluidpe-light-teal/20 blur-3xl opacity-60 animate-float"></div>
+          <div className="absolute -left-[5%] bottom-[10%] w-[500px] h-[500px] rounded-full bg-fluidpe-light-gold/20 blur-3xl opacity-50" style={{ animationDelay: '1.5s' }}></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <AnimatedElement animation="fade-up">
+            <div className="flex flex-col items-center justify-center mb-16">
+              <div className="bg-gradient-to-r from-fluidpe-teal/20 to-fluidpe-medium-teal/20 p-2 px-4 rounded-full mb-4">
+                <span className="text-fluidpe-teal text-sm font-semibold">Why our clients trust us</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">
+                Why Choose Fluidpe
+              </h2>
+              <div className="w-20 h-1 bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal rounded-full mb-6"></div>
+              <p className="text-lg md:text-xl text-gray-600 mb-6 max-w-3xl mx-auto text-center">
+                Unlock the full potential of your mutual fund investments with our innovative loan solutions
+              </p>
+            </div>
           </AnimatedElement>
           
-          <AnimatedElement delay={200}>
-            <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto text-center">
-              Unlock the full potential of your mutual fund investments with our innovative loan solutions
-            </p>
-          </AnimatedElement>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-2">
             <FeatureCard 
               icon={Wallet}
               title="Competitive Interest Rates"
               description="Enjoy interest rates starting from just 8.5% p.a., significantly lower than personal loans and credit cards."
               delay={0}
+              color="bg-gradient-to-br from-fluidpe-light-teal/70 to-fluidpe-light-teal/20"
             />
             
             <FeatureCard 
@@ -319,6 +330,8 @@ const Index = () => {
               title="Quick Disbursals"
               description="Get funds in your account within 24 hours after approval, with minimal documentation requirements."
               delay={100}
+              color="bg-gradient-to-br from-fluidpe-light-gold/70 to-fluidpe-light-gold/20"
+              animation="fade-down"
             />
             
             <FeatureCard 
@@ -326,6 +339,8 @@ const Index = () => {
               title="Retain Market Upside"
               description="Continue to benefit from potential market appreciation while accessing funds for your immediate needs."
               delay={200}
+              color="bg-gradient-to-br from-[#E5DEFF]/70 to-[#E5DEFF]/20"
+              animation="fade-up"
             />
             
             <FeatureCard 
@@ -333,6 +348,8 @@ const Index = () => {
               title="Flexible Repayment Options"
               description="Choose from multiple repayment plans that suit your cash flow, with no prepayment penalties."
               delay={300}
+              color="bg-gradient-to-br from-[#D3E4FD]/70 to-[#D3E4FD]/20"
+              animation="fade-right"
             />
             
             <FeatureCard 
@@ -340,6 +357,8 @@ const Index = () => {
               title="Higher Loan Amounts"
               description="Access up to 80% of your mutual fund portfolio value, with loan amounts ranging from ₹1 Lakh to ₹5 Crores."
               delay={400}
+              color="bg-gradient-to-br from-[#FFDEE2]/70 to-[#FFDEE2]/20"
+              animation="fade-up"
             />
             
             <FeatureCard 
@@ -347,8 +366,25 @@ const Index = () => {
               title="Wide Range of Acceptable Funds"
               description="Pledge various mutual fund schemes including equity, debt, hybrid, and ETFs to secure your loan."
               delay={500}
+              color="bg-gradient-to-br from-[#FDE1D3]/70 to-[#FDE1D3]/20"
+              animation="fade-left"
             />
           </div>
+          
+          <AnimatedElement animation="fade-up" delay={600} className="mt-16 text-center">
+            <div className="inline-block bg-white px-6 py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-fluidpe-light-teal/30">
+              <div className="flex items-center justify-center gap-2 text-fluidpe-teal font-medium">
+                <Check className="h-5 w-5" />
+                <span>No hidden charges</span>
+                <div className="w-1 h-1 rounded-full bg-fluidpe-teal/30"></div>
+                <Check className="h-5 w-5" />
+                <span>Transparent process</span>
+                <div className="w-1 h-1 rounded-full bg-fluidpe-teal/30"></div>
+                <Check className="h-5 w-5" />
+                <span>Excellent support</span>
+              </div>
+            </div>
+          </AnimatedElement>
         </div>
       </section>
       

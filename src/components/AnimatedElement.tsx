@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 type AnimationType = 'fade-up' | 'fade-down' | 'fade-left' | 'fade-right' | 'zoom-in' | 'zoom-out' | 'flip' | 'bounce' | 'fade-in';
 
@@ -10,6 +10,7 @@ interface AnimatedElementProps {
   animation?: AnimationType;
   duration?: number;
   threshold?: number;
+  interactive?: boolean;
 }
 
 const AnimatedElement: React.FC<AnimatedElementProps> = ({ 
@@ -18,9 +19,11 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({
   delay = 0,
   animation = 'fade-up',
   duration = 700,
-  threshold = 0.1
+  threshold = 0.1,
+  interactive = false
 }) => {
   const elementRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -52,11 +55,17 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({
     };
   }, [delay, animation, duration, threshold]);
   
+  const interactiveClass = interactive 
+    ? 'transition-transform duration-300 hover:scale-105 hover:-translate-y-2' 
+    : '';
+  
   return (
     <div 
       ref={elementRef} 
-      className={`animate-on-scroll ${className}`}
+      className={`animate-on-scroll ${className} ${interactiveClass}`}
       data-animation={animation}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {children}
     </div>
