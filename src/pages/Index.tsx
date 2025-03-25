@@ -311,7 +311,9 @@ const Index = () => {
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500"></div>
                 </div>
                 
-                <div className="absolute -bottom-6 -right-6 bg-white rounded-lg shadow-lg p-4 animate-float transition-all duration-300 hover:shadow-xl hover:bg-fluidpe-light-teal/30" style={{animationDelay: '1s'}}>
+                <div className="absolute -bottom-6 -right-6 bg-white rounded-lg shadow-lg p-4 animate-float transition-all duration-300 hover:shadow-xl hover:bg-fluidpe-light-teal/30" style={{
+                animationDelay: '1s'
+              }}>
                   <div className="flex items-center gap-3">
                     <div className="bg-green-100 rounded-full p-2 transition-colors duration-300 group-hover:bg-green-200">
                       <TrendingUp className="h-5 w-5 text-green-600" />
@@ -323,7 +325,9 @@ const Index = () => {
                   </div>
                 </div>
                 
-                <div className="absolute -top-6 -left-6 bg-white rounded-lg shadow-lg p-4 animate-float transition-all duration-300 hover:shadow-xl hover:bg-fluidpe-light-teal/30" style={{animationDelay: '1.5s'}}>
+                <div className="absolute -top-6 -left-6 bg-white rounded-lg shadow-lg p-4 animate-float transition-all duration-300 hover:shadow-xl hover:bg-fluidpe-light-teal/30" style={{
+                animationDelay: '1.5s'
+              }}>
                   <div className="flex items-center gap-3">
                     <div className="bg-blue-100 rounded-full p-2 transition-colors duration-300 group-hover:bg-blue-200">
                       <Percent className="h-5 w-5 text-blue-600" />
@@ -375,7 +379,9 @@ const Index = () => {
       <section id="features" className="py-16 md:py-24 bg-gradient-to-b from-white to-fluidpe-light-teal/10 relative overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <div className="absolute -right-[10%] top-[20%] w-[600px] h-[600px] rounded-full bg-fluidpe-light-teal/20 blur-3xl opacity-60 animate-float"></div>
-          <div className="absolute -left-[5%] bottom-[10%] w-[500px] h-[500px] rounded-full bg-fluidpe-light-gold/20 blur-3xl opacity-50" style={{animationDelay: '1.5s'}}></div>
+          <div className="absolute -left-[5%] bottom-[10%] w-[500px] h-[500px] rounded-full bg-fluidpe-light-gold/20 blur-3xl opacity-50" style={{
+          animationDelay: '1.5s'
+        }}></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
@@ -409,18 +415,4 @@ const Index = () => {
           </div>
           
           <AnimatedElement animation="fade-up" delay={600} className="mt-16 text-center">
-            <div className="inline-block bg-white px-6 py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-fluidpe-light-teal/30">
-              <h3 className="text-xl font-semibold text-fluidpe-teal mb-2">Start Your Journey Today</h3>
-              <p className="text-gray-600 mb-4">Experience the future of mutual fund financing</p>
-            </div>
-          </AnimatedElement>
-        </div>
-      </section>
-      
-      <Footer />
-      <ScrollToTop />
-    </div>
-  );
-};
-
-export default Index;
+            <div className="inline-block bg-white px-6 py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-fluidpe-light-teal/30
