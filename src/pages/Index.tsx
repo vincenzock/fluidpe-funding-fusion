@@ -417,7 +417,7 @@ const Index = () => {
           
           <AnimatedElement animation="fade-up" delay={600} className="mt-16 text-center">
             <div className="inline-block bg-white px-6 py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-fluidpe-light-teal/30">
-              {/* Content for this div */}
+              {/* Content for this block */}
             </div>
           </AnimatedElement>
         </div>
@@ -430,3 +430,4 @@ const Index = () => {
 };
 
 export default Index;
+
