@@ -17,6 +17,8 @@ import TestimonialCard from '@/components/TestimonialCard';
 import FaqItem from '@/components/FaqItem';
 import ScrollToTop from '@/components/ScrollToTop';
 import BlogCard from '@/components/BlogCard';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 
 const Index = () => {
   const [loanAmount, setLoanAmount] = useState(500000); // ₹5 Lakh default
@@ -52,6 +54,52 @@ const Index = () => {
   };
   
   const savings = calculateSavings();
+
+  // Generate chart data for the comparison
+  const getChartData = () => {
+    return [
+      {
+        name: 'Fluidpe',
+        interest: savings.ourInterest,
+        fill: '#004d4d', // Teal
+        savings: 0
+      },
+      {
+        name: 'Personal Loan',
+        interest: savings.personalLoanExtra,
+        fill: '#ea384c', // Red
+        savings: -savings.personalLoan
+      },
+      {
+        name: 'Credit Card',
+        interest: savings.creditCardExtra,
+        fill: '#c30018', // Darker Red
+        savings: -savings.creditCard
+      }
+    ];
+  };
+
+  // Chart configuration
+  const chartConfig = {
+    fluidpe: { label: "Fluidpe Mutual Fund Loan", theme: { light: "#004d4d" } },
+    personalLoan: { label: "Personal Loan", theme: { light: "#ea384c" } },
+    creditCard: { label: "Credit Card", theme: { light: "#c30018" } },
+  };
+
+  // Format large numbers for display
+  const formatCurrency = (value: number) => {
+    if (value >= 10000000) {
+      return `₹${(value / 10000000).toFixed(2)} Cr`;
+    } else if (value >= 100000) {
+      return `₹${(value / 100000).toFixed(2)} Lakh`;
+    } else if (value >= 1000) {
+      return `₹${(value / 1000).toFixed(2)}K`;
+    }
+    return `₹${value}`;
+  };
+
+  // Generate chart data for total interest comparison
+  const interestComparisonData = getChartData();
 
   const blogPosts = [
     {
@@ -528,18 +576,31 @@ const Index = () => {
                           </div>
                         </div>
                         
-                        <div className="flex justify-between items-center">
+                        <div className="flex justify-between items-center pb-2 border-b border-fluidpe-light-teal/30">
                           <span className="text-gray-700">Tenure</span>
                           <span className="font-medium text-fluidpe-teal">{loanDuration} months</span>
                         </div>
                         
-                        <div className="mt-4 pt-2 border-t border-fluidpe-light-teal/30 text-sm text-center">
-                          <p className="text-fluidpe-medium-teal font-medium">
-                            No hidden charges • No prepayment penalty • Quick approval
-                          </p>
-                          <div className="flex items-center justify-center mt-3 bg-green-50 p-2 rounded-lg border border-green-100">
-                            <span className="text-green-700 font-medium text-sm flex items-center">
-                              <Star className="w-4 h-4 mr-1 text-yellow-500" /> Total Interest: ₹{savings.ourInterest.toLocaleString()}
+                        <div className="flex justify-between items-center">
+                          <span className="text-gray-700">Total Interest</span>
+                          <span className="font-medium text-green-600">₹{savings.ourInterest.toLocaleString()}</span>
+                        </div>
+                        
+                        <div className="mt-4 pt-2 border-t border-fluidpe-light-teal/30">
+                          <div className="flex flex-col gap-2">
+                            <p className="text-center text-fluidpe-medium-teal font-medium text-sm">
+                              <CheckCircle className="inline-block w-4 h-4 mr-1 text-green-500" /> No hidden charges
+                            </p>
+                            <p className="text-center text-fluidpe-medium-teal font-medium text-sm">
+                              <CheckCircle className="inline-block w-4 h-4 mr-1 text-green-500" /> No prepayment penalty
+                            </p>
+                            <p className="text-center text-fluidpe-medium-teal font-medium text-sm">
+                              <CheckCircle className="inline-block w-4 h-4 mr-1 text-green-500" /> Quick approval
+                            </p>
+                          </div>
+                          <div className="flex items-center justify-center mt-3 bg-green-50 p-3 rounded-lg border border-green-100">
+                            <span className="text-green-700 font-medium flex items-center">
+                              <Star className="w-4 h-4 mr-1 text-yellow-500" /> You save up to ₹{savings.creditCard.toLocaleString()} vs Credit Cards!
                             </span>
                           </div>
                         </div>
@@ -559,6 +620,49 @@ const Index = () => {
                   </div>
                   
                   <div className="p-6">
+                    {/* Interactive Chart */}
+                    <div className="mb-6 rounded-xl border border-fluidpe-light-teal/30 bg-white p-4 shadow-md">
+                      <h4 className="text-md font-semibold text-fluidpe-teal mb-3 flex items-center">
+                        <BarChartIcon className="w-4 h-4 mr-2" /> Total Interest Cost Comparison
+                      </h4>
+                      <div className="w-full h-56">
+                        <ChartContainer config={chartConfig} className="mt-3">
+                          <BarChart data={interestComparisonData}>
+                            <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
+                            <XAxis dataKey="name" />
+                            <YAxis tickFormatter={(value) => formatCurrency(value)} />
+                            <ChartTooltip
+                              content={({ active, payload }) => {
+                                if (active && payload && payload.length) {
+                                  const data = payload[0].payload;
+                                  return (
+                                    <div className="bg-white p-3 border border-gray-200 shadow-lg rounded-lg">
+                                      <p className="font-semibold text-sm">{data.name}</p>
+                                      <p className="text-sm text-gray-700">
+                                        Total Interest: ₹{data.interest.toLocaleString()}
+                                      </p>
+                                      {data.savings !== 0 && (
+                                        <p className={`text-sm ${data.savings < 0 ? 'text-red-600' : 'text-green-600'}`}>
+                                          {data.savings < 0 ? 'Extra Cost: ' : 'Savings: '}
+                                          ₹{Math.abs(data.savings).toLocaleString()}
+                                        </p>
+                                      )}
+                                    </div>
+                                  );
+                                }
+                                return null;
+                              }}
+                            />
+                            <Legend />
+                            <Bar dataKey="interest" name="Total Interest Cost" />
+                          </BarChart>
+                        </ChartContainer>
+                      </div>
+                      <p className="text-xs text-center text-gray-500 mt-2 italic">
+                        Hover over bars to see detailed cost information
+                      </p>
+                    </div>
+
                     <div className="overflow-hidden rounded-xl border border-fluidpe-light-teal/30 mb-6 shadow-md">
                       <Table>
                         <TableHeader className="bg-gradient-to-r from-fluidpe-light-teal/70 to-fluidpe-light-gold/50">
@@ -586,7 +690,7 @@ const Index = () => {
                               </div>
                             </TableCell>
                           </TableRow>
-                          <TableRow className="hover:bg-fluidpe-light-teal/10 transition-colors">
+                          <TableRow className="hover:bg-fluidpe-light-red/10 transition-colors">
                             <TableCell className="font-medium">Personal Loan</TableCell>
                             <TableCell>14%</TableCell>
                             <TableCell>₹{savings.personalLoanExtra.toLocaleString()}</TableCell>
@@ -597,7 +701,7 @@ const Index = () => {
                               </AnimatedElement>
                             </TableCell>
                           </TableRow>
-                          <TableRow className="hover:bg-fluidpe-light-teal/10 transition-colors">
+                          <TableRow className="hover:bg-fluidpe-light-red/10 transition-colors">
                             <TableCell className="font-medium">Credit Card</TableCell>
                             <TableCell>36%</TableCell>
                             <TableCell>₹{savings.creditCardExtra.toLocaleString()}</TableCell>
