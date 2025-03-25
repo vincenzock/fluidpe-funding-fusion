@@ -1,9 +1,8 @@
-
 import React, { useEffect, useState } from 'react';
 import { 
   LineChart as LineChartIcon, PieChart as PieChartIcon, BarChart as BarChartIcon, Wallet, Clock, Shield, Award, 
   TrendingUp, Percent, CreditCard, Briefcase, ArrowRight, CheckCircle, Check, Upload, FileText, Send, Star,
-  TrendingDown, AlertTriangle, Sparkles, Smartphone, ChevronRight
+  TrendingDown, AlertTriangle, Sparkles, Smartphone, ChevronRight, BarChart4, PieChart, BarChart2
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
@@ -147,6 +146,21 @@ const Index = () => {
     }
   ];
 
+  const generateChartData = () => {
+    const data = [];
+    for (let i = 0; i < 12; i++) {
+      data.push({
+        month: i,
+        value: 50 + Math.random() * 50 + (i * 5)
+      });
+    }
+    return data;
+  };
+
+  const chartData1 = generateChartData();
+  const chartData2 = generateChartData().map(item => ({ ...item, value: item.value * 0.8 }));
+  const chartData3 = generateChartData().map(item => ({ ...item, value: item.value * 1.2 }));
+
   return (
     <div className="overflow-x-hidden font-sans">
       <Navbar />
@@ -208,105 +222,230 @@ const Index = () => {
             </div>
             
             <AnimatedElement delay={300} className="relative">
-              <div className="relative z-10">
-                <div className="relative overflow-hidden rounded-2xl shadow-xl bg-gradient-to-br from-fluidpe-teal to-fluidpe-medium-teal">
-                  <div className="absolute inset-0 mix-blend-overlay opacity-90">
-                    <div className="absolute inset-0 bg-gradient-to-br from-fluidpe-teal/80 to-fluidpe-medium-teal/80"></div>
-                    <div className="w-full h-full overflow-hidden">
-                      <div className="absolute -right-16 -bottom-16 w-64 h-64 bg-white/10 rounded-full blur-xl"></div>
-                      <div className="absolute left-32 top-16 w-20 h-20 bg-white/20 rounded-full blur-md"></div>
-                      <div className="absolute right-1/4 top-1/3 w-40 h-40 bg-fluidpe-light-gold/30 rounded-full blur-lg"></div>
-                    </div>
+              <div className="relative z-10 shadow-2xl rounded-2xl overflow-hidden">
+                <div className="bg-gradient-to-br from-fluidpe-teal to-fluidpe-medium-teal p-6 relative overflow-hidden">
+                  <div className="absolute inset-0 opacity-20">
+                    <div className="absolute top-0 left-0 w-full h-full bg-pattern-grid"></div>
+                    <div className="absolute -right-16 -bottom-16 w-64 h-64 bg-white/20 rounded-full blur-xl"></div>
+                    <div className="absolute left-32 top-16 w-20 h-20 bg-white/20 rounded-full blur-md"></div>
                   </div>
                   
-                  <div className="relative p-8 z-10">
-                    <div className="grid grid-cols-3 gap-3 mb-6">
-                      {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
-                        <div 
-                          key={index} 
-                          className={`${index % 3 === 0 ? 'bg-white/20' : index % 3 === 1 ? 'bg-white/15' : 'bg-white/10'} 
-                                     rounded-lg p-2 backdrop-blur-sm border border-white/10 transform transition-all duration-500
-                                     ${index % 4 === 0 ? 'animate-float' : ''}`}
-                          style={{ animationDelay: `${index * 0.2}s` }}
-                        >
-                          <div className="h-10 w-full rounded-md flex items-center justify-center">
-                            {index === 0 && <Sparkles className="h-5 w-5 text-white/90" />}
-                            {index === 2 && <Percent className="h-5 w-5 text-white/90" />}
-                            {index === 6 && <TrendingUp className="h-5 w-5 text-white/90" />}
-                            {index === 8 && <Wallet className="h-5 w-5 text-white/90" />}
-                          </div>
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="flex items-center gap-3">
+                        <div className="bg-white/20 backdrop-blur-sm rounded-full p-2">
+                          <BarChart4 className="h-5 w-5 text-white" />
                         </div>
-                      ))}
+                        <h3 className="text-xl font-semibold text-white">Investment Dashboard</h3>
+                      </div>
+                      <div className="flex gap-2">
+                        <div className="bg-white/10 rounded-full w-3 h-3"></div>
+                        <div className="bg-white/20 rounded-full w-3 h-3"></div>
+                        <div className="bg-white/30 rounded-full w-3 h-3"></div>
+                      </div>
                     </div>
                     
-                    <div className="text-white space-y-6">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="bg-white/20 backdrop-blur-sm rounded-full p-2">
-                          <Smartphone className="h-5 w-5 text-white" />
+                    <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 mb-4">
+                      <div className="flex justify-between items-center mb-2">
+                        <div>
+                          <p className="text-white/80 text-sm">Portfolio Value</p>
+                          <div className="flex items-center">
+                            <p className="text-2xl font-bold text-white">₹87,45,000</p>
+                            <div className="ml-2 flex items-center bg-green-500/20 px-2 py-0.5 rounded text-green-300 text-xs">
+                              <TrendingUp className="h-3 w-3 mr-1" /> <span>+12.3%</span>
+                            </div>
+                          </div>
                         </div>
-                        <h3 className="text-xl font-semibold">Mutual Fund Loans</h3>
+                        <AnimatedElement animation="slide-right" infinite={true} duration={2000}>
+                          <div className="flex items-end h-16 space-x-1">
+                            {[35, 42, 38, 45, 40, 48, 52, 49, 55, 58, 62, 60].map((height, index) => (
+                              <div 
+                                key={index} 
+                                className="w-1.5 bg-gradient-to-t from-white/40 to-white/80 rounded-t-sm" 
+                                style={{ 
+                                  height: `${height}%`,
+                                  animation: `grow 2s ease-out forwards ${index * 0.1}s`
+                                }}
+                              ></div>
+                            ))}
+                          </div>
+                        </AnimatedElement>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4 mb-4">
+                      <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+                        <p className="text-white/80 text-sm mb-1">Equity Funds</p>
+                        <p className="text-xl font-bold text-white">₹52,47,000</p>
+                        <div className="mt-2 relative h-24">
+                          <AnimatedElement animation="fade-in" infinite={true} duration={3000}>
+                            <div className="absolute inset-0">
+                              <div className="w-full h-full flex items-end">
+                                {chartData1.map((item, index) => (
+                                  <div key={index} className="flex-1 flex items-end justify-center">
+                                    <div 
+                                      className="w-4/5 bg-gradient-to-t from-teal-400/40 to-teal-300/70 rounded-t-sm transition-all duration-1000"
+                                      style={{ 
+                                        height: `${item.value}%`,
+                                        animation: `pulse-soft 3s infinite ${index * 0.2}s`
+                                      }}
+                                    ></div>
+                                  </div>
+                                ))}
+                              </div>
+                              <div className="absolute top-0 left-0 w-full h-full">
+                                <svg width="100%" height="100%" className="absolute top-0 left-0">
+                                  <path
+                                    d={`M0,${100 - chartData1[0].value} ${chartData1.map((item, i) => `L${(i / (chartData1.length - 1)) * 100},${100 - item.value}`).join(' ')}`}
+                                    fill="none"
+                                    stroke="rgba(255,255,255,0.5)"
+                                    strokeWidth="2"
+                                    className="animate-pulse-soft"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                          </AnimatedElement>
+                        </div>
                       </div>
                       
                       <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-                        <div className="flex justify-between items-center mb-2">
-                          <p className="text-white/80 text-sm">Portfolio Value</p>
-                          <span className="bg-white/20 text-xs rounded-full px-2 py-1">Active</span>
-                        </div>
-                        <p className="text-2xl font-bold">₹87,45,000</p>
-                        <div className="flex items-center mt-1 text-green-300 text-sm">
-                          <TrendingUp className="h-3 w-3 mr-1" /> <span>+12.3%</span>
+                        <p className="text-white/80 text-sm mb-1">Debt Funds</p>
+                        <p className="text-xl font-bold text-white">₹34,98,000</p>
+                        <div className="mt-2 relative h-24">
+                          <AnimatedElement animation="fade-in" infinite={true} duration={3000}>
+                            <div className="h-full flex items-center justify-center">
+                              <div className="w-full h-full relative">
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                  <div className="absolute w-28 h-28 rounded-full border-4 border-white/10"></div>
+                                  <div className="absolute w-20 h-20 rounded-full border-4 border-white/5"></div>
+                                  <div className="relative">
+                                    <PieChart className="h-10 w-10 text-white/80" />
+                                  </div>
+                                </div>
+                                <svg width="100%" height="100%" viewBox="0 0 100 100" className="rotate-animation">
+                                  <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(0,255,255,0.2)" strokeWidth="8" strokeDasharray="282.7" strokeDashoffset="70" />
+                                  <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth="8" strokeDasharray="282.7" strokeDashoffset="200" className="animate-pulse-soft" />
+                                </svg>
+                              </div>
+                            </div>
+                          </AnimatedElement>
                         </div>
                       </div>
-                      
-                      <div className="flex gap-3">
-                        <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 flex-1">
-                          <p className="text-white/80 text-sm mb-1">Loan Eligibility</p>
-                          <p className="text-xl font-bold">₹52,47,000</p>
-                          <div className="w-full bg-white/10 h-1.5 rounded-full mt-2">
-                            <div className="bg-white/60 h-1.5 rounded-full w-[60%]"></div>
+                    </div>
+                    
+                    <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 mb-4">
+                      <div className="flex justify-between items-center mb-2">
+                        <p className="text-white/80 text-sm">Investment Growth</p>
+                        <div className="flex items-center bg-white/10 rounded-full px-2 py-0.5 text-xs text-white/90">
+                          <span>Last 12 Months</span>
+                        </div>
+                      </div>
+                      <div className="relative h-32">
+                        <AnimatedElement animation="fade-in" infinite={true} duration={4000}>
+                          <div className="absolute bottom-0 left-0 w-full h-full flex">
+                            <div className="relative w-full h-full">
+                              <svg width="100%" height="100%" className="overflow-visible">
+                                <defs>
+                                  <linearGradient id="lineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stopColor="rgba(255,255,255,0.8)" />
+                                    <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+                                  </linearGradient>
+                                </defs>
+                                <path
+                                  d={`M0,${100 - chartData3[0].value} ${chartData3.map((item, i) => `L${(i / (chartData3.length - 1)) * 100},${100 - item.value}`).join(' ')} L100,100 L0,100 Z`}
+                                  fill="url(#lineGradient)"
+                                  opacity="0.2"
+                                />
+                                <path
+                                  d={`M0,${100 - chartData3[0].value} ${chartData3.map((item, i) => `L${(i / (chartData3.length - 1)) * 100},${100 - item.value}`).join(' ')}`}
+                                  fill="none"
+                                  stroke="rgba(255,255,255,0.8)"
+                                  strokeWidth="2"
+                                  className="line-animation"
+                                />
+                                {chartData3.map((item, i) => (
+                                  <circle 
+                                    key={i}
+                                    cx={`${(i / (chartData3.length - 1)) * 100}%`} 
+                                    cy={`${100 - item.value}%`} 
+                                    r="3"
+                                    fill="white"
+                                    className="animate-pulse-soft"
+                                    style={{ animationDelay: `${i * 0.2}s` }}
+                                  />
+                                ))}
+                              </svg>
+                              <div className="absolute top-0 right-5 bg-gradient-to-r from-green-500/20 to-green-400/40 px-2 py-1 rounded-md text-white text-xs flex items-center">
+                                <Sparkles className="h-3 w-3 mr-1 text-yellow-300" /> Growth +24.7%
+                              </div>
+                            </div>
                           </div>
+                        </AnimatedElement>
+                      </div>
+                    </div>
+                    
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-2">
+                        <div className="bg-green-500/20 rounded-full p-1.5">
+                          <TrendingUp className="h-4 w-4 text-green-300" />
                         </div>
-                        <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 flex-1">
-                          <p className="text-white/80 text-sm mb-1">Interest Rate</p>
-                          <p className="text-xl font-bold">8.5% p.a.</p>
-                          <p className="text-xs text-white/60 mt-1">Market Lowest</p>
+                        <div>
+                          <p className="text-xs text-white/60">Current Value</p>
+                          <p className="text-sm font-semibold text-white">₹87.45L</p>
                         </div>
                       </div>
                       
-                      <div className="flex justify-center">
-                        <Button 
-                          className="bg-white text-fluidpe-teal font-medium rounded-lg mt-2 group hover:bg-white/90 transition-all"
-                        >
-                          Apply Now <ChevronRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                        </Button>
+                      <div className="flex items-center gap-2">
+                        <div className="bg-blue-500/20 rounded-full p-1.5">
+                          <Percent className="h-4 w-4 text-blue-300" />
+                        </div>
+                        <div>
+                          <p className="text-xs text-white/60">Loan Eligibility</p>
+                          <p className="text-sm font-semibold text-white">₹69.96L</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center gap-2">
+                        <div className="bg-yellow-500/20 rounded-full p-1.5">
+                          <Star className="h-4 w-4 text-yellow-300" />
+                        </div>
+                        <div>
+                          <p className="text-xs text-white/60">Interest Rate</p>
+                          <p className="text-sm font-semibold text-white">8.5% p.a.</p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 
-                <div className="absolute -bottom-6 -right-6 bg-white rounded-lg shadow-lg p-4 animate-float" style={{ animationDelay: '1s' }}>
-                  <div className="flex items-center gap-3">
-                    <div className="bg-green-100 rounded-full p-2">
-                      <TrendingUp className="h-5 w-5 text-green-600" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-500">Portfolio Value</p>
-                      <p className="font-semibold text-fluidpe-teal">₹1.2 Cr</p>
+                <AnimatedElement animation="fade-up" delay={500} className="absolute -bottom-6 -right-6">
+                  <div className="bg-white rounded-lg shadow-lg p-4 animate-float" style={{ animationDelay: '1s' }}>
+                    <div className="flex items-center gap-3">
+                      <div className="bg-green-100 rounded-full p-2">
+                        <TrendingUp className="h-5 w-5 text-green-600" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-500">Portfolio Value</p>
+                        <p className="font-semibold text-fluidpe-teal">₹87.45L</p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </AnimatedElement>
                 
-                <div className="absolute -top-6 -left-6 bg-white rounded-lg shadow-lg p-4 animate-float" style={{ animationDelay: '1.5s' }}>
-                  <div className="flex items-center gap-3">
-                    <div className="bg-blue-100 rounded-full p-2">
-                      <Percent className="h-5 w-5 text-blue-600" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-500">Interest Rate</p>
-                      <p className="font-semibold text-fluidpe-teal">8.5% p.a</p>
+                <AnimatedElement animation="fade-down" delay={800} className="absolute -top-6 -left-6">
+                  <div className="bg-white rounded-lg shadow-lg p-4 animate-float" style={{ animationDelay: '1.5s' }}>
+                    <div className="flex items-center gap-3">
+                      <div className="bg-blue-100 rounded-full p-2">
+                        <Percent className="h-5 w-5 text-blue-600" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-500">Interest Rate</p>
+                        <p className="font-semibold text-fluidpe-teal">8.5% p.a</p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </AnimatedElement>
               </div>
             </AnimatedElement>
           </div>
@@ -417,487 +556,4 @@ const Index = () => {
         
         <div className="container mx-auto px-4 relative z-10">
           <AnimatedElement animation="fade-up">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">How It Works</h2>
-          </AnimatedElement>
-          
-          <AnimatedElement delay={200} animation="fade-up">
-            <p className="text-lg md:text-xl text-gray-600 mb-16 max-w-3xl mx-auto text-center">
-              Four simple steps to unlock the value of your mutual fund investments
-            </p>
-          </AnimatedElement>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-10">
-            <ProcessStep 
-              number={1}
-              title="Upload Documents"
-              description="Upload KYC, PAN and other documents for quick verification."
-              delay={0}
-              icon={<Upload className="w-10 h-10" />}
-            />
-            
-            <ProcessStep 
-              number={2}
-              title="Select Mutual Funds"
-              description="Choose the mutual funds you wish to pledge as collateral."
-              delay={200}
-              icon={<FileText className="w-10 h-10" />}
-            />
-            
-            <ProcessStep 
-              number={3}
-              title="Digital Signing"
-              description="Complete the digital signing process securely online - no paperwork."
-              delay={400}
-              icon={<Send className="w-10 h-10" />}
-            />
-            
-            <ProcessStep 
-              number={4}
-              title="Instant Disbursal"
-              description="Receive funds instantly in your bank account once approved."
-              delay={600}
-              icon={<Wallet className="w-10 h-10" />}
-            />
-          </div>
-          
-          <AnimatedElement delay={800} className="mt-12 text-center">
-            <Button className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none group">
-              Get Started Now <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-            </Button>
-          </AnimatedElement>
-        </div>
-      </section>
-      
-      <section id="benefits" className="py-16 md:py-24 bg-white relative overflow-hidden">
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute right-[-5%] top-[10%] w-72 h-72 rounded-full bg-fluidpe-light-teal/30 blur-3xl"></div>
-          <div className="absolute left-[-5%] bottom-[10%] w-80 h-80 rounded-full bg-fluidpe-light-gold/30 blur-3xl"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <AnimatedElement>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center gradient-text-animate">
-              Calculate Your Savings with Loan Against Mutual Funds
-            </h2>
-          </AnimatedElement>
-          
-          <AnimatedElement delay={200}>
-            <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto text-center">
-              See how much you can save compared to traditional financing options
-            </p>
-          </AnimatedElement>
-          
-          <div className="mt-12 max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <AnimatedElement delay={100} animation="fade-up" className="h-full">
-                <div className="premium-card h-full overflow-hidden">
-                  <div className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal px-6 py-4">
-                    <h3 className="text-xl font-semibold text-white flex items-center">
-                      <Wallet className="w-5 h-5 mr-2" /> Loan Calculator
-                    </h3>
-                    <p className="text-sm text-white/80">Adjust the sliders to see your potential savings</p>
-                  </div>
-                  
-                  <div className="p-6">
-                    <div className="space-y-6">
-                      <div className="space-y-2">
-                        <div className="flex justify-between">
-                          <label className="text-sm font-medium text-gray-700 flex items-center">
-                            <TrendingUp className="w-4 h-4 mr-1 text-fluidpe-teal" /> Loan Amount
-                          </label>
-                          <span className="text-sm font-medium text-fluidpe-teal">₹{loanAmount.toLocaleString()}</span>
-                        </div>
-                        <Slider 
-                          min={100000} 
-                          max={5000000} 
-                          step={100000} 
-                          value={[loanAmount]} 
-                          onValueChange={(value) => setLoanAmount(value[0])} 
-                          className="calculator-slider cursor-pointer"
-                        />
-                      </div>
-                      
-                      <div className="space-y-2">
-                        <div className="flex justify-between">
-                          <label className="text-sm font-medium text-gray-700 flex items-center">
-                            <Clock className="w-4 h-4 mr-1 text-fluidpe-teal" /> Duration (Months)
-                          </label>
-                          <span className="text-sm font-medium text-fluidpe-teal">{loanDuration} months</span>
-                        </div>
-                        <Slider 
-                          min={6} 
-                          max={60} 
-                          step={6} 
-                          value={[loanDuration]} 
-                          onValueChange={(value) => setLoanDuration(value[0])} 
-                          className="calculator-slider cursor-pointer"
-                        />
-                      </div>
-                      
-                      <div className="space-y-2">
-                        <div className="flex justify-between">
-                          <label className="text-sm font-medium text-gray-700 flex items-center">
-                            <Percent className="w-4 h-4 mr-1 text-fluidpe-teal" /> Interest Rate
-                          </label>
-                          <span className="text-sm font-medium text-fluidpe-teal">{interestRate}%</span>
-                        </div>
-                        <Slider 
-                          min={8.5} 
-                          max={12.99} 
-                          step={0.5} 
-                          value={[interestRate]} 
-                          onValueChange={(value) => setInterestRate(value[0])} 
-                          className="calculator-slider cursor-pointer"
-                        />
-                      </div>
-                    </div>
-                    
-                    <div className="mt-8 bg-gradient-to-br from-fluidpe-light-teal/50 to-fluidpe-light-gold/30 p-6 rounded-xl shadow-inner">
-                      <div className="flex justify-between items-center">
-                        <h4 className="text-lg font-semibold text-fluidpe-teal flex items-center">
-                          <Star className="w-5 h-5 mr-2 text-fluidpe-medium-teal" /> Your Loan Summary
-                        </h4>
-                        <div className="bg-fluidpe-teal text-white text-xs font-semibold px-3 py-1 rounded-full animate-pulse-soft">
-                          Best Rate!
-                        </div>
-                      </div>
-                      
-                      <div className="space-y-4 mt-4">
-                        <div className="flex justify-between items-center pb-3 border-b border-fluidpe-light-teal/30">
-                          <span className="text-gray-700 font-medium">Monthly EMI</span>
-                          <span className="text-2xl font-bold bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent animate-float-slow">
-                            ₹{calculateEMI().toLocaleString()}
-                          </span>
-                        </div>
-                        
-                        <div className="flex justify-between items-center pb-2 border-b border-fluidpe-light-teal/30">
-                          <span className="text-gray-700">Loan Amount</span>
-                          <span className="font-medium text-fluidpe-teal">₹{loanAmount.toLocaleString()}</span>
-                        </div>
-                        
-                        <div className="flex justify-between items-center pb-2 border-b border-fluidpe-light-teal/30">
-                          <span className="text-gray-700">Interest Rate</span>
-                          <div className="flex items-center">
-                            <span className="font-medium text-fluidpe-teal">{interestRate}% p.a.</span>
-                            <div className="ml-2 bg-green-100 text-green-700 text-xs font-medium px-2 py-0.5 rounded-full">
-                              Lowest!
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex justify-between items-center">
-                          <span className="text-gray-700">Tenure</span>
-                          <span className="font-medium text-fluidpe-teal">{loanDuration} months</span>
-                        </div>
-                        
-                        <div className="mt-4 pt-2 border-t border-fluidpe-light-teal/30 text-sm text-center">
-                          <p className="text-fluidpe-medium-teal font-medium">
-                            No hidden charges • No prepayment penalty • Quick approval
-                          </p>
-                          <div className="flex items-center justify-center mt-3 bg-green-50 p-2 rounded-lg border border-green-100">
-                            <span className="text-green-700 font-medium text-sm flex items-center">
-                              <Star className="w-4 h-4 mr-1 text-yellow-500" /> Total Interest: ₹{savings.ourInterest.toLocaleString()}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </AnimatedElement>
-              
-              <AnimatedElement delay={300} animation="fade-up" className="h-full">
-                <div className="premium-card h-full overflow-hidden">
-                  <div className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal px-6 py-4">
-                    <h3 className="text-xl font-semibold text-white flex items-center">
-                      <CreditCard className="w-5 h-5 mr-2" /> Savings Comparison
-                    </h3>
-                    <p className="text-sm text-white/80">See how much you save with Fluidpe compared to other options</p>
-                  </div>
-                  
-                  <div className="p-6">
-                    <div className="overflow-hidden rounded-xl border border-fluidpe-light-teal/30 mb-6 shadow-md">
-                      <Table>
-                        <TableHeader className="bg-gradient-to-r from-fluidpe-light-teal/70 to-fluidpe-light-gold/50">
-                          <TableRow>
-                            <TableHead className="text-fluidpe-teal font-semibold">Loan Type</TableHead>
-                            <TableHead className="text-fluidpe-teal font-semibold">Interest Rate</TableHead>
-                            <TableHead className="text-fluidpe-teal font-semibold">Total Interest</TableHead>
-                            <TableHead className="text-fluidpe-teal font-semibold">Comparison</TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          <TableRow className="bg-gradient-to-r from-fluidpe-light-teal/30 to-transparent">
-                            <TableCell className="font-medium">
-                              <div className="flex items-center">
-                                <Star className="h-4 w-4 text-yellow-500 mr-1.5" />
-                                <span>Fluidpe Loan Against Mutual Funds</span>
-                              </div>
-                            </TableCell>
-                            <TableCell className="font-medium text-fluidpe-teal">{interestRate}%</TableCell>
-                            <TableCell>₹{savings.ourInterest.toLocaleString()}</TableCell>
-                            <TableCell className="font-semibold text-green-600">
-                              <div className="flex items-center">
-                                <CheckCircle className="h-4 w-4 mr-1.5 text-green-500" />
-                                <span>Best Option</span>
-                              </div>
-                            </TableCell>
-                          </TableRow>
-                          <TableRow className="hover:bg-fluidpe-light-teal/10 transition-colors">
-                            <TableCell className="font-medium">Personal Loan</TableCell>
-                            <TableCell>14%</TableCell>
-                            <TableCell>₹{savings.personalLoanExtra.toLocaleString()}</TableCell>
-                            <TableCell className="font-semibold text-red-600">
-                              <AnimatedElement animation="fade-in" className="flex items-center">
-                                <TrendingDown className="h-4 w-4 mr-1.5 text-red-500" />
-                                <span>-₹{savings.personalLoan.toLocaleString()}</span>
-                              </AnimatedElement>
-                            </TableCell>
-                          </TableRow>
-                          <TableRow className="hover:bg-fluidpe-light-teal/10 transition-colors">
-                            <TableCell className="font-medium">Credit Card</TableCell>
-                            <TableCell>36%</TableCell>
-                            <TableCell>₹{savings.creditCardExtra.toLocaleString()}</TableCell>
-                            <TableCell className="font-semibold text-red-600">
-                              <AnimatedElement animation="fade-in" className="flex items-center">
-                                <TrendingDown className="h-4 w-4 mr-1.5 text-red-500" />
-                                <span>-₹{savings.creditCard.toLocaleString()}</span>
-                              </AnimatedElement>
-                            </TableCell>
-                          </TableRow>
-                        </TableBody>
-                      </Table>
-                    </div>
-                    
-                    <div className="mt-6 mb-4">
-                      <h4 className="text-lg font-semibold text-fluidpe-teal mb-4 flex items-center">
-                        <Award className="w-5 h-5 mr-2" /> Highest Savings Potential
-                      </h4>
-                      <div className="savings-highlight p-4 bg-gradient-to-r from-green-50 to-fluidpe-light-teal/30 rounded-xl border border-green-100 shadow-md">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <p className="text-gray-700 font-medium">By choosing Fluidpe instead of Credit Card financing:</p>
-                            <p className="text-xl font-bold text-green-600 mt-2 flex items-center">
-                              <CheckCircle className="h-5 w-5 mr-2 text-green-500" />
-                              You save ₹{savings.creditCard.toLocaleString()}
-                            </p>
-                            <p className="text-xs text-green-600 mt-1">That's {Math.round((savings.creditCard/(loanAmount * (36/100) * (loanDuration/12)))*100)}% in interest savings!</p>
-                          </div>
-                          <div className="bg-white rounded-full p-3 shadow-md">
-                            <TrendingUp className="h-8 w-8 text-green-500" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="mt-6 grid grid-cols-1 gap-4">
-                      <AnimatedElement delay={200} className="p-4 rounded-xl border shadow-md bg-red-50 border-red-100">
-                        <div className="flex items-center">
-                          <div className="bg-red-100 rounded-full p-2 mr-4">
-                            <AlertTriangle className="h-5 w-5 text-red-500" />
-                          </div>
-                          <div>
-                            <h4 className="text-md font-semibold text-red-700">Avoid Credit Card Financing</h4>
-                            <p className="text-xs text-red-600">
-                              You'll pay <span className="font-bold">₹{savings.creditCard.toLocaleString()}</span> more in interest with credit cards at 36% rate
-                            </p>
-                          </div>
-                        </div>
-                      </AnimatedElement>
-                      
-                      <AnimatedElement delay={300} className="p-4 rounded-xl border shadow-md bg-red-50/50 border-red-100/50">
-                        <div className="flex items-center">
-                          <div className="bg-red-100 rounded-full p-2 mr-4">
-                            <AlertTriangle className="h-5 w-5 text-red-500" />
-                          </div>
-                          <div>
-                            <h4 className="text-md font-semibold text-red-700">Personal Loans Cost More</h4>
-                            <p className="text-xs text-red-600">
-                              You'll pay <span className="font-bold">₹{savings.personalLoan.toLocaleString()}</span> more in interest with personal loans at 14% rate
-                            </p>
-                          </div>
-                        </div>
-                      </AnimatedElement>
-                    </div>
-                  </div>
-                </div>
-              </AnimatedElement>
-            </div>
-            
-            <AnimatedElement delay={600} className="mt-12 text-center">
-              <Button className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none group">
-                Apply for Loan Against Mutual Funds <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </Button>
-            </AnimatedElement>
-          </div>
-        </div>
-      </section>
-      
-      <section id="blogs" className="py-16 md:py-24 bg-fluidpe-light-gray">
-        <div className="container mx-auto px-4">
-          <AnimatedElement>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">
-              Financial Insights & Resources
-            </h2>
-          </AnimatedElement>
-          
-          <AnimatedElement delay={200}>
-            <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto text-center">
-              Stay informed with our latest articles on mutual funds, investments, and financial planning
-            </p>
-          </AnimatedElement>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.slice(0, 6).map((post, index) => (
-              <BlogCard
-                key={post.id}
-                title={post.title}
-                excerpt={post.excerpt}
-                date={post.date}
-                author={post.author}
-                category={post.category}
-                imageUrl={post.imageUrl}
-                delay={index * 100}
-              />
-            ))}
-          </div>
-          
-          <AnimatedElement delay={400} className="mt-12 text-center">
-            <Button className="bg-white text-fluidpe-teal px-6 py-3 rounded-lg font-medium border border-fluidpe-teal/30 transition-all duration-300 hover:border-fluidpe-teal hover:bg-fluidpe-light-teal hover:shadow-md group">
-              View All Articles <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-            </Button>
-          </AnimatedElement>
-        </div>
-      </section>
-      
-      <section id="testimonials" className="py-16 md:py-24 bg-fluidpe-light-teal relative overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute left-[-10%] top-[-5%] w-96 h-96 rounded-full bg-white blur-3xl opacity-60"></div>
-          <div className="absolute right-[-5%] bottom-[10%] w-80 h-80 rounded-full bg-fluidpe-light-gold blur-3xl opacity-40"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <AnimatedElement>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">What Our Customers Say</h2>
-          </AnimatedElement>
-          
-          <AnimatedElement delay={200}>
-            <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto text-center">
-              Join thousands of satisfied customers who've experienced the Fluidpe advantage
-            </p>
-          </AnimatedElement>
-          
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <TestimonialCard 
-              quote="Fluidpe provided me with quick funds for my business expansion without having to sell my mutual fund investments. The process was smooth and transparent."
-              author="Rahul Sharma"
-              designation="Business Owner, Delhi"
-              delay={0}
-            />
-            
-            <TestimonialCard 
-              quote="I was surprised by how quickly I received the funds. The interest rate was much lower than other options, and I didn't have to liquidate my mutual funds during a market dip."
-              author="Priya Patel"
-              designation="IT Professional, Bangalore"
-              delay={200}
-            />
-            
-            <TestimonialCard 
-              quote="The flexible repayment options suited my irregular income pattern perfectly. Their customer service team was extremely helpful throughout the process."
-              author="Vikram Singh"
-              designation="Freelance Consultant, Mumbai"
-              delay={400}
-            />
-          </div>
-        </div>
-      </section>
-      
-      <section className="py-16 md:py-24 bg-cta-pattern">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <AnimatedElement>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-fluidpe-teal">
-                Ready to Unlock the Value of Your Mutual Fund Portfolio?
-              </h2>
-            </AnimatedElement>
-            
-            <AnimatedElement delay={200}>
-              <p className="text-lg text-gray-600 mb-8">
-                Apply now to get a personalized quote and access funds without selling your mutual fund investments. Our experts are ready to help you every step of the way.
-              </p>
-            </AnimatedElement>
-            
-            <AnimatedElement delay={400}>
-              <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <Button className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none" size="lg">
-                  Apply Now
-                </Button>
-                <Button className="bg-white text-fluidpe-teal px-6 py-3 rounded-lg font-medium border border-fluidpe-teal/30 transition-all duration-300 hover:border-fluidpe-teal hover:bg-fluidpe-light-teal shadow-sm hover:shadow-md hover:-translate-y-1" size="lg">
-                  Talk to an Advisor
-                </Button>
-              </div>
-            </AnimatedElement>
-          </div>
-        </div>
-      </section>
-      
-      <section id="faq" className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <AnimatedElement>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">Frequently Asked Questions</h2>
-          </AnimatedElement>
-          
-          <AnimatedElement delay={200}>
-            <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto text-center">
-              Find answers to common questions about loans against mutual funds
-            </p>
-          </AnimatedElement>
-          
-          <div className="mt-12 max-w-3xl mx-auto">
-            <FaqItem 
-              question="What mutual funds can I pledge for a loan?"
-              answer="You can pledge a wide range of mutual funds including equity funds, debt funds, hybrid funds, and ETFs. The exact list of eligible funds may vary based on current market conditions and our risk assessment policies."
-              delay={0}
-            />
-            
-            <FaqItem 
-              question="How much loan amount can I get against my mutual funds?"
-              answer="You can typically get up to 80% of the value of your pledged mutual funds, depending on the type and quality of funds. Debt funds and large-cap equity funds generally have higher loan-to-value ratios compared to mid or small-cap funds."
-              delay={100}
-            />
-            
-            <FaqItem 
-              question="What happens if the value of my pledged mutual funds falls?"
-              answer="If the value of your pledged mutual funds falls below a certain threshold (typically 120-130% of the loan amount), you'll receive a margin call asking you to either pledge additional funds or partially repay the loan to maintain the required margin."
-              delay={200}
-            />
-            
-            <FaqItem 
-              question="Can I continue to earn returns on pledged mutual funds?"
-              answer="Yes, you continue to receive all dividends, interest, and other benefits from your pledged mutual funds. The funds remain in your name, and only a lien is marked in favor of Fluidpe."
-              delay={300}
-            />
-            
-            <FaqItem 
-              question="What are the repayment options available?"
-              answer="We offer multiple repayment options including interest-only payments with bullet repayment of principal, equated monthly installments (EMI), and flexible repayment schedules. You can also prepay the loan anytime without any penalties."
-              delay={400}
-            />
-            
-            <FaqItem 
-              question="How long does it take to process my loan application?"
-              answer="Once you submit your application and pledge your mutual funds, the verification and approval process typically takes 24-48 hours. After approval, funds are disbursed to your bank account within the next business day."
-              delay={500}
-            />
-          </div>
-        </div>
-      </section>
-      
-      <Footer />
-      
-      <ScrollToTop />
-    </div>
-  );
-};
-
-export default Index;
+            <h2
