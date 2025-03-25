@@ -29,7 +29,7 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({
           if (entry.isIntersecting) {
             setTimeout(() => {
               entry.target.classList.add('visible');
-              // Fix: Cast to HTMLElement to access dataset property
+              // Cast to HTMLElement to access dataset property
               const targetElement = entry.target as HTMLElement;
               targetElement.dataset.animation = animation;
             }, delay);
@@ -37,7 +37,7 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({
           }
         });
       }, 
-      { threshold: threshold }
+      { threshold: threshold, rootMargin: "10px" }
     );
     
     if (elementRef.current) {
