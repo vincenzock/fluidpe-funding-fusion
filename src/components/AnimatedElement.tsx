@@ -27,7 +27,9 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({
           if (entry.isIntersecting) {
             setTimeout(() => {
               entry.target.classList.add('visible');
-              entry.target.dataset.animation = animation;
+              // Fix: Cast to HTMLElement to access dataset property
+              const targetElement = entry.target as HTMLElement;
+              targetElement.dataset.animation = animation;
             }, delay);
             observer.unobserve(entry.target);
           }
