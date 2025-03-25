@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { 
   LineChart as LineChartIcon, PieChart as PieChartIcon, BarChart as BarChartIcon, Wallet, Clock, Shield, Award, 
-  TrendingUp, Percent, CreditCard, Briefcase, ArrowRight, CheckCircle
+  TrendingUp, Percent, CreditCard, Briefcase, ArrowRight, CheckCircle, Check, Upload, FileText, Send
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import { Input } from '@/components/ui/input';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AnimatedElement from '@/components/AnimatedElement';
@@ -14,47 +15,11 @@ import ProcessStep from '@/components/ProcessStep';
 import TestimonialCard from '@/components/TestimonialCard';
 import FaqItem from '@/components/FaqItem';
 import ScrollToTop from '@/components/ScrollToTop';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { 
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, 
-  ResponsiveContainer, BarChart, Bar, Cell, PieChart, Pie
-} from 'recharts';
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 
 const Index = () => {
   const [loanAmount, setLoanAmount] = useState(500000); // ₹5 Lakh default
   const [loanDuration, setLoanDuration] = useState(24); // 24 months
   const [interestRate, setInterestRate] = useState(8.99); // 8.99% default
-  
-  const calculateComparisonData = () => {
-    const years = 5;
-    const comparisonData = [];
-    
-    for (let year = 1; year <= years; year++) {
-      const securitiesGrowth = Math.round(100 * Math.pow(1.15, year)); // 15% annual growth for securities
-      const personalLoanValue = Math.round(100 * Math.pow(1.05, year)); // 5% annual growth for personal loan option
-      const creditCardValue = Math.round(100 * Math.pow(0.96, year)); // 4% annual loss for credit card debt
-
-      comparisonData.push({
-        year: `Year ${year}`,
-        securities: securitiesGrowth,
-        personal: personalLoanValue,
-        credit: creditCardValue
-      });
-    }
-    
-    return comparisonData;
-  };
-  
-  const growthComparisonData = calculateComparisonData();
-
-  const returnsData = [
-    { name: 'Investment Growth', value: 65 },
-    { name: 'Interest Saved', value: 25 },
-    { name: 'Tax Benefits', value: 10 },
-  ];
-
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
   
   const calculateEMI = () => {
     const principal = loanAmount;
@@ -270,7 +235,7 @@ const Index = () => {
         </div>
       </section>
       
-      {/* How It Works Section - Completely Redesigned */}
+      {/* How It Works Section - Redesigned based on voltmoney.in */}
       <section id="how-it-works" className="py-20 bg-gradient-to-b from-white to-fluidpe-light-teal/20 relative overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute right-[-10%] bottom-[-5%] w-96 h-96 rounded-full bg-fluidpe-light-teal blur-3xl opacity-40"></div>
@@ -284,49 +249,53 @@ const Index = () => {
           
           <AnimatedElement delay={200} animation="fade-up">
             <p className="text-lg md:text-xl text-gray-600 mb-16 max-w-3xl mx-auto text-center">
-              Our simple 4-step process gets you quick access to funds without selling your investments
+              Four simple steps to unlock the value of your investments
             </p>
           </AnimatedElement>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-10">
             <ProcessStep 
               number={1}
-              title="Apply Online"
-              description="Fill our simple online form in under 5 minutes with your personal and investment details."
+              title="Upload Documents"
+              description="Upload KYC, PAN and other documents for quick verification."
               delay={0}
+              icon={<Upload className="w-10 h-10" />}
             />
             
             <ProcessStep 
               number={2}
-              title="Pledge Securities"
-              description="Select the stocks, mutual funds, or bonds you wish to pledge as collateral."
+              title="Select Securities"
+              description="Choose the stocks, mutual funds, or bonds you wish to pledge as collateral."
               delay={200}
+              icon={<FileText className="w-10 h-10" />}
             />
             
             <ProcessStep 
               number={3}
-              title="Quick Verification"
-              description="Our team verifies your details and securities, typically within 24 hours."
+              title="Digital Signing"
+              description="Complete the digital signing process securely online - no paperwork."
               delay={400}
+              icon={<Send className="w-10 h-10" />}
             />
             
             <ProcessStep 
               number={4}
-              title="Receive Funds"
-              description="Accept the offer, complete documentation, and receive funds within 24 hours."
+              title="Instant Disbursal"
+              description="Receive funds instantly in your bank account once approved."
               delay={600}
+              icon={<Wallet className="w-10 h-10" />}
             />
           </div>
           
           <AnimatedElement delay={800} className="mt-12 text-center">
             <Button className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none group">
-              Apply Now <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+              Get Started Now <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
             </Button>
           </AnimatedElement>
         </div>
       </section>
       
-      {/* Benefits Comparison Section - Interactive and Simplified */}
+      {/* Benefits Comparison Section - Visual Table instead of Chart */}
       <section id="benefits" className="py-16 md:py-24 bg-white relative overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute right-[-5%] top-[10%] w-72 h-72 rounded-full bg-fluidpe-light-teal/30 blur-3xl"></div>
@@ -336,20 +305,19 @@ const Index = () => {
         <div className="container mx-auto px-4 relative z-10">
           <AnimatedElement>
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">
-              Benefits of Loans Against Securities
+              Calculate Your Savings with Loan Against Securities
             </h2>
           </AnimatedElement>
           
           <AnimatedElement delay={200}>
             <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto text-center">
-              Unlock value from your investments while keeping your portfolio intact
+              See how much you can save compared to traditional financing options
             </p>
           </AnimatedElement>
           
           <div className="mt-12 max-w-4xl mx-auto bg-white/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg border border-fluidpe-light-teal/30">
             <div className="mb-8">
-              <h3 className="text-xl font-semibold mb-6 text-fluidpe-teal">Interactive Loan Calculator</h3>
-              <p className="text-gray-600 mb-8">Adjust the sliders to see how a loan against securities can benefit you</p>
+              <h3 className="text-xl font-semibold mb-6 text-fluidpe-teal">Loan Details</h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-6">
@@ -423,77 +391,81 @@ const Index = () => {
                       <span className="font-medium">{loanDuration} months</span>
                     </div>
                   </div>
-                  
-                  <div className="mt-6 pt-4 border-t border-fluidpe-light-teal/30">
-                    <h5 className="text-sm font-semibold mb-2 text-fluidpe-teal">You Save vs. Other Options:</h5>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">vs. Personal Loan (14%)</span>
-                      <span className="text-green-600 font-medium">₹{savings.personalLoan.toLocaleString()}</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">vs. Credit Card (36%)</span>
-                      <span className="text-green-600 font-medium">₹{savings.creditCard.toLocaleString()}</span>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
             
             <div className="mt-10 border-t border-fluidpe-light-teal/30 pt-8">
               <h3 className="text-xl font-semibold mb-4 text-fluidpe-teal flex items-center">
-                <LineChartIcon className="w-5 h-5 mr-2" /> Growth Comparison
+                <CreditCard className="w-5 h-5 mr-2" /> Savings Comparison
               </h3>
               <p className="text-gray-600 mb-6">
-                See how keeping your investments while taking a loan against securities 
-                outperforms traditional financing options over time
+                See how much you save with Fluidpe compared to other financing options
               </p>
-              <div className="h-72">
-                <ResponsiveContainer width="100%" height="100%">
-                  <LineChart
-                    data={growthComparisonData}
-                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                    <XAxis dataKey="year" tick={{ fill: '#666' }} />
-                    <YAxis tickFormatter={(tick) => `${tick}%`} tick={{ fill: '#666' }} />
-                    <Tooltip 
-                      formatter={(value) => [`${value}%`, '']} 
-                      labelFormatter={(label) => `Growth at ${label}`}
-                    />
-                    <Legend />
-                    <Line 
-                      type="monotone" 
-                      dataKey="securities" 
-                      name="Loan Against Securities" 
-                      stroke="#0fade8" 
-                      strokeWidth={3}
-                      dot={{ r: 4, strokeWidth: 2 }}
-                      activeDot={{ r: 6, strokeWidth: 2 }}
-                    />
-                    <Line 
-                      type="monotone" 
-                      dataKey="personal" 
-                      name="Personal Loan" 
-                      stroke="#7c65ab" 
-                      strokeWidth={2}
-                    />
-                    <Line 
-                      type="monotone" 
-                      dataKey="credit" 
-                      name="Credit Card" 
-                      stroke="#fb7185" 
-                      strokeWidth={2} 
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
+              
+              <div className="overflow-hidden rounded-xl border border-fluidpe-light-teal/30">
+                <Table>
+                  <TableHeader className="bg-gradient-to-r from-fluidpe-light-teal/40 to-fluidpe-light-gold/30">
+                    <TableRow>
+                      <TableHead className="text-fluidpe-teal font-semibold">Loan Type</TableHead>
+                      <TableHead className="text-fluidpe-teal font-semibold">Interest Rate</TableHead>
+                      <TableHead className="text-fluidpe-teal font-semibold">Total Interest</TableHead>
+                      <TableHead className="text-fluidpe-teal font-semibold">Your Savings</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    <TableRow className="bg-gradient-to-r from-fluidpe-light-teal/10 to-transparent">
+                      <TableCell className="font-medium">Fluidpe Loan Against Securities</TableCell>
+                      <TableCell>{interestRate}%</TableCell>
+                      <TableCell>₹{Math.round(loanAmount * (interestRate/100) * (loanDuration/12)).toLocaleString()}</TableCell>
+                      <TableCell className="font-semibold text-fluidpe-teal">-</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium">Personal Loan</TableCell>
+                      <TableCell>14%</TableCell>
+                      <TableCell>₹{Math.round(loanAmount * (14/100) * (loanDuration/12)).toLocaleString()}</TableCell>
+                      <TableCell className="font-semibold text-green-600">₹{savings.personalLoan.toLocaleString()}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium">Credit Card</TableCell>
+                      <TableCell>36%</TableCell>
+                      <TableCell>₹{Math.round(loanAmount * (36/100) * (loanDuration/12)).toLocaleString()}</TableCell>
+                      <TableCell className="font-semibold text-green-600">₹{savings.creditCard.toLocaleString()}</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
               </div>
-              <div className="mt-4 p-4 bg-fluidpe-light-teal/20 rounded-lg text-sm text-gray-600">
-                <p className="font-medium text-fluidpe-teal mb-2">What is a Loan Against Securities?</p>
-                <p>
-                  A loan against securities allows you to borrow money using your investment portfolio (stocks, mutual funds, bonds) 
-                  as collateral. Unlike selling your investments, you continue to own your securities and benefit from any market 
-                  appreciation, dividends, or interest while having access to funds for your immediate needs.
-                </p>
+              
+              <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <AnimatedElement delay={200} className="bg-gradient-to-br from-fluidpe-light-teal/20 to-white p-5 rounded-xl border border-fluidpe-light-teal/30">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="bg-gradient-to-br from-fluidpe-teal to-fluidpe-medium-teal rounded-full p-3 mb-3">
+                      <TrendingUp className="h-6 w-6 text-white" />
+                    </div>
+                    <h4 className="text-lg font-semibold mb-2 text-fluidpe-teal">Keep Growing Your Investments</h4>
+                    <p className="text-sm text-gray-600">Continue to earn returns on your investments while accessing liquidity</p>
+                  </div>
+                </AnimatedElement>
+                
+                <AnimatedElement delay={400} className="bg-gradient-to-br from-fluidpe-light-teal/20 to-white p-5 rounded-xl border border-fluidpe-light-teal/30">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="bg-gradient-to-br from-fluidpe-teal to-fluidpe-medium-teal rounded-full p-3 mb-3">
+                      <Percent className="h-6 w-6 text-white" />
+                    </div>
+                    <h4 className="text-lg font-semibold mb-2 text-fluidpe-teal">Lower Interest Rates</h4>
+                    <p className="text-sm text-gray-600">Enjoy interest rates as low as 8.99%, saving you thousands in interest</p>
+                  </div>
+                </AnimatedElement>
+                
+                <AnimatedElement delay={600} className="bg-gradient-to-br from-fluidpe-light-teal/20 to-white p-5 rounded-xl border border-fluidpe-light-teal/30">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="bg-gradient-to-br from-fluidpe-teal to-fluidpe-medium-teal rounded-full p-3 mb-3">
+                      <Clock className="h-6 w-6 text-white" />
+                    </div>
+                    <h4 className="text-lg font-semibold mb-2 text-fluidpe-teal">Quick Approval</h4>
+                    <p className="text-sm text-gray-600">Get your loan approved and disbursed in as little as 24 hours</p>
+                  </div>
+                </AnimatedElement>
               </div>
             </div>
           </div>
