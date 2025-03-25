@@ -13,14 +13,14 @@ interface ProcessStepProps {
 const ProcessStep: React.FC<ProcessStepProps> = ({ number, title, description, delay, icon }) => {
   return (
     <AnimatedElement delay={delay} animation="fade-up" className="w-full">
-      <div className="relative px-6 py-8 h-full rounded-xl flex flex-col items-center text-center transition-all duration-500 hover:-translate-y-1 border border-transparent hover:border-fluidpe-light-teal/50 hover:shadow-md group">
+      <div className="relative px-6 py-8 h-full rounded-xl flex flex-col items-center text-center transition-all duration-500 hover:-translate-y-2 border border-transparent hover:border-fluidpe-light-teal/50 hover:shadow-lg group bg-white">
         {icon && (
-          <div className="text-fluidpe-teal mb-4">
+          <div className="text-fluidpe-teal mb-4 transform transition-transform duration-300 group-hover:scale-110">
             {icon}
           </div>
         )}
         
-        <div className="bg-gradient-to-br from-fluidpe-teal to-fluidpe-medium-teal rounded-full text-white font-bold w-12 h-12 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+        <div className="bg-gradient-to-br from-fluidpe-teal to-fluidpe-medium-teal rounded-full text-white font-bold w-12 h-12 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-md">
           {number}
         </div>
         

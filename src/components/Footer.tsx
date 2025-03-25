@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
               className="h-10 mb-4 brightness-0 invert" 
             />
             <p className="mb-4 text-gray-300">
-              Fluidpe offers innovative loan against mutual funds solutions with competitive interest rates and flexible repayment options.
+              Fluidpe offers innovative loan against mutual funds solutions with competitive interest rates starting at 8.5% and flexible repayment options.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-300 hover:text-white transition-colors">
@@ -40,6 +40,7 @@ const Footer: React.FC = () => {
               <li><a href="#how-it-works" className="text-gray-300 hover:text-white transition-colors">How It Works</a></li>
               <li><a href="#benefits" className="text-gray-300 hover:text-white transition-colors">Benefits</a></li>
               <li><a href="#testimonials" className="text-gray-300 hover:text-white transition-colors">Testimonials</a></li>
+              <li><a href="#blogs" className="text-gray-300 hover:text-white transition-colors">Blogs</a></li>
               <li><a href="#faq" className="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
             </ul>
           </div>
@@ -47,8 +48,8 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Resources</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Blog</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Calculators</a></li>
+              <li><a href="#blogs" className="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+              <li><a href="#benefits" className="text-gray-300 hover:text-white transition-colors">Calculators</a></li>
               <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Investment Tips</a></li>
               <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Mutual Fund Insights</a></li>
               <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Terms of Service</a></li>
