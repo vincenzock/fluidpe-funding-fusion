@@ -556,3 +556,127 @@ const Index = () => {
                         
                         <div className="flex justify-between items-center pb-2 border-b border-fluidpe-light-teal/30">
                           <span className="text-gray-700">Interest Rate</span>
+                          <span className="font-medium text-fluidpe-teal">{interestRate}% p.a.</span>
+                        </div>
+                        
+                        <div className="flex justify-between items-center pb-2 border-b border-fluidpe-light-teal/30">
+                          <span className="text-gray-700">Loan Duration</span>
+                          <span className="font-medium text-fluidpe-teal">{loanDuration} months</span>
+                        </div>
+                        
+                        <div className="flex justify-between items-center pb-2">
+                          <span className="text-gray-700">Total Interest Payable</span>
+                          <span className="font-medium text-fluidpe-teal">₹{savings.ourInterest.toLocaleString()}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedElement>
+              
+              <AnimatedElement delay={300} animation="fade-up" className="h-full">
+                <div className="h-full flex flex-col">
+                  <div className="bg-gradient-to-r from-fluidpe-light-teal to-fluidpe-light-gold/50 px-6 py-4 rounded-t-xl">
+                    <h3 className="text-xl font-semibold text-fluidpe-teal flex items-center">
+                      <CreditCard className="w-5 h-5 mr-2" /> Your Savings Comparison
+                    </h3>
+                    <p className="text-sm text-gray-600">See how much you save with us vs. other financing options</p>
+                  </div>
+                  
+                  <div className="flex-grow bg-white p-6 rounded-b-xl shadow-md border border-gray-100">
+                    <div className="mb-6">
+                      <div className="flex justify-between items-center mb-2">
+                        <div className="flex items-center">
+                          <div className="bg-green-100 rounded-full p-2 mr-3">
+                            <TrendingDown className="h-5 w-5 text-green-600" />
+                          </div>
+                          <div>
+                            <p className="font-medium text-gray-800">Fluidpe Loan</p>
+                            <p className="text-sm text-gray-500">{interestRate}% interest rate</p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-fluidpe-teal font-semibold">₹{savings.ourInterest.toLocaleString()}</p>
+                          <p className="text-xs text-gray-500">Total interest</p>
+                        </div>
+                      </div>
+                      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                        <div className="h-full bg-green-500 rounded-full" style={{ width: '25%' }}></div>
+                      </div>
+                    </div>
+                    
+                    <div className="mb-6">
+                      <div className="flex justify-between items-center mb-2">
+                        <div className="flex items-center">
+                          <div className="bg-yellow-100 rounded-full p-2 mr-3">
+                            <AlertTriangle className="h-5 w-5 text-yellow-600" />
+                          </div>
+                          <div>
+                            <p className="font-medium text-gray-800">Personal Loan</p>
+                            <p className="text-sm text-gray-500">14% interest rate</p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-yellow-600 font-semibold">₹{savings.personalLoanExtra.toLocaleString()}</p>
+                          <p className="text-xs text-gray-500">Total interest</p>
+                        </div>
+                      </div>
+                      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                        <div className="h-full bg-yellow-500 rounded-full" style={{ width: '65%' }}></div>
+                      </div>
+                    </div>
+                    
+                    <div className="mb-8">
+                      <div className="flex justify-between items-center mb-2">
+                        <div className="flex items-center">
+                          <div className="bg-red-100 rounded-full p-2 mr-3">
+                            <AlertTriangle className="h-5 w-5 text-red-600" />
+                          </div>
+                          <div>
+                            <p className="font-medium text-gray-800">Credit Card</p>
+                            <p className="text-sm text-gray-500">36% interest rate</p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-red-600 font-semibold">₹{savings.creditCardExtra.toLocaleString()}</p>
+                          <p className="text-xs text-gray-500">Total interest</p>
+                        </div>
+                      </div>
+                      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                        <div className="h-full bg-red-500 rounded-full" style={{ width: '100%' }}></div>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-gradient-to-r from-fluidpe-light-teal/30 to-fluidpe-light-gold/30 p-4 rounded-xl">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-sm text-gray-700">Your total savings vs Personal Loan</p>
+                          <p className="text-xl font-bold text-fluidpe-teal">₹{savings.personalLoan.toLocaleString()}</p>
+                        </div>
+                        <div>
+                          <p className="text-sm text-gray-700">Your total savings vs Credit Card</p>
+                          <p className="text-xl font-bold text-fluidpe-teal">₹{savings.creditCard.toLocaleString()}</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6 text-center">
+                      <Button className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none w-full">
+                        Apply Now and Save
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedElement>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <Footer />
+      <ScrollToTop />
+    </div>
+  );
+};
+
+export default Index;
