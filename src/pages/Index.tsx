@@ -79,11 +79,20 @@ const Index = () => {
     ];
   };
 
-  // Chart configuration
+  // Chart configuration - updated to include both light and dark theme values
   const chartConfig = {
-    fluidpe: { label: "Fluidpe Mutual Fund Loan", theme: { light: "#004d4d" } },
-    personalLoan: { label: "Personal Loan", theme: { light: "#ea384c" } },
-    creditCard: { label: "Credit Card", theme: { light: "#c30018" } },
+    fluidpe: { 
+      label: "Fluidpe Mutual Fund Loan", 
+      theme: { light: "#004d4d", dark: "#004d4d" } 
+    },
+    personalLoan: { 
+      label: "Personal Loan", 
+      theme: { light: "#ea384c", dark: "#ea384c" } 
+    },
+    creditCard: { 
+      label: "Credit Card", 
+      theme: { light: "#c30018", dark: "#c30018" } 
+    },
   };
 
   // Format large numbers for display
