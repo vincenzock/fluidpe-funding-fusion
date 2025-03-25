@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { 
   LineChart as LineChartIcon, PieChart as PieChartIcon, BarChart as BarChartIcon, Wallet, Clock, Shield, Award, 
   TrendingUp, Percent, CreditCard, Briefcase, ArrowRight, CheckCircle, Check, Upload, FileText, Send, Star,
-  TrendingDown, AlertTriangle
+  TrendingDown, AlertTriangle, Sparkles, Smartphone, ChevronRight
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
@@ -209,34 +209,76 @@ const Index = () => {
             
             <AnimatedElement delay={300} className="relative">
               <div className="relative z-10">
-                <div className="glass-card p-5 rounded-2xl shadow-2xl overflow-hidden">
-                  <div className="relative">
-                    <img 
-                      src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200" 
-                      alt="Financial Dashboard" 
-                      className="w-full h-auto rounded-lg object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-br from-fluidpe-teal/80 to-fluidpe-medium-teal/80 mix-blend-multiply rounded-lg"></div>
+                <div className="relative overflow-hidden rounded-2xl shadow-xl bg-gradient-to-br from-fluidpe-teal to-fluidpe-medium-teal">
+                  <div className="absolute inset-0 mix-blend-overlay opacity-90">
+                    <div className="absolute inset-0 bg-gradient-to-br from-fluidpe-teal/80 to-fluidpe-medium-teal/80"></div>
+                    <div className="w-full h-full overflow-hidden">
+                      <div className="absolute -right-16 -bottom-16 w-64 h-64 bg-white/10 rounded-full blur-xl"></div>
+                      <div className="absolute left-32 top-16 w-20 h-20 bg-white/20 rounded-full blur-md"></div>
+                      <div className="absolute right-1/4 top-1/3 w-40 h-40 bg-fluidpe-light-gold/30 rounded-full blur-lg"></div>
+                    </div>
+                  </div>
+                  
+                  <div className="relative p-8 z-10">
+                    <div className="grid grid-cols-3 gap-3 mb-6">
+                      {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
+                        <div 
+                          key={index} 
+                          className={`${index % 3 === 0 ? 'bg-white/20' : index % 3 === 1 ? 'bg-white/15' : 'bg-white/10'} 
+                                     rounded-lg p-2 backdrop-blur-sm border border-white/10 transform transition-all duration-500
+                                     ${index % 4 === 0 ? 'animate-float' : ''}`}
+                          style={{ animationDelay: `${index * 0.2}s` }}
+                        >
+                          <div className="h-10 w-full rounded-md flex items-center justify-center">
+                            {index === 0 && <Sparkles className="h-5 w-5 text-white/90" />}
+                            {index === 2 && <Percent className="h-5 w-5 text-white/90" />}
+                            {index === 6 && <TrendingUp className="h-5 w-5 text-white/90" />}
+                            {index === 8 && <Wallet className="h-5 w-5 text-white/90" />}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                     
-                    <div className="absolute inset-0 flex flex-col justify-center items-center p-8 text-white">
-                      <h3 className="text-2xl font-bold mb-4 text-center">Unlock Liquidity Without Selling</h3>
-                      <div className="grid grid-cols-2 gap-6 w-full max-w-md">
-                        <div className="bg-white/20 backdrop-blur-md rounded-lg p-4 text-center">
-                          <p className="text-sm mb-1 opacity-80">Maximum Loan</p>
-                          <p className="text-2xl font-bold">₹5 Crore</p>
+                    <div className="text-white space-y-6">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="bg-white/20 backdrop-blur-sm rounded-full p-2">
+                          <Smartphone className="h-5 w-5 text-white" />
                         </div>
-                        <div className="bg-white/20 backdrop-blur-md rounded-lg p-4 text-center">
-                          <p className="text-sm mb-1 opacity-80">Min. Interest</p>
-                          <p className="text-2xl font-bold">8.5% p.a.</p>
+                        <h3 className="text-xl font-semibold">Mutual Fund Loans</h3>
+                      </div>
+                      
+                      <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+                        <div className="flex justify-between items-center mb-2">
+                          <p className="text-white/80 text-sm">Portfolio Value</p>
+                          <span className="bg-white/20 text-xs rounded-full px-2 py-1">Active</span>
                         </div>
-                        <div className="bg-white/20 backdrop-blur-md rounded-lg p-4 text-center">
-                          <p className="text-sm mb-1 opacity-80">Processing</p>
-                          <p className="text-2xl font-bold">24 Hours</p>
+                        <p className="text-2xl font-bold">₹87,45,000</p>
+                        <div className="flex items-center mt-1 text-green-300 text-sm">
+                          <TrendingUp className="h-3 w-3 mr-1" /> <span>+12.3%</span>
                         </div>
-                        <div className="bg-white/20 backdrop-blur-md rounded-lg p-4 text-center">
-                          <p className="text-sm mb-1 opacity-80">Documentation</p>
-                          <p className="text-2xl font-bold">Minimal</p>
+                      </div>
+                      
+                      <div className="flex gap-3">
+                        <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 flex-1">
+                          <p className="text-white/80 text-sm mb-1">Loan Eligibility</p>
+                          <p className="text-xl font-bold">₹52,47,000</p>
+                          <div className="w-full bg-white/10 h-1.5 rounded-full mt-2">
+                            <div className="bg-white/60 h-1.5 rounded-full w-[60%]"></div>
+                          </div>
                         </div>
+                        <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 flex-1">
+                          <p className="text-white/80 text-sm mb-1">Interest Rate</p>
+                          <p className="text-xl font-bold">8.5% p.a.</p>
+                          <p className="text-xs text-white/60 mt-1">Market Lowest</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-center">
+                        <Button 
+                          className="bg-white text-fluidpe-teal font-medium rounded-lg mt-2 group hover:bg-white/90 transition-all"
+                        >
+                          Apply Now <ChevronRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                        </Button>
                       </div>
                     </div>
                   </div>
