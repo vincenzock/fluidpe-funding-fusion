@@ -1,8 +1,7 @@
-
 import React, { useEffect, useState } from 'react';
 import { 
   LineChart as LineChartIcon, PieChart as PieChartIcon, BarChart as BarChartIcon, Wallet, Clock, Shield, Award, 
-  TrendingUp, Percent, CreditCard, Briefcase, ArrowRight, CheckCircle, Check, Upload, FileText, Send
+  TrendingUp, Percent, CreditCard, Briefcase, ArrowRight, CheckCircle, Check, Upload, FileText, Send, Star
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
@@ -50,7 +49,6 @@ const Index = () => {
   
   const savings = calculateSavings();
 
-  // Blog data
   const blogPosts = [
     {
       id: 1,
@@ -145,10 +143,9 @@ const Index = () => {
   ];
 
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden font-sans">
       <Navbar />
       
-      {/* Hero Section */}
       <section className="pt-28 md:pt-32 pb-16 md:pb-24 bg-hero-pattern relative">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <div className="absolute right-[-10%] top-[10%] w-72 h-72 rounded-full bg-fluidpe-light-teal blur-3xl opacity-60 animate-float"></div>
@@ -255,7 +252,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Partners Section */}
       <section className="py-10 bg-fluidpe-light-gray">
         <div className="container mx-auto px-4">
           <AnimatedElement>
@@ -294,7 +290,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Features Section */}
       <section id="features" className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <AnimatedElement>
@@ -353,7 +348,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* How It Works Section - Redesigned based on voltmoney.in */}
       <section id="how-it-works" className="py-20 bg-gradient-to-b from-white to-fluidpe-light-teal/20 relative overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute right-[-10%] bottom-[-5%] w-96 h-96 rounded-full bg-fluidpe-light-teal blur-3xl opacity-40"></div>
@@ -413,7 +407,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Enhanced Savings Calculator Section */}
       <section id="benefits" className="py-16 md:py-24 bg-white relative overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute right-[-5%] top-[10%] w-72 h-72 rounded-full bg-fluidpe-light-teal/30 blur-3xl"></div>
@@ -422,7 +415,7 @@ const Index = () => {
         
         <div className="container mx-auto px-4 relative z-10">
           <AnimatedElement>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center gradient-text-animate">
               Calculate Your Savings with Loan Against Mutual Funds
             </h2>
           </AnimatedElement>
@@ -435,19 +428,22 @@ const Index = () => {
           
           <div className="mt-12 max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Loan Calculator */}
               <AnimatedElement delay={100} animation="fade-right" className="h-full">
-                <div className="bg-white shadow-lg rounded-2xl overflow-hidden border border-fluidpe-light-teal/30 h-full">
-                  <div className="bg-gradient-to-r from-fluidpe-light-teal to-fluidpe-light-gold/40 px-6 py-4">
-                    <h3 className="text-xl font-semibold text-fluidpe-teal">Loan Calculator</h3>
-                    <p className="text-sm text-gray-600">Adjust the sliders to see your potential savings</p>
+                <div className="premium-card h-full overflow-hidden">
+                  <div className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal px-6 py-4">
+                    <h3 className="text-xl font-semibold text-white flex items-center">
+                      <Wallet className="w-5 h-5 mr-2" /> Loan Calculator
+                    </h3>
+                    <p className="text-sm text-white/80">Adjust the sliders to see your potential savings</p>
                   </div>
                   
                   <div className="p-6">
                     <div className="space-y-6">
                       <div className="space-y-2">
                         <div className="flex justify-between">
-                          <label className="text-sm font-medium text-gray-700">Loan Amount</label>
+                          <label className="text-sm font-medium text-gray-700 flex items-center">
+                            <TrendingUp className="w-4 h-4 mr-1 text-fluidpe-teal" /> Loan Amount
+                          </label>
                           <span className="text-sm font-medium text-fluidpe-teal">₹{loanAmount.toLocaleString()}</span>
                         </div>
                         <Slider 
@@ -456,13 +452,15 @@ const Index = () => {
                           step={100000} 
                           value={[loanAmount]} 
                           onValueChange={(value) => setLoanAmount(value[0])} 
-                          className="cursor-pointer"
+                          className="calculator-slider cursor-pointer"
                         />
                       </div>
                       
                       <div className="space-y-2">
                         <div className="flex justify-between">
-                          <label className="text-sm font-medium text-gray-700">Duration (Months)</label>
+                          <label className="text-sm font-medium text-gray-700 flex items-center">
+                            <Clock className="w-4 h-4 mr-1 text-fluidpe-teal" /> Duration (Months)
+                          </label>
                           <span className="text-sm font-medium text-fluidpe-teal">{loanDuration} months</span>
                         </div>
                         <Slider 
@@ -471,13 +469,15 @@ const Index = () => {
                           step={6} 
                           value={[loanDuration]} 
                           onValueChange={(value) => setLoanDuration(value[0])} 
-                          className="cursor-pointer"
+                          className="calculator-slider cursor-pointer"
                         />
                       </div>
                       
                       <div className="space-y-2">
                         <div className="flex justify-between">
-                          <label className="text-sm font-medium text-gray-700">Interest Rate</label>
+                          <label className="text-sm font-medium text-gray-700 flex items-center">
+                            <Percent className="w-4 h-4 mr-1 text-fluidpe-teal" /> Interest Rate
+                          </label>
                           <span className="text-sm font-medium text-fluidpe-teal">{interestRate}%</span>
                         </div>
                         <Slider 
@@ -486,33 +486,53 @@ const Index = () => {
                           step={0.5} 
                           value={[interestRate]} 
                           onValueChange={(value) => setInterestRate(value[0])} 
-                          className="cursor-pointer"
+                          className="calculator-slider cursor-pointer"
                         />
                       </div>
                     </div>
                     
-                    <div className="mt-8 bg-gradient-to-br from-fluidpe-light-teal/30 to-fluidpe-light-gold/30 p-6 rounded-xl">
-                      <h4 className="text-lg font-semibold mb-4 text-fluidpe-teal">Your Loan Summary</h4>
+                    <div className="mt-8 bg-gradient-to-br from-fluidpe-light-teal/50 to-fluidpe-light-gold/30 p-6 rounded-xl shadow-inner">
+                      <div className="flex justify-between items-center">
+                        <h4 className="text-lg font-semibold text-fluidpe-teal flex items-center">
+                          <Star className="w-5 h-5 mr-2 text-fluidpe-medium-teal" /> Your Loan Summary
+                        </h4>
+                        <div className="bg-fluidpe-teal text-white text-xs font-semibold px-3 py-1 rounded-full animate-pulse-slow">
+                          Best Rate!
+                        </div>
+                      </div>
                       
-                      <div className="space-y-4">
-                        <div className="flex justify-between items-center pb-2 border-b border-fluidpe-light-teal/30">
-                          <span className="text-gray-600">Monthly EMI</span>
-                          <span className="text-xl font-bold text-fluidpe-teal">₹{emi.toLocaleString()}</span>
+                      <div className="space-y-4 mt-4">
+                        <div className="flex justify-between items-center pb-3 border-b border-fluidpe-light-teal/30">
+                          <span className="text-gray-700 font-medium">Monthly EMI</span>
+                          <span className="text-2xl font-bold bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent animate-float-slow">
+                            ₹{emi.toLocaleString()}
+                          </span>
                         </div>
                         
                         <div className="flex justify-between items-center pb-2 border-b border-fluidpe-light-teal/30">
-                          <span className="text-gray-600">Loan Amount</span>
-                          <span className="font-medium">₹{loanAmount.toLocaleString()}</span>
+                          <span className="text-gray-700">Loan Amount</span>
+                          <span className="font-medium text-fluidpe-teal">₹{loanAmount.toLocaleString()}</span>
                         </div>
                         
                         <div className="flex justify-between items-center pb-2 border-b border-fluidpe-light-teal/30">
-                          <span className="text-gray-600">Interest Rate</span>
-                          <span className="font-medium">{interestRate}% p.a.</span>
+                          <span className="text-gray-700">Interest Rate</span>
+                          <div className="flex items-center">
+                            <span className="font-medium text-fluidpe-teal">{interestRate}% p.a.</span>
+                            <div className="ml-2 bg-green-100 text-green-700 text-xs font-medium px-2 py-0.5 rounded-full">
+                              Lowest!
+                            </div>
+                          </div>
                         </div>
                         
                         <div className="flex justify-between items-center">
-                          <span className="text-gray-600">Tenure</span>
-                          <span className="font-medium">{loanDuration} months</span>
+                          <span className="text-gray-700">Tenure</span>
+                          <span className="font-medium text-fluidpe-teal">{loanDuration} months</span>
+                        </div>
+                        
+                        <div className="mt-4 pt-2 border-t border-fluidpe-light-teal/30 text-sm text-center">
+                          <p className="text-fluidpe-medium-teal font-medium">
+                            No hidden charges • No prepayment penalty • Quick approval
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -520,20 +540,19 @@ const Index = () => {
                 </div>
               </AnimatedElement>
               
-              {/* Savings Comparison */}
               <AnimatedElement delay={300} animation="fade-left" className="h-full">
-                <div className="bg-white shadow-lg rounded-2xl overflow-hidden border border-fluidpe-light-teal/30 h-full">
-                  <div className="bg-gradient-to-r from-fluidpe-light-teal to-fluidpe-light-gold/40 px-6 py-4">
-                    <h3 className="text-xl font-semibold text-fluidpe-teal flex items-center">
+                <div className="premium-card h-full overflow-hidden">
+                  <div className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal px-6 py-4">
+                    <h3 className="text-xl font-semibold text-white flex items-center">
                       <CreditCard className="w-5 h-5 mr-2" /> Savings Comparison
                     </h3>
-                    <p className="text-sm text-gray-600">See how much you save with Fluidpe compared to other options</p>
+                    <p className="text-sm text-white/80">See how much you save with Fluidpe compared to other options</p>
                   </div>
                   
                   <div className="p-6">
-                    <div className="overflow-hidden rounded-xl border border-fluidpe-light-teal/30 mb-6">
+                    <div className="overflow-hidden rounded-xl border border-fluidpe-light-teal/30 mb-6 shadow-md">
                       <Table>
-                        <TableHeader className="bg-gradient-to-r from-fluidpe-light-teal/40 to-fluidpe-light-gold/30">
+                        <TableHeader className="bg-gradient-to-r from-fluidpe-light-teal/70 to-fluidpe-light-gold/50">
                           <TableRow>
                             <TableHead className="text-fluidpe-teal font-semibold">Loan Type</TableHead>
                             <TableHead className="text-fluidpe-teal font-semibold">Interest Rate</TableHead>
@@ -542,28 +561,35 @@ const Index = () => {
                           </TableRow>
                         </TableHeader>
                         <TableBody>
-                          <TableRow className="bg-gradient-to-r from-fluidpe-light-teal/10 to-transparent">
-                            <TableCell className="font-medium">Fluidpe Loan Against Mutual Funds</TableCell>
-                            <TableCell>{interestRate}%</TableCell>
+                          <TableRow className="bg-gradient-to-r from-fluidpe-light-teal/30 to-transparent">
+                            <TableCell className="font-medium">
+                              <div className="flex items-center">
+                                <Star className="h-4 w-4 text-yellow-500 mr-1.5" />
+                                <span>Fluidpe Loan Against Mutual Funds</span>
+                              </div>
+                            </TableCell>
+                            <TableCell className="font-medium text-fluidpe-teal">{interestRate}%</TableCell>
                             <TableCell>₹{Math.round(loanAmount * (interestRate/100) * (loanDuration/12)).toLocaleString()}</TableCell>
                             <TableCell className="font-semibold text-fluidpe-teal">-</TableCell>
                           </TableRow>
-                          <TableRow>
+                          <TableRow className="hover:bg-fluidpe-light-teal/10 transition-colors">
                             <TableCell className="font-medium">Personal Loan</TableCell>
                             <TableCell>14%</TableCell>
                             <TableCell>₹{Math.round(loanAmount * (14/100) * (loanDuration/12)).toLocaleString()}</TableCell>
                             <TableCell className="font-semibold text-green-600">
-                              <AnimatedElement animation="fade-in">
+                              <AnimatedElement animation="fade-in" className="flex items-center">
+                                <CheckCircle className="h-4 w-4 mr-1.5 text-green-500" />
                                 ₹{savings.personalLoan.toLocaleString()}
                               </AnimatedElement>
                             </TableCell>
                           </TableRow>
-                          <TableRow>
+                          <TableRow className="hover:bg-fluidpe-light-teal/10 transition-colors">
                             <TableCell className="font-medium">Credit Card</TableCell>
                             <TableCell>36%</TableCell>
                             <TableCell>₹{Math.round(loanAmount * (36/100) * (loanDuration/12)).toLocaleString()}</TableCell>
                             <TableCell className="font-semibold text-green-600">
-                              <AnimatedElement animation="fade-in">
+                              <AnimatedElement animation="fade-in" className="flex items-center">
+                                <CheckCircle className="h-4 w-4 mr-1.5 text-green-500" />
                                 ₹{savings.creditCard.toLocaleString()}
                               </AnimatedElement>
                             </TableCell>
@@ -572,23 +598,28 @@ const Index = () => {
                       </Table>
                     </div>
                     
-                    <div className="mt-4 mb-2">
-                      <h4 className="text-lg font-semibold text-fluidpe-teal mb-4">Highest Savings Potential</h4>
-                      <div className="bg-gradient-to-r from-green-100 to-green-50 p-4 rounded-lg border border-green-200 flex items-center justify-between">
-                        <div>
-                          <p className="text-gray-700">By choosing Fluidpe instead of Credit Card financing:</p>
-                          <p className="text-lg font-bold text-green-600 mt-1 animate-pulse">
-                            You save ₹{savings.creditCard.toLocaleString()}
-                          </p>
-                        </div>
-                        <div className="bg-white rounded-full p-2 shadow-md">
-                          <Check className="h-8 w-8 text-green-500" />
+                    <div className="mt-6 mb-4">
+                      <h4 className="text-lg font-semibold text-fluidpe-teal mb-4 flex items-center">
+                        <Award className="w-5 h-5 mr-2" /> Highest Savings Potential
+                      </h4>
+                      <div className="savings-highlight">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className="text-gray-700 font-medium">By choosing Fluidpe instead of Credit Card financing:</p>
+                            <p className="text-xl font-bold text-green-600 mt-2">
+                              You save ₹{savings.creditCard.toLocaleString()}
+                            </p>
+                            <p className="text-xs text-green-600 mt-1">That's {Math.round((savings.creditCard/(loanAmount * (36/100) * (loanDuration/12)))*100)}% in interest savings!</p>
+                          </div>
+                          <div className="bg-white rounded-full p-3 shadow-md">
+                            <Check className="h-8 w-8 text-green-500" />
+                          </div>
                         </div>
                       </div>
                     </div>
                     
                     <div className="mt-6 grid grid-cols-1 gap-4">
-                      <AnimatedElement delay={200} className="bg-gradient-to-br from-fluidpe-light-teal/20 to-white p-4 rounded-xl border border-fluidpe-light-teal/30 flex items-center">
+                      <AnimatedElement delay={200} className="bg-gradient-to-br from-fluidpe-light-teal/30 to-white p-4 rounded-xl border border-fluidpe-light-teal/30 flex items-center shadow-md">
                         <div className="bg-gradient-to-br from-fluidpe-teal to-fluidpe-medium-teal rounded-full p-2 mr-4">
                           <TrendingUp className="h-5 w-5 text-white" />
                         </div>
@@ -598,7 +629,7 @@ const Index = () => {
                         </div>
                       </AnimatedElement>
                       
-                      <AnimatedElement delay={300} className="bg-gradient-to-br from-fluidpe-light-teal/20 to-white p-4 rounded-xl border border-fluidpe-light-teal/30 flex items-center">
+                      <AnimatedElement delay={300} className="bg-gradient-to-br from-fluidpe-light-teal/30 to-white p-4 rounded-xl border border-fluidpe-light-teal/30 flex items-center shadow-md">
                         <div className="bg-gradient-to-br from-fluidpe-teal to-fluidpe-medium-teal rounded-full p-2 mr-4">
                           <Percent className="h-5 w-5 text-white" />
                         </div>
@@ -622,7 +653,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Blog Section */}
       <section id="blogs" className="py-16 md:py-24 bg-fluidpe-light-gray">
         <div className="container mx-auto px-4">
           <AnimatedElement>
@@ -660,7 +690,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Testimonials Section */}
       <section id="testimonials" className="py-16 md:py-24 bg-fluidpe-light-teal relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute left-[-10%] top-[-5%] w-96 h-96 rounded-full bg-white blur-3xl opacity-60"></div>
@@ -703,7 +732,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* CTA Section */}
       <section className="py-16 md:py-24 bg-cta-pattern">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
@@ -733,7 +761,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* FAQ Section */}
       <section id="faq" className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <AnimatedElement>
@@ -786,10 +813,8 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Footer */}
       <Footer />
       
-      {/* Scroll to Top Button */}
       <ScrollToTop />
     </div>
   );

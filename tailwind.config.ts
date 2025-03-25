@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -19,6 +18,9 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Poppins', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -142,6 +144,18 @@ export default {
 						opacity: '1'
 					},
 				},
+				'shine': {
+					'0%': { backgroundPosition: '200% center' },
+					'100%': { backgroundPosition: '-200% center' },
+				},
+				'float-slow': {
+					'0%, 100%': {
+						transform: 'translateY(0)'
+					},
+					'50%': {
+						transform: 'translateY(-15px)'
+					},
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -152,6 +166,8 @@ export default {
 				'pulse-soft': 'pulse-soft 3s ease-in-out infinite',
 				'scale-in': 'scale-in 0.5s ease-out forwards',
 				'slide-in-right': 'slide-in-right 0.5s ease-out forwards',
+				'shine': 'shine 8s ease-in-out infinite',
+				'float-slow': 'float-slow 6s ease-in-out infinite',
 			},
 			backgroundImage: {
 				'hero-pattern': 'linear-gradient(to bottom right, rgba(230, 243, 243, 0.8), rgba(255, 255, 255, 0.8))',

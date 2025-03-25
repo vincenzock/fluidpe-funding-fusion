@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -152,6 +153,11 @@
   
   .animate-on-scroll[data-animation="bounce"].visible {
     animation: bounce 0.5s ease 1;
+  }
+
+  .animate-on-scroll[data-animation="fade-in"].visible {
+    opacity: 1;
+    transform: translateY(0);
   }
   
   @keyframes bounce {
@@ -342,5 +348,67 @@
   .glow-on-hover:hover::after {
     box-shadow: 0 0 15px 3px theme('colors.fluidpe.teal');
     opacity: 0.6;
+  }
+
+  /* New enhanced styles */
+  .gradient-text-animate {
+    background: linear-gradient(
+      to right,
+      theme('colors.fluidpe.teal'),
+      theme('colors.fluidpe.medium-teal'),
+      theme('colors.fluidpe.teal')
+    );
+    background-size: 200% auto;
+    background-clip: text;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 8s ease-in-out infinite;
+  }
+
+  .premium-card {
+    @apply bg-gradient-to-br from-fluidpe-teal/10 via-fluidpe-light-teal/30 to-fluidpe-light-gold/20 
+           backdrop-blur-md border border-white/30 shadow-xl rounded-2xl 
+           hover:shadow-2xl hover:border-fluidpe-medium-teal/30 transition-all duration-500;
+  }
+
+  .savings-highlight {
+    @apply relative overflow-hidden bg-gradient-to-r from-green-50 to-green-100 
+           border-2 border-green-200 p-4 rounded-xl font-medium text-green-700;
+  }
+
+  .savings-highlight::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.8) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: translateX(-100%);
+    animation: shine-sweep 3s infinite;
+  }
+
+  @keyframes shine-sweep {
+    0% {
+      transform: translateX(-100%);
+    }
+    20%, 100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .calculator-slider {
+    @apply h-2 rounded-full bg-gradient-to-r from-fluidpe-light-teal to-fluidpe-light-gold shadow-inner;
+  }
+
+  .calculator-thumb {
+    @apply w-6 h-6 rounded-full bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal 
+           shadow-md border-2 border-white focus:ring-2 focus:ring-fluidpe-teal;
   }
 }
