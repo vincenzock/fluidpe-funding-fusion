@@ -15,7 +15,7 @@ const ProcessStep: React.FC<ProcessStepProps> = ({ number, title, description, d
     <AnimatedElement delay={delay} animation="fade-up" className="w-full">
       <div className="relative px-6 py-8 h-full rounded-xl flex flex-col items-center text-center transition-all duration-500 hover:-translate-y-1 border border-transparent hover:border-fluidpe-light-teal/50 hover:shadow-md group">
         {icon && (
-          <div className="mb-4 text-fluidpe-teal">
+          <div className="text-fluidpe-teal mb-4">
             {icon}
           </div>
         )}

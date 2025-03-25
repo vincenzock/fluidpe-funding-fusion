@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
               className="h-10 mb-4 brightness-0 invert" 
             />
             <p className="mb-4 text-gray-300">
-              Fluidpe offers innovative loan against securities solutions with competitive interest rates and flexible repayment options.
+              Fluidpe offers innovative loan against mutual funds solutions with competitive interest rates and flexible repayment options.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-300 hover:text-white transition-colors">
@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
               <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Blog</a></li>
               <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Calculators</a></li>
               <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Investment Tips</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Market Insights</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Mutual Fund Insights</a></li>
               <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Terms of Service</a></li>
               <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
             </ul>

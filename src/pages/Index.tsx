@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { 
   LineChart as LineChartIcon, PieChart as PieChartIcon, BarChart as BarChartIcon, Wallet, Clock, Shield, Award, 
@@ -70,13 +71,13 @@ const Index = () => {
               
               <AnimatedElement delay={200}>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">
-                  Unlock the Power of Your Securities
+                  Unlock the Power of Your Mutual Funds
                 </h1>
               </AnimatedElement>
               
               <AnimatedElement delay={400}>
                 <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-lg">
-                  Get instant loans against your investments without selling your securities. Enjoy competitive interest rates with minimal documentation.
+                  Get instant loans against your mutual fund investments without selling them. Enjoy competitive interest rates with minimal documentation.
                 </p>
               </AnimatedElement>
               
@@ -120,7 +121,7 @@ const Index = () => {
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-white text-center p-6">
-                      <h3 className="text-2xl font-bold mb-2">Loan Against Securities</h3>
+                      <h3 className="text-2xl font-bold mb-2">Loan Against Mutual Funds</h3>
                       <p className="mb-4">Unlock liquidity from your portfolio</p>
                       <div className="inline-block bg-white/20 backdrop-blur-sm rounded-lg p-4">
                         <p className="text-white/90 text-sm mb-1">Loan Amount</p>
@@ -167,11 +168,33 @@ const Index = () => {
           </AnimatedElement>
           
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-            {['HDFC Bank', 'ICICI Securities', 'SBI', 'Axis Bank', 'Kotak Securities'].map((partner, index) => (
-              <AnimatedElement key={partner} delay={index * 100} animation="fade-up">
-                <div className="text-gray-400 font-bold text-xl hover:text-fluidpe-teal transition-colors duration-300">{partner}</div>
-              </AnimatedElement>
-            ))}
+            <AnimatedElement delay={0} animation="fade-up">
+              <div className="flex items-center justify-center h-16">
+                <img 
+                  src="https://www.camsonline.com/static/img/logo.png" 
+                  alt="CAMS" 
+                  className="h-12 object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                />
+              </div>
+            </AnimatedElement>
+            <AnimatedElement delay={100} animation="fade-up">
+              <div className="flex items-center justify-center h-16">
+                <img 
+                  src="https://www.kfintech.com/wp-content/uploads/2020/08/logo-1.png" 
+                  alt="KFINTECH" 
+                  className="h-12 object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                />
+              </div>
+            </AnimatedElement>
+            <AnimatedElement delay={200} animation="fade-up">
+              <div className="flex items-center justify-center h-16">
+                <img 
+                  src="https://nsdl.co.in/images/NSDL-logo.svg" 
+                  alt="NSDL" 
+                  className="h-12 object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                />
+              </div>
+            </AnimatedElement>
           </div>
         </div>
       </section>
@@ -185,7 +208,7 @@ const Index = () => {
           
           <AnimatedElement delay={200}>
             <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto text-center">
-              Unlock the full potential of your investments with our innovative loan against securities solutions
+              Unlock the full potential of your mutual fund investments with our innovative loan solutions
             </p>
           </AnimatedElement>
           
@@ -221,14 +244,14 @@ const Index = () => {
             <FeatureCard 
               icon={Award}
               title="Higher Loan Amounts"
-              description="Access up to 80% of your portfolio value, with loan amounts ranging from ₹1 Lakh to ₹5 Crores."
+              description="Access up to 80% of your mutual fund portfolio value, with loan amounts ranging from ₹1 Lakh to ₹5 Crores."
               delay={400}
             />
             
             <FeatureCard 
               icon={Briefcase}
-              title="Wide Range of Acceptable Securities"
-              description="Pledge various securities including stocks, mutual funds, bonds, and ETFs to secure your loan."
+              title="Wide Range of Acceptable Funds"
+              description="Pledge various mutual fund schemes including equity, debt, hybrid, and ETFs to secure your loan."
               delay={500}
             />
           </div>
@@ -249,7 +272,7 @@ const Index = () => {
           
           <AnimatedElement delay={200} animation="fade-up">
             <p className="text-lg md:text-xl text-gray-600 mb-16 max-w-3xl mx-auto text-center">
-              Four simple steps to unlock the value of your investments
+              Four simple steps to unlock the value of your mutual fund investments
             </p>
           </AnimatedElement>
           
@@ -264,8 +287,8 @@ const Index = () => {
             
             <ProcessStep 
               number={2}
-              title="Select Securities"
-              description="Choose the stocks, mutual funds, or bonds you wish to pledge as collateral."
+              title="Select Mutual Funds"
+              description="Choose the mutual funds you wish to pledge as collateral."
               delay={200}
               icon={<FileText className="w-10 h-10" />}
             />
@@ -305,7 +328,7 @@ const Index = () => {
         <div className="container mx-auto px-4 relative z-10">
           <AnimatedElement>
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">
-              Calculate Your Savings with Loan Against Securities
+              Calculate Your Savings with Loan Against Mutual Funds
             </h2>
           </AnimatedElement>
           
@@ -415,7 +438,7 @@ const Index = () => {
                   </TableHeader>
                   <TableBody>
                     <TableRow className="bg-gradient-to-r from-fluidpe-light-teal/10 to-transparent">
-                      <TableCell className="font-medium">Fluidpe Loan Against Securities</TableCell>
+                      <TableCell className="font-medium">Fluidpe Loan Against Mutual Funds</TableCell>
                       <TableCell>{interestRate}%</TableCell>
                       <TableCell>₹{Math.round(loanAmount * (interestRate/100) * (loanDuration/12)).toLocaleString()}</TableCell>
                       <TableCell className="font-semibold text-fluidpe-teal">-</TableCell>
@@ -443,7 +466,7 @@ const Index = () => {
                       <TrendingUp className="h-6 w-6 text-white" />
                     </div>
                     <h4 className="text-lg font-semibold mb-2 text-fluidpe-teal">Keep Growing Your Investments</h4>
-                    <p className="text-sm text-gray-600">Continue to earn returns on your investments while accessing liquidity</p>
+                    <p className="text-sm text-gray-600">Continue to earn returns on your mutual funds while accessing liquidity</p>
                   </div>
                 </AnimatedElement>
                 
@@ -472,7 +495,7 @@ const Index = () => {
           
           <AnimatedElement delay={600} className="mt-12 text-center">
             <Button className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none group">
-              Apply for Loan Against Securities <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+              Apply for Loan Against Mutual Funds <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
             </Button>
           </AnimatedElement>
         </div>
@@ -498,14 +521,14 @@ const Index = () => {
           
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <TestimonialCard 
-              quote="Fluidpe provided me with quick funds for my business expansion without having to sell my long-term investments. The process was smooth and transparent."
+              quote="Fluidpe provided me with quick funds for my business expansion without having to sell my mutual fund investments. The process was smooth and transparent."
               author="Rahul Sharma"
               designation="Business Owner, Delhi"
               delay={0}
             />
             
             <TestimonialCard 
-              quote="I was surprised by how quickly I received the funds. The interest rate was much lower than other options, and I didn't have to liquidate my portfolio during a market dip."
+              quote="I was surprised by how quickly I received the funds. The interest rate was much lower than other options, and I didn't have to liquidate my mutual funds during a market dip."
               author="Priya Patel"
               designation="IT Professional, Bangalore"
               delay={200}
@@ -527,13 +550,13 @@ const Index = () => {
           <div className="max-w-3xl mx-auto text-center">
             <AnimatedElement>
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-fluidpe-teal">
-                Ready to Unlock the Value of Your Portfolio?
+                Ready to Unlock the Value of Your Mutual Fund Portfolio?
               </h2>
             </AnimatedElement>
             
             <AnimatedElement delay={200}>
               <p className="text-lg text-gray-600 mb-8">
-                Apply now to get a personalized quote and access funds without selling your investments. Our experts are ready to help you every step of the way.
+                Apply now to get a personalized quote and access funds without selling your mutual fund investments. Our experts are ready to help you every step of the way.
               </p>
             </AnimatedElement>
             
@@ -560,32 +583,32 @@ const Index = () => {
           
           <AnimatedElement delay={200}>
             <p className="section-subtitle text-center">
-              Find answers to common questions about loans against securities
+              Find answers to common questions about loans against mutual funds
             </p>
           </AnimatedElement>
           
           <div className="mt-12 max-w-3xl mx-auto">
             <FaqItem 
-              question="What securities can I pledge for a loan?"
-              answer="You can pledge a wide range of securities including listed stocks, mutual funds, ETFs, bonds, and government securities. The exact list of eligible securities may vary based on current market conditions and our risk assessment policies."
+              question="What mutual funds can I pledge for a loan?"
+              answer="You can pledge a wide range of mutual funds including equity funds, debt funds, hybrid funds, and ETFs. The exact list of eligible funds may vary based on current market conditions and our risk assessment policies."
               delay={0}
             />
             
             <FaqItem 
-              question="How much loan amount can I get against my securities?"
-              answer="You can typically get up to 80% of the value of your pledged securities, depending on the type and quality of securities. Blue-chip stocks and high-rated bonds generally have higher loan-to-value ratios compared to mid or small-cap stocks."
+              question="How much loan amount can I get against my mutual funds?"
+              answer="You can typically get up to 80% of the value of your pledged mutual funds, depending on the type and quality of funds. Debt funds and large-cap equity funds generally have higher loan-to-value ratios compared to mid or small-cap funds."
               delay={100}
             />
             
             <FaqItem 
-              question="What happens if the value of my pledged securities falls?"
-              answer="If the value of your pledged securities falls below a certain threshold (typically 120-130% of the loan amount), you'll receive a margin call asking you to either pledge additional securities or partially repay the loan to maintain the required margin."
+              question="What happens if the value of my pledged mutual funds falls?"
+              answer="If the value of your pledged mutual funds falls below a certain threshold (typically 120-130% of the loan amount), you'll receive a margin call asking you to either pledge additional funds or partially repay the loan to maintain the required margin."
               delay={200}
             />
             
             <FaqItem 
-              question="Can I continue to earn dividends and interest on pledged securities?"
-              answer="Yes, you continue to receive all dividends, interest, and other benefits from your pledged securities. The securities remain in your name, and only a lien is marked in favor of Fluidpe."
+              question="Can I continue to earn returns on pledged mutual funds?"
+              answer="Yes, you continue to receive all dividends, interest, and other benefits from your pledged mutual funds. The funds remain in your name, and only a lien is marked in favor of Fluidpe."
               delay={300}
             />
             
@@ -597,7 +620,7 @@ const Index = () => {
             
             <FaqItem 
               question="How long does it take to process my loan application?"
-              answer="Once you submit your application and pledge your securities, the verification and approval process typically takes 24-48 hours. After approval, funds are disbursed to your bank account within the next business day."
+              answer="Once you submit your application and pledge your mutual funds, the verification and approval process typically takes 24-48 hours. After approval, funds are disbursed to your bank account within the next business day."
               delay={500}
             />
           </div>
@@ -614,4 +637,3 @@ const Index = () => {
 };
 
 export default Index;
-
