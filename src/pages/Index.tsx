@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { LineChart as LineChartIcon, PieChart as PieChartIcon, BarChart as BarChartIcon, Wallet, Clock, Shield, Award, TrendingUp, Percent, CreditCard, Briefcase, ArrowRight, CheckCircle, Check, Upload, FileText, Send, Star, TrendingDown, AlertTriangle, Lightbulb, Zap, Lock, FileCheck, Settings, Users, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -415,4 +416,412 @@ const Index = () => {
           </div>
           
           <AnimatedElement animation="fade-up" delay={600} className="mt-16 text-center">
-            <div className="inline-block bg-white px-6 py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-fluidpe-light-teal/30
+            <div className="inline-block bg-white px-6 py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-fluidpe-light-teal/30">
+              <div className="flex items-center justify-center gap-2 text-fluidpe-teal font-medium">
+                <Check className="h-5 w-5" />
+                <span>No hidden charges</span>
+                <div className="w-1 h-1 rounded-full bg-fluidpe-teal/30"></div>
+                <Check className="h-5 w-5" />
+                <span>Transparent process</span>
+                <div className="w-1 h-1 rounded-full bg-fluidpe-teal/30"></div>
+                <Check className="h-5 w-5" />
+                <span>Excellent support</span>
+              </div>
+            </div>
+          </AnimatedElement>
+        </div>
+      </section>
+      
+      <section id="how-it-works" className="py-20 bg-gradient-to-b from-white to-fluidpe-light-teal/20 relative overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute right-[-10%] bottom-[-5%] w-96 h-96 rounded-full bg-fluidpe-light-teal blur-3xl opacity-40"></div>
+          <div className="absolute left-[-5%] top-[10%] w-80 h-80 rounded-full bg-fluidpe-light-gold blur-3xl opacity-30"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <AnimatedElement animation="fade-up">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">How It Works</h2>
+          </AnimatedElement>
+          
+          <AnimatedElement delay={200} animation="fade-up">
+            <p className="text-lg md:text-xl text-gray-600 mb-16 max-w-3xl mx-auto text-center">
+              Four simple steps to unlock the value of your mutual fund investments
+            </p>
+          </AnimatedElement>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-10">
+            <ProcessStep number={1} title="Upload Documents" description="Upload KYC, PAN and other documents for quick verification." delay={0} icon={<Upload className="w-10 h-10" />} />
+            
+            <ProcessStep number={2} title="Select Mutual Funds" description="Choose the mutual funds you wish to pledge as collateral." delay={200} icon={<FileText className="w-10 h-10" />} />
+            
+            <ProcessStep number={3} title="Digital Signing" description="Complete the digital signing process securely online - no paperwork." delay={400} icon={<Send className="w-10 h-10" />} />
+            
+            <ProcessStep number={4} title="Instant Disbursal" description="Receive funds instantly in your bank account once approved." delay={600} icon={<Wallet className="w-10 h-10" />} />
+          </div>
+        </div>
+      </section>
+      
+      <section id="benefits" className="py-16 md:py-24 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute right-[-5%] top-[10%] w-72 h-72 rounded-full bg-fluidpe-light-teal/30 blur-3xl"></div>
+          <div className="absolute left-[-5%] bottom-[10%] w-80 h-80 rounded-full bg-fluidpe-light-gold/30 blur-3xl"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <AnimatedElement>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center gradient-text-animate">
+              Calculate Your Savings with Loan Against Mutual Funds
+            </h2>
+          </AnimatedElement>
+          
+          <AnimatedElement delay={200}>
+            <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto text-center">
+              See how much you can save compared to traditional financing options
+            </p>
+          </AnimatedElement>
+          
+          <div className="mt-12 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <AnimatedElement delay={100} animation="fade-up" className="h-full">
+                <div className="premium-card h-full overflow-hidden">
+                  <div className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal px-6 py-4">
+                    <h3 className="text-xl font-semibold text-white flex items-center">
+                      <Wallet className="w-5 h-5 mr-2" /> Loan Calculator
+                    </h3>
+                    <p className="text-sm text-white/80">Adjust the sliders to see your potential savings</p>
+                  </div>
+                  
+                  <div className="p-6">
+                    <div className="space-y-6">
+                      <div className="space-y-2">
+                        <div className="flex justify-between">
+                          <label className="text-sm font-medium text-gray-700 flex items-center">
+                            <TrendingUp className="w-4 h-4 mr-1 text-fluidpe-teal" /> Loan Amount
+                          </label>
+                          <span className="text-sm font-medium text-fluidpe-teal">₹{loanAmount.toLocaleString()}</span>
+                        </div>
+                        <Slider min={100000} max={5000000} step={100000} value={[loanAmount]} onValueChange={value => setLoanAmount(value[0])} className="calculator-slider cursor-pointer" />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <div className="flex justify-between">
+                          <label className="text-sm font-medium text-gray-700 flex items-center">
+                            <Clock className="w-4 h-4 mr-1 text-fluidpe-teal" /> Duration (Months)
+                          </label>
+                          <span className="text-sm font-medium text-fluidpe-teal">{loanDuration} months</span>
+                        </div>
+                        <Slider min={6} max={60} step={6} value={[loanDuration]} onValueChange={value => setLoanDuration(value[0])} className="calculator-slider cursor-pointer" />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <div className="flex justify-between">
+                          <label className="text-sm font-medium text-gray-700 flex items-center">
+                            <Percent className="w-4 h-4 mr-1 text-fluidpe-teal" /> Interest Rate
+                          </label>
+                          <span className="text-sm font-medium text-fluidpe-teal">{interestRate}%</span>
+                        </div>
+                        <Slider min={8.5} max={12.99} step={0.5} value={[interestRate]} onValueChange={value => setInterestRate(value[0])} className="calculator-slider cursor-pointer" />
+                      </div>
+                    </div>
+                    
+                    <div className="mt-8 bg-gradient-to-br from-fluidpe-light-teal/50 to-fluidpe-light-gold/30 p-6 rounded-xl shadow-inner">
+                      <div className="flex justify-between items-center">
+                        <h4 className="text-lg font-semibold text-fluidpe-teal flex items-center">
+                          <Star className="w-5 h-5 mr-2 text-fluidpe-medium-teal" /> Your Loan Summary
+                        </h4>
+                      </div>
+                      
+                      <div className="mt-6 space-y-4">
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">EMI Amount</span>
+                          <span className="font-semibold text-fluidpe-teal">₹{emi.toLocaleString()}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">Total Interest</span>
+                          <span className="font-semibold text-fluidpe-teal">₹{savings.ourInterest.toLocaleString()}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">Total Amount</span>
+                          <span className="font-semibold text-fluidpe-teal">₹{(loanAmount + savings.ourInterest).toLocaleString()}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedElement>
+              
+              <AnimatedElement delay={300} animation="fade-up" className="h-full">
+                <div className="premium-card h-full overflow-hidden">
+                  <div className="bg-gradient-to-r from-fluidpe-medium-teal to-fluidpe-teal px-6 py-4">
+                    <h3 className="text-xl font-semibold text-white flex items-center">
+                      <TrendingDown className="w-5 h-5 mr-2" /> Your Savings
+                    </h3>
+                    <p className="text-sm text-white/80">Compare with other loan options</p>
+                  </div>
+                  
+                  <div className="p-6">
+                    <div className="space-y-8">
+                      <div className="relative bg-white p-5 rounded-xl shadow border border-gray-100">
+                        <div className="absolute -top-4 right-4 bg-green-100 px-3 py-1 rounded-full text-green-700 text-xs font-medium">
+                          Save ₹{savings.personalLoan.toLocaleString()}
+                        </div>
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <h5 className="text-lg font-semibold mb-2 text-gray-800">Personal Loan</h5>
+                            <p className="text-sm text-gray-500 mb-3">14% interest rate (typical)</p>
+                          </div>
+                          <AlertTriangle className="text-amber-500 h-5 w-5" />
+                        </div>
+                        <div className="space-y-2">
+                          <div className="flex justify-between text-sm">
+                            <span className="text-gray-600">Total Interest</span>
+                            <span className="font-semibold text-amber-600">₹{savings.personalLoanExtra.toLocaleString()}</span>
+                          </div>
+                          <div className="flex justify-between text-sm">
+                            <span className="text-gray-600">Total Amount</span>
+                            <span className="font-semibold text-amber-600">₹{(loanAmount + savings.personalLoanExtra).toLocaleString()}</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="relative bg-white p-5 rounded-xl shadow border border-gray-100">
+                        <div className="absolute -top-4 right-4 bg-green-100 px-3 py-1 rounded-full text-green-700 text-xs font-medium">
+                          Save ₹{savings.creditCard.toLocaleString()}
+                        </div>
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <h5 className="text-lg font-semibold mb-2 text-gray-800">Credit Card</h5>
+                            <p className="text-sm text-gray-500 mb-3">36% interest rate (typical)</p>
+                          </div>
+                          <AlertTriangle className="text-red-500 h-5 w-5" />
+                        </div>
+                        <div className="space-y-2">
+                          <div className="flex justify-between text-sm">
+                            <span className="text-gray-600">Total Interest</span>
+                            <span className="font-semibold text-red-600">₹{savings.creditCardExtra.toLocaleString()}</span>
+                          </div>
+                          <div className="flex justify-between text-sm">
+                            <span className="text-gray-600">Total Amount</span>
+                            <span className="font-semibold text-red-600">₹{(loanAmount + savings.creditCardExtra).toLocaleString()}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-8 bg-gradient-to-br from-fluidpe-light-teal/50 to-fluidpe-light-gold/30 p-4 rounded-xl">
+                      <div className="flex items-center mb-2">
+                        <Lightbulb className="w-5 h-5 text-amber-500 mr-2" />
+                        <h5 className="text-base font-medium text-fluidpe-teal">Did You Know?</h5>
+                      </div>
+                      <p className="text-sm text-gray-600">
+                        With a loan against mutual funds, you continue to earn returns on your investments while accessing funds at low interest rates. It's a win-win!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedElement>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section id="testimonials" className="py-16 md:py-24 bg-gradient-to-b from-white to-fluidpe-light-teal/10 relative overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute right-[-10%] top-[20%] w-96 h-96 rounded-full bg-fluidpe-light-teal/20 blur-3xl opacity-40"></div>
+          <div className="absolute left-[-5%] bottom-[20%] w-80 h-80 rounded-full bg-fluidpe-light-gold/20 blur-3xl opacity-30"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <AnimatedElement animation="fade-up">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">What Our Clients Say</h2>
+          </AnimatedElement>
+          
+          <AnimatedElement delay={200} animation="fade-up">
+            <p className="text-lg md:text-xl text-gray-600 mb-16 max-w-3xl mx-auto text-center">
+              Don't just take our word for it - hear from our satisfied customers who have experienced the benefits of loans against mutual funds
+            </p>
+          </AnimatedElement>
+          
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {testimonials.map((testimonial, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-4">
+                  <TestimonialCard
+                    quote={testimonial.quote}
+                    author={testimonial.author}
+                    designation={testimonial.designation}
+                    delay={index * 100}
+                  />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-center mt-8">
+              <CarouselPrevious className="static translate-y-0 mr-2" />
+              <CarouselNext className="static translate-y-0 ml-2" />
+            </div>
+          </Carousel>
+          
+          <AnimatedElement animation="fade-up" delay={400} className="mt-16 text-center">
+            <Button className="bg-fluidpe-teal hover:bg-fluidpe-medium-teal text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none" size="lg">
+              <span className="flex items-center">
+                Apply Now
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </span>
+            </Button>
+          </AnimatedElement>
+        </div>
+      </section>
+      
+      <section id="faq" className="py-16 md:py-24 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute right-[-5%] top-[10%] w-72 h-72 rounded-full bg-fluidpe-light-teal/30 blur-3xl"></div>
+          <div className="absolute left-[-5%] bottom-[10%] w-80 h-80 rounded-full bg-fluidpe-light-gold/30 blur-3xl"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <AnimatedElement animation="fade-up">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">Frequently Asked Questions</h2>
+          </AnimatedElement>
+          
+          <AnimatedElement delay={200} animation="fade-up">
+            <p className="text-lg md:text-xl text-gray-600 mb-16 max-w-3xl mx-auto text-center">
+              Find answers to the most common questions about loans against mutual funds
+            </p>
+          </AnimatedElement>
+          
+          <div className="max-w-4xl mx-auto">
+            <div className="space-y-2">
+              {faqItems.map((item, index) => (
+                <FaqItem 
+                  key={index} 
+                  question={item.question} 
+                  answer={item.answer} 
+                  delay={index * 100}
+                />
+              ))}
+            </div>
+          </div>
+          
+          <AnimatedElement animation="fade-up" delay={400} className="mt-16 text-center">
+            <div className="bg-gradient-to-r from-fluidpe-light-teal/50 to-fluidpe-light-gold/30 p-8 rounded-2xl shadow-md max-w-3xl mx-auto">
+              <h3 className="text-2xl font-semibold mb-4 text-fluidpe-teal">Still have questions?</h3>
+              <p className="text-gray-600 mb-6">Our team is here to help you with any questions you might have about loans against mutual funds.</p>
+              <Button className="bg-fluidpe-teal hover:bg-fluidpe-medium-teal text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none" size="lg">
+                <span className="flex items-center">
+                  Contact Us
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </span>
+              </Button>
+            </div>
+          </AnimatedElement>
+        </div>
+      </section>
+      
+      <section id="blogs" className="py-16 md:py-24 bg-gradient-to-b from-white to-fluidpe-light-teal/10 relative overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute right-[-10%] top-[20%] w-96 h-96 rounded-full bg-fluidpe-light-teal/20 blur-3xl opacity-40"></div>
+          <div className="absolute left-[-5%] bottom-[20%] w-80 h-80 rounded-full bg-fluidpe-light-gold/20 blur-3xl opacity-30"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <AnimatedElement animation="fade-up">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">Financial Insights</h2>
+          </AnimatedElement>
+          
+          <AnimatedElement delay={200} animation="fade-up">
+            <p className="text-lg md:text-xl text-gray-600 mb-16 max-w-3xl mx-auto text-center">
+              Explore our latest articles and guides on mutual fund loans and financial planning
+            </p>
+          </AnimatedElement>
+          
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {blogPosts.map((post, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-4">
+                  <BlogCard
+                    title={post.title}
+                    excerpt={post.excerpt}
+                    date={post.date}
+                    author={post.author}
+                    category={post.category}
+                    imageUrl={post.imageUrl}
+                    delay={index * 100}
+                  />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-center mt-8">
+              <CarouselPrevious className="static translate-y-0 mr-2" />
+              <CarouselNext className="static translate-y-0 ml-2" />
+            </div>
+          </Carousel>
+          
+          <AnimatedElement animation="fade-up" delay={400} className="mt-16 text-center">
+            <Button className="bg-white text-fluidpe-teal px-6 py-3 rounded-lg font-medium border border-fluidpe-teal/30 transition-all duration-300 hover:border-fluidpe-teal hover:bg-fluidpe-light-teal shadow-sm hover:shadow-md hover:-translate-y-1" size="lg">
+              <span className="flex items-center">
+                View All Articles
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </span>
+            </Button>
+          </AnimatedElement>
+        </div>
+      </section>
+      
+      <section className="py-16 md:py-24 bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal text-white relative overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <div className="absolute right-[10%] top-[20%] w-[300px] h-[300px] rounded-full bg-white/10 blur-xl"></div>
+          <div className="absolute left-[5%] bottom-[20%] w-[200px] h-[200px] rounded-full bg-white/10 blur-xl"></div>
+          <div className="absolute left-[30%] top-[50%] w-[100px] h-[100px] rounded-full bg-white/10 blur-xl"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <AnimatedElement animation="fade-up">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Financial Strategy?</h2>
+            </AnimatedElement>
+            
+            <AnimatedElement delay={200} animation="fade-up">
+              <p className="text-lg text-white/80 mb-10">
+                Apply for a loan against your mutual funds today and enjoy competitive interest rates, quick approval, and continued investment growth.
+              </p>
+            </AnimatedElement>
+            
+            <AnimatedElement delay={400} animation="fade-up">
+              <div className="flex flex-wrap justify-center gap-4">
+                <Button className="bg-white text-fluidpe-teal hover:bg-fluidpe-light-teal px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none" size="lg">
+                  <span className="flex items-center">
+                    Apply Now
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </span>
+                </Button>
+                <Button className="bg-transparent hover:bg-white/10 text-white px-6 py-3 rounded-lg font-medium border border-white/30 transition-all duration-300 hover:border-white hover:shadow-md hover:-translate-y-1" size="lg">
+                  <span className="flex items-center">
+                    Contact Us
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </span>
+                </Button>
+              </div>
+            </AnimatedElement>
+          </div>
+        </div>
+      </section>
+      
+      <Footer />
+      <ScrollToTop />
+    </div>
+  );
+};
+
+export default Index;
