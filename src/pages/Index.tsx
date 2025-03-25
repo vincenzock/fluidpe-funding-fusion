@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { 
   LineChart as LineChartIcon, PieChart as PieChartIcon, BarChart as BarChartIcon, Wallet, Clock, Shield, Award, 
@@ -576,3 +577,119 @@ const Index = () => {
               
               <AnimatedElement delay={300} animation="fade-up" className="h-full">
                 <div className="premium-card h-full overflow-hidden">
+                  <div className="bg-gradient-to-r from-fluidpe-light-teal to-fluidpe-light-gold/60 px-6 py-4">
+                    <h3 className="text-xl font-semibold text-fluidpe-teal flex items-center">
+                      <TrendingDown className="w-5 h-5 mr-2" /> Interest Cost Comparison
+                    </h3>
+                    <p className="text-sm text-gray-600">See how much you could save compared to other options</p>
+                  </div>
+                  
+                  <div className="p-6">
+                    <div className="space-y-6">
+                      <div className="bg-white shadow-sm rounded-lg p-5 border border-gray-100">
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center">
+                            <div className="bg-fluidpe-light-teal/30 p-2 rounded-full">
+                              <Wallet className="h-5 w-5 text-fluidpe-teal" />
+                            </div>
+                            <span className="font-medium text-gray-800 ml-2">Fluidpe Mutual Fund Loan</span>
+                          </div>
+                          <div className="bg-green-100 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-full">
+                            Recommended
+                          </div>
+                        </div>
+                        <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                          <span className="text-sm text-gray-500">Interest Rate</span>
+                          <span className="font-semibold text-fluidpe-teal">{interestRate}%</span>
+                        </div>
+                        <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                          <span className="text-sm text-gray-500">Total Interest Cost</span>
+                          <span className="font-semibold text-fluidpe-teal">₹{savings.ourInterest.toLocaleString()}</span>
+                        </div>
+                        <div className="flex justify-between items-center py-2">
+                          <span className="text-sm text-gray-500">Your Savings</span>
+                          <span className="font-semibold text-green-600">Baseline</span>
+                        </div>
+                      </div>
+                      
+                      <div className="bg-white shadow-sm rounded-lg p-5 border border-gray-100">
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center">
+                            <div className="bg-yellow-100 p-2 rounded-full">
+                              <CreditCard className="h-5 w-5 text-yellow-600" />
+                            </div>
+                            <span className="font-medium text-gray-800 ml-2">Personal Loan</span>
+                          </div>
+                          <div className="flex items-center">
+                            <AlertTriangle className="h-4 w-4 text-yellow-600 mr-1" />
+                            <span className="text-yellow-600 text-xs font-medium">High Interest</span>
+                          </div>
+                        </div>
+                        <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                          <span className="text-sm text-gray-500">Interest Rate</span>
+                          <span className="font-semibold text-yellow-600">14%</span>
+                        </div>
+                        <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                          <span className="text-sm text-gray-500">Total Interest Cost</span>
+                          <span className="font-semibold text-yellow-600">₹{savings.personalLoanExtra.toLocaleString()}</span>
+                        </div>
+                        <div className="flex justify-between items-center py-2">
+                          <span className="text-sm text-gray-500">Extra Cost vs Fluidpe</span>
+                          <span className="font-semibold text-red-500">+ ₹{savings.personalLoan.toLocaleString()}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="bg-white shadow-sm rounded-lg p-5 border border-gray-100">
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center">
+                            <div className="bg-red-100 p-2 rounded-full">
+                              <CreditCard className="h-5 w-5 text-red-600" />
+                            </div>
+                            <span className="font-medium text-gray-800 ml-2">Credit Card</span>
+                          </div>
+                          <div className="flex items-center">
+                            <AlertTriangle className="h-4 w-4 text-red-600 mr-1" />
+                            <span className="text-red-600 text-xs font-medium">Very High Interest</span>
+                          </div>
+                        </div>
+                        <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                          <span className="text-sm text-gray-500">Interest Rate</span>
+                          <span className="font-semibold text-red-600">36%</span>
+                        </div>
+                        <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                          <span className="text-sm text-gray-500">Total Interest Cost</span>
+                          <span className="font-semibold text-red-600">₹{savings.creditCardExtra.toLocaleString()}</span>
+                        </div>
+                        <div className="flex justify-between items-center py-2">
+                          <span className="text-sm text-gray-500">Extra Cost vs Fluidpe</span>
+                          <span className="font-semibold text-red-500">+ ₹{savings.creditCard.toLocaleString()}</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6 p-5 bg-gradient-to-r from-fluidpe-light-teal/30 to-fluidpe-light-gold/30 rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <div className="bg-white rounded-full p-2 shadow-sm">
+                          <Check className="h-5 w-5 text-green-600" />
+                        </div>
+                        <div>
+                          <p className="font-medium text-fluidpe-teal">Your Potential Savings</p>
+                          <p className="text-sm text-gray-600">Save up to <span className="font-bold text-green-600">₹{savings.creditCard.toLocaleString()}</span> compared to credit card debt</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedElement>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <Footer />
+      <ScrollToTop />
+    </div>
+  );
+};
+
+export default Index;
