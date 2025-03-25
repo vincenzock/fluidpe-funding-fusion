@@ -34,6 +34,15 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
         <div className={`absolute -right-20 -bottom-20 w-40 h-40 rounded-full bg-white/20 opacity-0 
           transition-all duration-700 ${isHovered ? 'opacity-20 scale-150' : ''}`}></div>
         
+        {/* Shine effect overlay */}
+        <div 
+          className={`shine-effect absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full 
+          ${isHovered ? 'animate-shine' : ''}`} 
+          style={{ 
+            backgroundSize: '200% 100%'
+          }}
+        ></div>
+        
         <div className="relative z-10">
           <div className="bg-white p-3 rounded-xl w-16 h-16 flex items-center justify-center mb-6 
             shadow-md transform transition-all duration-300 group-hover:rotate-3">

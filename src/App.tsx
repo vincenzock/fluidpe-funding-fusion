@@ -25,4 +25,22 @@ const App = () => (
   </QueryClientProvider>
 );
 
+// Add shine effect animation
+const styleSheet = document.createElement("style");
+styleSheet.textContent = `
+  @keyframes shine {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  .animate-shine {
+    animation: shine 1.5s ease-in-out;
+  }
+`;
+document.head.appendChild(styleSheet);
+
 export default App;
