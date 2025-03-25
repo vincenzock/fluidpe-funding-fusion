@@ -9,6 +9,7 @@ interface AnimatedElementProps {
   delay?: number;
   animation?: AnimationType;
   duration?: number;
+  threshold?: number;
 }
 
 const AnimatedElement: React.FC<AnimatedElementProps> = ({ 
@@ -16,7 +17,8 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({
   className = '',
   delay = 0,
   animation = 'fade-up',
-  duration = 700
+  duration = 700,
+  threshold = 0.1
 }) => {
   const elementRef = useRef<HTMLDivElement>(null);
   
@@ -35,7 +37,7 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({
           }
         });
       }, 
-      { threshold: 0.1 }
+      { threshold: threshold }
     );
     
     if (elementRef.current) {
@@ -48,7 +50,7 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({
         observer.unobserve(elementRef.current);
       }
     };
-  }, [delay, animation, duration]);
+  }, [delay, animation, duration, threshold]);
   
   return (
     <div 

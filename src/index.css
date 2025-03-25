@@ -168,19 +168,19 @@
   }
   
   .btn-primary {
-    @apply bg-fluidpe-teal text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-fluidpe-medium-teal shadow-md hover:shadow-lg hover:-translate-y-1;
+    @apply bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none;
   }
   
   .btn-secondary {
-    @apply bg-white text-fluidpe-teal px-6 py-3 rounded-lg font-medium border border-fluidpe-teal transition-all duration-300 hover:bg-fluidpe-light-teal shadow-sm hover:shadow-md hover:-translate-y-1;
+    @apply bg-white text-fluidpe-teal px-6 py-3 rounded-lg font-medium border border-fluidpe-teal/30 transition-all duration-300 hover:border-fluidpe-teal hover:bg-fluidpe-light-teal shadow-sm hover:shadow-md hover:-translate-y-1;
   }
   
   .section-title {
-    @apply text-3xl md:text-4xl font-bold mb-6 text-fluidpe-teal;
+    @apply text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent;
   }
   
   .section-subtitle {
-    @apply text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto;
+    @apply text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto text-center;
   }
   
   .floating {
@@ -206,5 +206,62 @@
       opacity: 0.8;
       transform: scale(0.95);
     }
+  }
+}
+
+/* Modern additions */
+@layer components {
+  .gradient-border {
+    position: relative;
+    border-radius: 0.5rem;
+  }
+  
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 0.5rem;
+    padding: 2px;
+    background: linear-gradient(to right, theme('colors.fluidpe.teal'), theme('colors.fluidpe.medium-teal'));
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  
+  .bg-gradient-text {
+    @apply bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent;
+  }
+  
+  .card-hover-effect {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+  
+  .shine-effect {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .shine-effect::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    transition: transform 0.5s;
+  }
+  
+  .shine-effect:hover::after {
+    transform: translate(50%, 50%) rotate(30deg);
   }
 }

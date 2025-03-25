@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { 
   LineChart, PieChart, BarChart, Wallet, Clock, Shield, Award, 
-  TrendingUp, Percent, CreditCard, Briefcase, ArrowRight
+  TrendingUp, Percent, CreditCard, Briefcase, ArrowRight, CheckCircle
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
@@ -13,6 +13,7 @@ import ProcessStep from '@/components/ProcessStep';
 import TestimonialCard from '@/components/TestimonialCard';
 import FaqItem from '@/components/FaqItem';
 import ScrollToTop from '@/components/ScrollToTop';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
 const Index = () => {
   return (
@@ -30,13 +31,13 @@ const Index = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-left">
               <AnimatedElement>
-                <span className="inline-block py-1 px-3 rounded-full bg-fluidpe-light-teal text-fluidpe-teal text-sm font-medium mb-4">
+                <span className="inline-block py-1 px-3 rounded-full bg-gradient-to-r from-fluidpe-light-teal to-fluidpe-medium-teal/30 text-fluidpe-teal text-sm font-medium mb-4">
                   Financial Freedom At Your Fingertips
                 </span>
               </AnimatedElement>
               
               <AnimatedElement delay={200}>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-fluidpe-teal">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">
                   Unlock the Power of Your Securities
                 </h1>
               </AnimatedElement>
@@ -49,10 +50,10 @@ const Index = () => {
               
               <AnimatedElement delay={600}>
                 <div className="flex flex-wrap gap-4">
-                  <Button className="btn-primary" size="lg">
+                  <Button className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none" size="lg">
                     Apply Now
                   </Button>
-                  <Button className="btn-secondary" size="lg">
+                  <Button className="bg-white text-fluidpe-teal px-6 py-3 rounded-lg font-medium border border-fluidpe-teal/30 transition-all duration-300 hover:border-fluidpe-teal hover:bg-fluidpe-light-teal shadow-sm hover:shadow-md hover:-translate-y-1" size="lg">
                     Learn More
                   </Button>
                 </div>
@@ -60,15 +61,15 @@ const Index = () => {
               
               <AnimatedElement delay={800}>
                 <div className="mt-8 grid grid-cols-3 gap-4">
-                  <div className="text-center">
+                  <div className="text-center backdrop-blur-sm bg-white/30 rounded-lg p-3 border border-white/50 shadow-sm">
                     <p className="text-2xl md:text-3xl font-bold text-fluidpe-teal">₹500Cr+</p>
                     <p className="text-sm text-gray-600">Loans Disbursed</p>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center backdrop-blur-sm bg-white/30 rounded-lg p-3 border border-white/50 shadow-sm">
                     <p className="text-2xl md:text-3xl font-bold text-fluidpe-teal">10,000+</p>
                     <p className="text-sm text-gray-600">Happy Customers</p>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center backdrop-blur-sm bg-white/30 rounded-lg p-3 border border-white/50 shadow-sm">
                     <p className="text-2xl md:text-3xl font-bold text-fluidpe-teal">8.99%</p>
                     <p className="text-sm text-gray-600">Interest Rate</p>
                   </div>
@@ -135,8 +136,8 @@ const Index = () => {
           
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
             {['HDFC Bank', 'ICICI Securities', 'SBI', 'Axis Bank', 'Kotak Securities'].map((partner, index) => (
-              <AnimatedElement key={partner} delay={index * 100}>
-                <div className="text-gray-400 font-bold text-xl">{partner}</div>
+              <AnimatedElement key={partner} delay={index * 100} animation="fade-up">
+                <div className="text-gray-400 font-bold text-xl hover:text-fluidpe-teal transition-colors duration-300">{partner}</div>
               </AnimatedElement>
             ))}
           </div>
@@ -147,11 +148,11 @@ const Index = () => {
       <section id="features" className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <AnimatedElement>
-            <h2 className="section-title text-center">Why Choose Fluidpe</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">Why Choose Fluidpe</h2>
           </AnimatedElement>
           
           <AnimatedElement delay={200}>
-            <p className="section-subtitle text-center">
+            <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto text-center">
               Unlock the full potential of your investments with our innovative loan against securities solutions
             </p>
           </AnimatedElement>
@@ -202,57 +203,178 @@ const Index = () => {
         </div>
       </section>
       
-      {/* How It Works Section */}
-      <section id="how-it-works" className="py-16 md:py-24 bg-fluidpe-light-gray relative overflow-hidden">
+      {/* How It Works Section - Enhanced with modern animations */}
+      <section id="how-it-works" className="py-20 md:py-28 bg-gradient-to-b from-fluidpe-light-gray via-white to-fluidpe-light-teal/30 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute right-[-10%] bottom-[-5%] w-96 h-96 rounded-full bg-fluidpe-light-teal blur-3xl opacity-60"></div>
           <div className="absolute left-[-5%] top-[10%] w-80 h-80 rounded-full bg-fluidpe-light-gold blur-3xl opacity-40"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <AnimatedElement>
-            <h2 className="section-title text-center">How It Works</h2>
+          <AnimatedElement animation="fade-up">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">How It Works</h2>
           </AnimatedElement>
           
-          <AnimatedElement delay={200}>
-            <p className="section-subtitle text-center">
+          <AnimatedElement delay={200} animation="fade-up">
+            <p className="text-lg md:text-xl text-gray-600 mb-16 max-w-3xl mx-auto text-center">
               Our simple 4-step process gets you quick access to funds without selling your investments
             </p>
           </AnimatedElement>
           
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-            <ProcessStep 
-              number={1}
-              title="Apply Online"
-              description="Fill out our simple online application form with your personal and investment details. It takes less than 5 minutes."
-              delay={0}
-            />
+          <div className="relative mt-20">
+            {/* Timeline connector */}
+            <div className="absolute top-10 left-1/2 w-1 h-[calc(100%-5rem)] bg-gradient-to-b from-fluidpe-teal via-fluidpe-medium-teal to-fluidpe-light-teal rounded-full transform -translate-x-1/2 hidden md:block"></div>
             
-            <ProcessStep 
-              number={2}
-              title="Pledge Securities"
-              description="Select the securities you wish to pledge as collateral. We accept a wide range of stocks, mutual funds, and bonds."
-              delay={200}
-            />
-            
-            <ProcessStep 
-              number={3}
-              title="Verification & Approval"
-              description="Our team verifies your details and securities. Once approved, you'll receive your loan offer with customized terms."
-              delay={400}
-            />
-            
-            <ProcessStep 
-              number={4}
-              title="Receive Funds"
-              description="Accept the offer, complete the digital documentation, and receive funds directly in your bank account within 24 hours."
-              delay={600}
-            />
+            <div className="space-y-16 md:space-y-32">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center relative">
+                <ProcessStep 
+                  number={1}
+                  title="Apply Online"
+                  description="Fill out our simple online application form with your personal and investment details. It takes less than 5 minutes."
+                  delay={0}
+                />
+                
+                <AnimatedElement delay={200} animation="zoom-in" className="hidden md:block">
+                  <div className="bg-white shadow-xl rounded-xl overflow-hidden border border-fluidpe-light-teal">
+                    <div className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal px-5 py-3">
+                      <h3 className="text-white font-semibold">Online Application</h3>
+                    </div>
+                    <div className="p-5">
+                      <div className="space-y-4">
+                        <div className="space-y-2">
+                          <label className="block text-sm font-medium text-gray-600">Personal Details</label>
+                          <div className="h-10 w-full bg-gray-100 rounded-md"></div>
+                        </div>
+                        <div className="space-y-2">
+                          <label className="block text-sm font-medium text-gray-600">Investment Details</label>
+                          <div className="h-10 w-full bg-gray-100 rounded-md"></div>
+                        </div>
+                        <div className="flex justify-end">
+                          <div className="h-10 w-32 bg-fluidpe-teal rounded-md"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </AnimatedElement>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center relative md:translate-y-12">
+                <AnimatedElement delay={200} animation="zoom-in" className="hidden md:block order-1 md:order-none">
+                  <div className="bg-white shadow-xl rounded-xl overflow-hidden border border-fluidpe-light-teal">
+                    <div className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal px-5 py-3">
+                      <h3 className="text-white font-semibold">Securities Dashboard</h3>
+                    </div>
+                    <div className="p-5">
+                      <div className="space-y-4">
+                        <div className="flex justify-between text-sm">
+                          <span className="text-gray-600">Stock A</span>
+                          <span className="text-fluidpe-teal font-semibold">₹120,000</span>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                          <span className="text-gray-600">Mutual Fund B</span>
+                          <span className="text-fluidpe-teal font-semibold">₹250,000</span>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                          <span className="text-gray-600">ETF C</span>
+                          <span className="text-fluidpe-teal font-semibold">₹180,000</span>
+                        </div>
+                        <div className="h-1 bg-gray-200 rounded-full">
+                          <div className="h-1 bg-fluidpe-teal rounded-full w-3/4"></div>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-sm text-gray-600">Select All</span>
+                          <span className="text-sm font-bold text-fluidpe-teal">₹550,000</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </AnimatedElement>
+                
+                <ProcessStep 
+                  number={2}
+                  title="Pledge Securities"
+                  description="Select the securities you wish to pledge as collateral. We accept a wide range of stocks, mutual funds, and bonds."
+                  delay={200}
+                />
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center relative">
+                <ProcessStep 
+                  number={3}
+                  title="Verification & Approval"
+                  description="Our team verifies your details and securities. Once approved, you'll receive your loan offer with customized terms."
+                  delay={400}
+                />
+                
+                <AnimatedElement delay={400} animation="zoom-in" className="hidden md:block">
+                  <div className="bg-white shadow-xl rounded-xl overflow-hidden border border-fluidpe-light-teal">
+                    <div className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal px-5 py-3">
+                      <h3 className="text-white font-semibold">Verification Process</h3>
+                    </div>
+                    <div className="p-5">
+                      <div className="space-y-5">
+                        <div className="flex items-center gap-3">
+                          <CheckCircle className="h-6 w-6 text-green-500" />
+                          <div>
+                            <p className="font-medium">KYC Verification</p>
+                            <p className="text-sm text-gray-500">Completed</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <CheckCircle className="h-6 w-6 text-green-500" />
+                          <div>
+                            <p className="font-medium">Securities Validation</p>
+                            <p className="text-sm text-gray-500">Completed</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="h-6 w-6 rounded-full border-2 border-fluidpe-teal border-dashed animate-spin"></div>
+                          <div>
+                            <p className="font-medium">Loan Terms Preparation</p>
+                            <p className="text-sm text-gray-500">In Progress</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </AnimatedElement>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center relative md:translate-y-12">
+                <AnimatedElement delay={600} animation="zoom-in" className="hidden md:block order-1 md:order-none">
+                  <div className="bg-white shadow-xl rounded-xl overflow-hidden border border-fluidpe-light-teal">
+                    <div className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal px-5 py-3">
+                      <h3 className="text-white font-semibold">Fund Disbursement</h3>
+                    </div>
+                    <div className="p-5">
+                      <div className="text-center py-4">
+                        <div className="inline-flex items-center justify-center w-20 h-20 bg-green-100 rounded-full mb-4">
+                          <CheckCircle className="h-10 w-10 text-green-600" />
+                        </div>
+                        <h4 className="text-xl font-bold text-fluidpe-teal">₹25,00,000</h4>
+                        <p className="text-gray-600 mt-1">Disbursed to your account</p>
+                        <div className="mt-4 pt-4 border-t border-gray-100">
+                          <p className="text-sm text-gray-500">Transaction ID: FLPD2023112500001</p>
+                          <p className="text-sm text-gray-500">Date: November 25, 2023</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </AnimatedElement>
+                
+                <ProcessStep 
+                  number={4}
+                  title="Receive Funds"
+                  description="Accept the offer, complete the digital documentation, and receive funds directly in your bank account within 24 hours."
+                  delay={600}
+                />
+              </div>
+            </div>
           </div>
           
-          <AnimatedElement delay={800} className="mt-12 text-center">
-            <Button className="btn-primary">
-              Apply Now <ArrowRight className="ml-2 h-4 w-4" />
+          <AnimatedElement delay={800} className="mt-16 text-center">
+            <Button className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal text-white px-8 py-4 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none group">
+              Apply Now <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
             </Button>
           </AnimatedElement>
         </div>
