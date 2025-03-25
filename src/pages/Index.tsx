@@ -1,8 +1,7 @@
-
 import React, { useEffect } from 'react';
 import { 
-  LineChart, PieChart, BarChart, Wallet, Clock, Shield, Award, 
-  TrendingUp, Percent, CreditCard, Briefcase, ArrowRight, CheckCircle
+  LineChart as LineChartIcon, PieChart as PieChartIcon, BarChart as BarChartIcon, Wallet, Clock, Shield, Award, 
+  TrendingUp, Percent, CreditCard, Briefcase, ArrowRight, CheckCircle, LineChart as LineChartLucide
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
@@ -14,8 +13,29 @@ import TestimonialCard from '@/components/TestimonialCard';
 import FaqItem from '@/components/FaqItem';
 import ScrollToTop from '@/components/ScrollToTop';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { 
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, 
+  ResponsiveContainer, BarChart, Bar, Cell, PieChart, Pie
+} from 'recharts';
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 
 const Index = () => {
+  const growthComparisonData = [
+    { year: 'Year 1', securities: 115, personal: 100, credit: 92 },
+    { year: 'Year 2', securities: 136, personal: 105, credit: 88 },
+    { year: 'Year 3', securities: 162, personal: 110, credit: 85 },
+    { year: 'Year 4', securities: 195, personal: 117, credit: 82 },
+    { year: 'Year 5', securities: 238, personal: 123, credit: 80 },
+  ];
+
+  const returnsData = [
+    { name: 'Investment Growth', value: 68 },
+    { name: 'Interest Saved', value: 22 },
+    { name: 'Tax Benefits', value: 10 },
+  ];
+
+  const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
+
   return (
     <div className="overflow-x-hidden">
       <Navbar />
@@ -380,71 +400,185 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Benefits Comparison Section */}
-      <section id="benefits" className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
+      {/* Benefits Comparison Section - Redesigned */}
+      <section id="benefits" className="py-16 md:py-28 bg-gradient-to-br from-white via-fluidpe-light-teal/10 to-white relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute right-[-5%] top-[10%] w-72 h-72 rounded-full bg-fluidpe-light-teal/30 blur-3xl"></div>
+          <div className="absolute left-[-5%] bottom-[10%] w-80 h-80 rounded-full bg-fluidpe-light-gold/30 blur-3xl"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
           <AnimatedElement>
-            <h2 className="section-title text-center">Benefits of Loans Against Securities</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">
+              Benefits of Loans Against Securities
+            </h2>
           </AnimatedElement>
           
           <AnimatedElement delay={200}>
-            <p className="section-subtitle text-center">
-              See how loans against securities compare to other financing options
+            <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto text-center">
+              Unlock value from your portfolio while keeping your investments intact
             </p>
           </AnimatedElement>
           
-          <div className="mt-12 overflow-x-auto">
-            <AnimatedElement delay={400}>
-              <table className="w-full min-w-[768px] border-collapse">
-                <thead>
-                  <tr className="bg-fluidpe-teal text-white">
-                    <th className="p-4 text-left">Features</th>
-                    <th className="p-4 text-center">Loans Against Securities</th>
-                    <th className="p-4 text-center">Personal Loans</th>
-                    <th className="p-4 text-center">Credit Cards</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-gray-200">
-                    <td className="p-4 font-medium">Interest Rates</td>
-                    <td className="p-4 text-center bg-green-50">8.99% - 12%</td>
-                    <td className="p-4 text-center">12% - 24%</td>
-                    <td className="p-4 text-center">24% - 42%</td>
-                  </tr>
-                  <tr className="border-b border-gray-200">
-                    <td className="p-4 font-medium">Processing Time</td>
-                    <td className="p-4 text-center bg-green-50">24 - 48 hours</td>
-                    <td className="p-4 text-center">3 - 7 days</td>
-                    <td className="p-4 text-center">Instant (pre-approved)</td>
-                  </tr>
-                  <tr className="border-b border-gray-200">
-                    <td className="p-4 font-medium">Loan Amount</td>
-                    <td className="p-4 text-center bg-green-50">Up to 80% of securities value</td>
-                    <td className="p-4 text-center">Based on income</td>
-                    <td className="p-4 text-center">Pre-determined credit limit</td>
-                  </tr>
-                  <tr className="border-b border-gray-200">
-                    <td className="p-4 font-medium">Documentation</td>
-                    <td className="p-4 text-center bg-green-50">Minimal</td>
-                    <td className="p-4 text-center">Extensive</td>
-                    <td className="p-4 text-center">Moderate</td>
-                  </tr>
-                  <tr className="border-b border-gray-200">
-                    <td className="p-4 font-medium">Tenure</td>
-                    <td className="p-4 text-center bg-green-50">Flexible (1 month to 5 years)</td>
-                    <td className="p-4 text-center">Fixed (1-5 years)</td>
-                    <td className="p-4 text-center">Rolling credit</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 font-medium">Prepayment Charges</td>
-                    <td className="p-4 text-center bg-green-50">No charges</td>
-                    <td className="p-4 text-center">2-5% of outstanding amount</td>
-                    <td className="p-4 text-center">Not applicable</td>
-                  </tr>
-                </tbody>
-              </table>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mt-8">
+            <AnimatedElement delay={300} className="order-2 lg:order-1">
+              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-fluidpe-light-teal/30">
+                <h3 className="text-xl font-semibold mb-6 text-fluidpe-teal flex items-center">
+                  <LineChartLucide className="w-5 h-5 mr-2" /> Growth Comparison
+                </h3>
+                <p className="text-gray-600 mb-6">
+                  See how keeping your investments and taking a loan against securities 
+                  outperforms traditional financing options over time
+                </p>
+                <div className="h-80">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart
+                      data={growthComparisonData}
+                      margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                      <XAxis dataKey="year" tick={{ fill: '#666' }} />
+                      <YAxis tickFormatter={(tick) => `${tick}%`} tick={{ fill: '#666' }} />
+                      <Tooltip 
+                        formatter={(value) => [`${value}%`, '']} 
+                        labelFormatter={(label) => `Growth at ${label}`}
+                      />
+                      <Legend />
+                      <Line 
+                        type="monotone" 
+                        dataKey="securities" 
+                        name="Loan Against Securities" 
+                        stroke="#0fade8" 
+                        strokeWidth={3}
+                        dot={{ r: 4, strokeWidth: 2 }}
+                        activeDot={{ r: 6, strokeWidth: 2 }}
+                      />
+                      <Line 
+                        type="monotone" 
+                        dataKey="personal" 
+                        name="Personal Loan" 
+                        stroke="#7c65ab" 
+                        strokeWidth={2}
+                      />
+                      <Line 
+                        type="monotone" 
+                        dataKey="credit" 
+                        name="Credit Card" 
+                        stroke="#fb7185" 
+                        strokeWidth={2} 
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+                <div className="mt-4 p-4 bg-fluidpe-light-teal/20 rounded-lg text-sm text-gray-600">
+                  <p className="font-medium text-fluidpe-teal mb-2">Key Insight:</p>
+                  <p>
+                    Taking a loan against securities allows your investments to continue growing, 
+                    potentially offsetting the interest cost and generating overall positive returns.
+                  </p>
+                </div>
+              </div>
             </AnimatedElement>
+            
+            <div className="order-1 lg:order-2 space-y-8">
+              <AnimatedElement delay={400} className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-fluidpe-light-teal/30">
+                <h3 className="text-xl font-semibold mb-6 text-fluidpe-teal flex items-center">
+                  <PieChartIcon className="w-5 h-5 mr-2" /> Value Distribution
+                </h3>
+                <div className="h-64 flex items-center justify-center">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={returnsData}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        outerRadius={80}
+                        fill="#8884d8"
+                        dataKey="value"
+                        label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                      >
+                        {returnsData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))}
+                      </Pie>
+                      <Tooltip formatter={(value) => [`${value}%`, '']} />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+                <div className="mt-4 p-4 bg-fluidpe-light-teal/20 rounded-lg text-sm text-gray-600">
+                  <p className="font-medium text-fluidpe-teal mb-2">Value Unlocked:</p>
+                  <p>
+                    With loans against securities, you benefit from continued investment growth, 
+                    lower interest rates compared to other loans, and potential tax advantages.
+                  </p>
+                </div>
+              </AnimatedElement>
+              
+              <AnimatedElement delay={500}>
+                <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-fluidpe-light-teal/30">
+                  <h3 className="text-xl font-semibold mb-4 text-fluidpe-teal">Loan Options Comparison</h3>
+                  
+                  <div className="space-y-4 mt-6">
+                    <div className="relative">
+                      <div className="flex justify-between mb-1">
+                        <span className="text-sm font-medium">Loan Against Securities</span>
+                        <span className="text-sm font-medium">8.99% - 12%</span>
+                      </div>
+                      <div className="w-full h-2.5 bg-gray-200 rounded-full">
+                        <div className="h-2.5 bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal rounded-full" style={{ width: '30%' }}></div>
+                      </div>
+                    </div>
+                    
+                    <div className="relative">
+                      <div className="flex justify-between mb-1">
+                        <span className="text-sm font-medium">Personal Loan</span>
+                        <span className="text-sm font-medium">12% - 24%</span>
+                      </div>
+                      <div className="w-full h-2.5 bg-gray-200 rounded-full">
+                        <div className="h-2.5 bg-gradient-to-r from-fluidpe-medium-teal to-blue-500 rounded-full" style={{ width: '60%' }}></div>
+                      </div>
+                    </div>
+                    
+                    <div className="relative">
+                      <div className="flex justify-between mb-1">
+                        <span className="text-sm font-medium">Credit Card</span>
+                        <span className="text-sm font-medium">24% - 42%</span>
+                      </div>
+                      <div className="w-full h-2.5 bg-gray-200 rounded-full">
+                        <div className="h-2.5 bg-gradient-to-r from-blue-500 to-red-500 rounded-full" style={{ width: '100%' }}></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-6 grid grid-cols-2 gap-4">
+                    <div className="p-3 bg-fluidpe-light-teal/20 rounded-lg text-center">
+                      <p className="text-2xl font-bold text-fluidpe-teal">24-48 hrs</p>
+                      <p className="text-xs text-gray-600">Processing Time</p>
+                    </div>
+                    <div className="p-3 bg-fluidpe-light-teal/20 rounded-lg text-center">
+                      <p className="text-2xl font-bold text-fluidpe-teal">80%</p>
+                      <p className="text-xs text-gray-600">Of Portfolio Value</p>
+                    </div>
+                    <div className="p-3 bg-fluidpe-light-teal/20 rounded-lg text-center">
+                      <p className="text-2xl font-bold text-fluidpe-teal">0%</p>
+                      <p className="text-xs text-gray-600">Prepayment Charges</p>
+                    </div>
+                    <div className="p-3 bg-fluidpe-light-teal/20 rounded-lg text-center">
+                      <p className="text-2xl font-bold text-fluidpe-teal">Minimal</p>
+                      <p className="text-xs text-gray-600">Documentation</p>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedElement>
+            </div>
           </div>
+          
+          <AnimatedElement delay={600} className="mt-12 text-center">
+            <Button className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal text-white px-8 py-6 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none group text-lg">
+              Apply for Loan Against Securities <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+            </Button>
+          </AnimatedElement>
         </div>
       </section>
       
