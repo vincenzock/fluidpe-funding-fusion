@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   LineChart as LineChartIcon, PieChart as PieChartIcon, BarChart as BarChartIcon, Wallet, Clock, Shield, Award, 
   TrendingUp, Percent, CreditCard, Briefcase, ArrowRight, CheckCircle, Check, Upload, FileText, Send, Star,
@@ -61,7 +60,17 @@ const Index = () => {
   
   const savings = calculateSavings();
 
-  // Expanded testimonials with more details
+  const [hoverEffect, setHoverEffect] = useState(false);
+  const [animationComplete, setAnimationComplete] = useState(false);
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimationComplete(true);
+    }, 2000);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   const testimonials = [
     {
       quote: "I needed funds for my daughter's education but didn't want to sell my long-term mutual fund investments. Fluidpe offered me a loan at 9% interest rate compared to the 16% that my bank was offering for a personal loan. The process was completely digital and I received the funds within 24 hours!",
@@ -200,7 +209,6 @@ const Index = () => {
     }
   ];
 
-  // FAQ items from voltmoney.in, adapted for Fluidpe
   const faqItems = [
     {
       question: "What is Fluidpe?",
@@ -252,82 +260,111 @@ const Index = () => {
         <div className="absolute inset-0 z-0 overflow-hidden">
           <div className="absolute right-[-10%] top-[10%] w-72 h-72 rounded-full bg-fluidpe-light-teal blur-3xl opacity-60 animate-float"></div>
           <div className="absolute left-[-5%] bottom-[5%] w-80 h-80 rounded-full bg-fluidpe-light-gold blur-3xl opacity-40 animate-float" style={{ animationDelay: '2s' }}></div>
+          
+          <div className={`absolute left-[20%] top-[25%] w-32 h-32 rounded-full bg-blue-200/20 blur-xl opacity-30 transition-all duration-1000 ${hoverEffect ? 'scale-150' : 'scale-100'}`}></div>
+          <div className={`absolute right-[25%] bottom-[20%] w-40 h-40 rounded-full bg-green-200/20 blur-xl opacity-30 transition-all duration-1000 delay-300 ${hoverEffect ? 'scale-125 translate-x-10' : 'scale-100'}`}></div>
         </div>
         
-        <div className="container mx-auto px-4 relative z-10">
+        <div 
+          className="container mx-auto px-4 relative z-10 transition-all duration-700"
+          onMouseEnter={() => setHoverEffect(true)}
+          onMouseLeave={() => setHoverEffect(false)}
+        >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-left">
               <AnimatedElement>
-                <span className="inline-block py-1 px-3 rounded-full bg-gradient-to-r from-fluidpe-light-teal to-fluidpe-medium-teal/30 text-fluidpe-teal text-sm font-medium mb-4">
-                  Financial Freedom At Your Fingertips
+                <span className="inline-block py-1 px-3 rounded-full bg-gradient-to-r from-fluidpe-light-teal to-fluidpe-medium-teal/30 text-fluidpe-teal text-sm font-medium mb-4 hover:shadow-lg hover:from-fluidpe-teal/20 hover:to-fluidpe-medium-teal/50 transition-all duration-300">
+                  <span className="inline-flex items-center">
+                    <Zap className="h-3.5 w-3.5 mr-1 animate-pulse" />
+                    Financial Freedom At Your Fingertips
+                  </span>
                 </span>
               </AnimatedElement>
               
               <AnimatedElement delay={200}>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">
-                  Unlock the Power of Your Mutual Funds
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent relative group">
+                  <span className="relative z-10 inline-block">Unlock the</span>{" "}
+                  <span className={`relative z-10 inline-block transition-transform duration-500 ${hoverEffect ? "translate-y-[-5px]" : ""}`}>Power</span>{" "}
+                  <span className="relative z-10 inline-block">of Your</span>{" "}
+                  <span className={`relative z-10 inline-block transition-transform duration-500 ${hoverEffect ? "text-fluidpe-gold" : ""}`}>Mutual Funds</span>
+                  <div className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal transition-all duration-700 ${hoverEffect ? "w-full" : "w-0"}`}></div>
                 </h1>
               </AnimatedElement>
               
               <AnimatedElement delay={400}>
-                <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-lg">
-                  Get instant loans against your mutual fund investments without selling them. Enjoy competitive interest rates starting at 8.5% with minimal documentation.
+                <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-lg relative">
+                  Get instant loans against your mutual fund investments without selling them. Enjoy competitive interest rates starting at{" "}
+                  <span className="relative font-semibold text-fluidpe-teal inline-block group">
+                    8.5%
+                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-fluidpe-teal transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                  </span>{" "}
+                  with minimal documentation.
                 </p>
               </AnimatedElement>
               
               <AnimatedElement delay={600}>
                 <div className="flex flex-wrap gap-4">
-                  <Button className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none" size="lg">
-                    Apply Now
+                  <Button className="relative overflow-hidden bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none group" size="lg">
+                    <span className="relative z-10 flex items-center">
+                      Apply Now
+                      <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+                    </span>
+                    <span className="absolute inset-0 h-full w-full bg-gradient-to-r from-fluidpe-medium-teal to-fluidpe-teal opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                   </Button>
-                  <Button className="bg-white text-fluidpe-teal px-6 py-3 rounded-lg font-medium border border-fluidpe-teal/30 transition-all duration-300 hover:border-fluidpe-teal hover:bg-fluidpe-light-teal shadow-sm hover:shadow-md hover:-translate-y-1" size="lg">
-                    Learn More
+                  <Button className="bg-white text-fluidpe-teal px-6 py-3 rounded-lg font-medium border border-fluidpe-teal/30 transition-all duration-300 hover:border-fluidpe-teal hover:bg-fluidpe-light-teal shadow-sm hover:shadow-md hover:-translate-y-1 group" size="lg">
+                    <span className="flex items-center">
+                      Learn More
+                      <div className={`ml-2 h-5 w-5 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 ${hoverEffect ? "bg-fluidpe-teal" : "bg-transparent"}`}>
+                        <ArrowRight className={`h-3 w-3 ${hoverEffect ? "text-white" : "text-fluidpe-teal"} transition-all duration-300`} />
+                      </div>
+                    </span>
                   </Button>
                 </div>
               </AnimatedElement>
               
               <AnimatedElement delay={800}>
                 <div className="mt-8 grid grid-cols-3 gap-4">
-                  <div className="text-center backdrop-blur-sm bg-white/30 rounded-lg p-3 border border-white/50 shadow-sm">
-                    <p className="text-2xl md:text-3xl font-bold text-fluidpe-teal">₹2.5Cr+</p>
-                    <p className="text-sm text-gray-600">Loans Disbursed</p>
+                  <div className="text-center backdrop-blur-sm bg-white/30 rounded-lg p-3 border border-white/50 shadow-sm transition-all duration-300 hover:bg-white/50 hover:shadow-md group cursor-pointer">
+                    <p className="text-2xl md:text-3xl font-bold text-fluidpe-teal group-hover:scale-110 transition-transform duration-300">₹2.5Cr+</p>
+                    <p className="text-sm text-gray-600 group-hover:text-fluidpe-teal/70 transition-colors duration-300">Loans Disbursed</p>
                   </div>
-                  <div className="text-center backdrop-blur-sm bg-white/30 rounded-lg p-3 border border-white/50 shadow-sm">
-                    <p className="text-2xl md:text-3xl font-bold text-fluidpe-teal">500+</p>
-                    <p className="text-sm text-gray-600">Happy Customers</p>
+                  <div className="text-center backdrop-blur-sm bg-white/30 rounded-lg p-3 border border-white/50 shadow-sm transition-all duration-300 hover:bg-white/50 hover:shadow-md group cursor-pointer">
+                    <p className="text-2xl md:text-3xl font-bold text-fluidpe-teal group-hover:scale-110 transition-transform duration-300">500+</p>
+                    <p className="text-sm text-gray-600 group-hover:text-fluidpe-teal/70 transition-colors duration-300">Happy Customers</p>
                   </div>
-                  <div className="text-center backdrop-blur-sm bg-white/30 rounded-lg p-3 border border-white/50 shadow-sm">
-                    <p className="text-2xl md:text-3xl font-bold text-fluidpe-teal">8.5%</p>
-                    <p className="text-sm text-gray-600">Interest Rate</p>
+                  <div className="text-center backdrop-blur-sm bg-white/30 rounded-lg p-3 border border-white/50 shadow-sm transition-all duration-300 hover:bg-white/50 hover:shadow-md group cursor-pointer">
+                    <p className="text-2xl md:text-3xl font-bold text-fluidpe-teal group-hover:scale-110 transition-transform duration-300">8.5%</p>
+                    <p className="text-sm text-gray-600 group-hover:text-fluidpe-teal/70 transition-colors duration-300">Interest Rate</p>
                   </div>
                 </div>
               </AnimatedElement>
             </div>
             
             <AnimatedElement delay={300} className="relative">
-              <div className="relative z-10">
-                <div className="relative overflow-hidden rounded-2xl shadow-xl">
-                  <div className="absolute w-full h-full bg-gradient-to-br from-fluidpe-teal to-fluidpe-medium-teal opacity-90"></div>
+              <div className={`relative z-10 transition-all duration-700 transform ${hoverEffect ? "scale-105" : "scale-100"}`}>
+                <div className="relative overflow-hidden rounded-2xl shadow-xl group">
+                  <div className="absolute w-full h-full bg-gradient-to-br from-fluidpe-teal to-fluidpe-medium-teal opacity-90 transition-opacity duration-500 group-hover:opacity-75"></div>
                   <img 
                     src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200" 
                     alt="Trading Dashboard" 
-                    className="w-full h-auto mix-blend-overlay"
+                    className="w-full h-auto mix-blend-overlay transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-white text-center p-6">
-                      <h3 className="text-2xl font-bold mb-2">Loan Against Mutual Funds</h3>
+                      <h3 className="text-2xl font-bold mb-2 group-hover:text-fluidpe-light-gold transition-colors duration-300">Loan Against Mutual Funds</h3>
                       <p className="mb-4">Unlock liquidity from your portfolio</p>
-                      <div className="inline-block bg-white/20 backdrop-blur-sm rounded-lg p-4">
+                      <div className="inline-block bg-white/20 backdrop-blur-sm rounded-lg p-4 transition-all duration-300 group-hover:bg-white/30 hover:shadow-lg transform group-hover:-translate-y-1">
                         <p className="text-white/90 text-sm mb-1">Loan Amount</p>
                         <p className="text-3xl font-bold">₹25,00,000</p>
                       </div>
                     </div>
                   </div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500"></div>
                 </div>
                 
-                <div className="absolute -bottom-6 -right-6 bg-white rounded-lg shadow-lg p-4 animate-float" style={{ animationDelay: '1s' }}>
+                <div className="absolute -bottom-6 -right-6 bg-white rounded-lg shadow-lg p-4 animate-float transition-all duration-300 hover:shadow-xl hover:bg-fluidpe-light-teal/30" style={{ animationDelay: '1s' }}>
                   <div className="flex items-center gap-3">
-                    <div className="bg-green-100 rounded-full p-2">
+                    <div className="bg-green-100 rounded-full p-2 transition-colors duration-300 group-hover:bg-green-200">
                       <TrendingUp className="h-5 w-5 text-green-600" />
                     </div>
                     <div>
@@ -337,15 +374,21 @@ const Index = () => {
                   </div>
                 </div>
                 
-                <div className="absolute -top-6 -left-6 bg-white rounded-lg shadow-lg p-4 animate-float" style={{ animationDelay: '1.5s' }}>
+                <div className="absolute -top-6 -left-6 bg-white rounded-lg shadow-lg p-4 animate-float transition-all duration-300 hover:shadow-xl hover:bg-fluidpe-light-teal/30" style={{ animationDelay: '1.5s' }}>
                   <div className="flex items-center gap-3">
-                    <div className="bg-blue-100 rounded-full p-2">
+                    <div className="bg-blue-100 rounded-full p-2 transition-colors duration-300 group-hover:bg-blue-200">
                       <Percent className="h-5 w-5 text-blue-600" />
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">Interest Rate</p>
                       <p className="font-semibold text-fluidpe-teal">8.5% p.a</p>
                     </div>
+                  </div>
+                </div>
+                
+                <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ${animationComplete ? 'opacity-0' : 'opacity-100'}`}>
+                  <div className="bg-white/80 backdrop-blur-sm rounded-full p-6 shadow-xl animate-pulse">
+                    <Zap className="h-10 w-10 text-fluidpe-teal" />
                   </div>
                 </div>
               </div>
