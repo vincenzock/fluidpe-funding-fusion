@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { 
   LineChart as LineChartIcon, PieChart as PieChartIcon, BarChart as BarChartIcon, Wallet, Clock, Shield, Award, 
-  TrendingUp, Percent, CreditCard, Briefcase, ArrowRight, CheckCircle, LineChart as LineChartLucide
+  TrendingUp, Percent, CreditCard, Briefcase, ArrowRight, CheckCircle
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
@@ -240,7 +240,7 @@ const Index = () => {
             />
             
             <FeatureCard 
-              icon={LineChart}
+              icon={LineChartIcon}
               title="Retain Market Upside"
               description="Continue to benefit from potential market appreciation while accessing funds for your immediate needs."
               delay={200}
