@@ -415,4 +415,21 @@ const Index = () => {
           </div>
           
           <AnimatedElement animation="fade-up" delay={600} className="mt-16 text-center">
-            <div className="inline-block bg-white px-6 py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-fluidpe-light-teal
+            <div className="inline-block bg-white px-6 py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-fluidpe-light-teal/30">
+              <p className="text-gray-600">Ready to experience the financial freedom of loans against mutual funds?</p>
+              <Button className="mt-4 bg-fluidpe-teal hover:bg-fluidpe-medium-teal text-white">
+                Apply Now
+              </Button>
+            </div>
+          </AnimatedElement>
+        </div>
+      </section>
+      
+      <Footer />
+      <ScrollToTop />
+    </div>
+  );
+};
+
+export default Index;
+
