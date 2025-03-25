@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
@@ -87,6 +87,10 @@ const NavLinks = ({ mobile = false, onClick = () => {} }) => {
     
   return (
     <>
+      <Link to="/" className={`${linkClasses} flex items-center gap-1`} onClick={onClick}>
+        <Home className="h-4 w-4" />
+        Home
+      </Link>
       <a href="#features" className={linkClasses} onClick={onClick}>Features</a>
       <a href="#how-it-works" className={linkClasses} onClick={onClick}>How It Works</a>
       <a href="#benefits" className={linkClasses} onClick={onClick}>Benefits</a>
