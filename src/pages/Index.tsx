@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+
+import React, { useState } from 'react';
 import { 
   LineChart as LineChartIcon, PieChart as PieChartIcon, BarChart as BarChartIcon, Wallet, Clock, Shield, Award, 
   TrendingUp, Percent, CreditCard, Briefcase, ArrowRight, CheckCircle, Check, Upload, FileText, Send, Star,
@@ -17,6 +18,13 @@ import TestimonialCard from '@/components/TestimonialCard';
 import FaqItem from '@/components/FaqItem';
 import ScrollToTop from '@/components/ScrollToTop';
 import BlogCard from '@/components/BlogCard';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const Index = () => {
   const [loanAmount, setLoanAmount] = useState(500000); // ₹5 Lakh default
@@ -531,6 +539,7 @@ const Index = () => {
         </div>
       </section>
       
+      {/* Testimonial Carousel Section - Before the FAQ section */}
       <section id="testimonials" className="py-16 md:py-24 bg-gradient-to-b from-fluidpe-light-teal/20 to-white relative overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute right-[-5%] top-[30%] w-72 h-72 rounded-full bg-fluidpe-light-teal/30 blur-3xl"></div>
@@ -544,7 +553,7 @@ const Index = () => {
                 <span className="text-fluidpe-teal text-sm font-semibold">What Our Customers Say</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">
-                Real Stories from Our Clients
+                Read to Unlock Mutual Benefits
               </h2>
               <div className="w-20 h-1 bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal rounded-full mb-6"></div>
               <p className="text-lg md:text-xl text-gray-600 mb-6 max-w-3xl mx-auto text-center">
@@ -553,19 +562,34 @@ const Index = () => {
             </div>
           </AnimatedElement>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <TestimonialCard 
-                key={index}
-                quote={testimonial.quote}
-                author={testimonial.author}
-                designation={testimonial.designation}
-                avatarUrl={testimonial.avatarUrl}
-                rating={testimonial.rating}
-                delay={index * 100}
-              />
-            ))}
-          </div>
+          <AnimatedElement delay={200} animation="fade-up" className="max-w-5xl mx-auto">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent>
+                {testimonials.slice(0, 4).map((testimonial, index) => (
+                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/2 xl:basis-1/2 p-2">
+                    <TestimonialCard 
+                      quote={testimonial.quote}
+                      author={testimonial.author}
+                      designation={testimonial.designation}
+                      avatarUrl={testimonial.avatarUrl}
+                      rating={testimonial.rating}
+                      delay={0}
+                    />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="flex justify-center mt-8 gap-4">
+                <CarouselPrevious className="relative static h-10 w-10 border-fluidpe-teal text-fluidpe-teal hover:bg-fluidpe-light-teal hover:text-fluidpe-teal" />
+                <CarouselNext className="relative static h-10 w-10 border-fluidpe-teal text-fluidpe-teal hover:bg-fluidpe-light-teal hover:text-fluidpe-teal" />
+              </div>
+            </Carousel>
+          </AnimatedElement>
         </div>
       </section>
       
