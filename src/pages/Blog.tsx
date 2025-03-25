@@ -16,7 +16,7 @@ const Blog = () => {
       date: "June 15, 2023",
       author: "Sarah Johnson",
       category: "Finance",
-      image: "/placeholder.svg"
+      imageUrl: "/placeholder.svg"
     },
     {
       id: 2,
@@ -25,7 +25,7 @@ const Blog = () => {
       date: "July 22, 2023",
       author: "Michael Chen",
       category: "Investment",
-      image: "/placeholder.svg"
+      imageUrl: "/placeholder.svg"
     },
     {
       id: 3,
@@ -34,7 +34,7 @@ const Blog = () => {
       date: "August 10, 2023",
       author: "Priya Sharma",
       category: "Investment",
-      image: "/placeholder.svg"
+      imageUrl: "/placeholder.svg"
     },
     {
       id: 4,
@@ -43,7 +43,7 @@ const Blog = () => {
       date: "September 5, 2023",
       author: "David Wilson",
       category: "Tax",
-      image: "/placeholder.svg"
+      imageUrl: "/placeholder.svg"
     },
     {
       id: 5,
@@ -52,7 +52,7 @@ const Blog = () => {
       date: "October 18, 2023",
       author: "Anjali Patel",
       category: "Market Analysis",
-      image: "/placeholder.svg"
+      imageUrl: "/placeholder.svg"
     },
     {
       id: 6,
@@ -61,7 +61,7 @@ const Blog = () => {
       date: "November 30, 2023",
       author: "James Roberts",
       category: "Technology",
-      image: "/placeholder.svg"
+      imageUrl: "/placeholder.svg"
     }
   ];
 
@@ -89,7 +89,7 @@ const Blog = () => {
                 date={post.date}
                 author={post.author}
                 category={post.category}
-                image={post.image}
+                imageUrl={post.imageUrl}
                 delay={0}
               />
             ))}
