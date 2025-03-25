@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+
+import React, { useState } from 'react';
 import { 
   LineChart as LineChartIcon, PieChart as PieChartIcon, BarChart as BarChartIcon, Wallet, Clock, Shield, Award, 
   TrendingUp, Percent, CreditCard, Briefcase, ArrowRight, CheckCircle, Check, Upload, FileText, Send, Star,
-  TrendingDown, AlertTriangle
+  TrendingDown, AlertTriangle, Lightbulb, Zap, Lock, FileCheck, Settings, Users, RefreshCw
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
@@ -17,6 +18,13 @@ import TestimonialCard from '@/components/TestimonialCard';
 import FaqItem from '@/components/FaqItem';
 import ScrollToTop from '@/components/ScrollToTop';
 import BlogCard from '@/components/BlogCard';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const Index = () => {
   const [loanAmount, setLoanAmount] = useState(500000); // ₹5 Lakh default
@@ -52,6 +60,52 @@ const Index = () => {
   };
   
   const savings = calculateSavings();
+
+  // Expanded testimonials with more details
+  const testimonials = [
+    {
+      quote: "I needed funds for my daughter's education but didn't want to sell my long-term mutual fund investments. Fluidpe offered me a loan at 9% interest rate compared to the 16% that my bank was offering for a personal loan. The process was completely digital and I received the funds within 24 hours!",
+      author: "Rahul Mehta",
+      designation: "IT Professional, Bengaluru",
+      avatarUrl: "https://randomuser.me/api/portraits/men/32.jpg",
+      rating: 5
+    },
+    {
+      quote: "As a business owner, I often need short-term capital but selling my mutual funds would have resulted in tax implications. Fluidpe's loan against my mutual fund portfolio was the perfect solution - quick, affordable, and I still own my investments.",
+      author: "Priya Sharma",
+      designation: "Entrepreneur, Mumbai",
+      avatarUrl: "https://randomuser.me/api/portraits/women/44.jpg",
+      rating: 5
+    },
+    {
+      quote: "The seamless digital process at Fluidpe is impressive. I completed everything from application to disbursement without visiting any office. Their interest rates are among the best in the market, and their customer service is exceptional.",
+      author: "Vijay Kapoor",
+      designation: "Senior Manager, Delhi",
+      avatarUrl: "https://randomuser.me/api/portraits/men/62.jpg",
+      rating: 4
+    },
+    {
+      quote: "I was skeptical about pledging my mutual funds at first, but Fluidpe's transparent terms and professional approach put me at ease. The best part is that I still benefit from the growth in my mutual fund portfolio while having access to funds when I needed them.",
+      author: "Anita Desai",
+      designation: "Doctor, Chennai",
+      avatarUrl: "https://randomuser.me/api/portraits/women/68.jpg",
+      rating: 5
+    },
+    {
+      quote: "The flexibility of repayment options with Fluidpe is what stood out for me. I could structure my loan in a way that aligned with my cash flow, making it much easier to manage compared to traditional loans.",
+      author: "Suresh Kumar",
+      designation: "Freelance Consultant, Hyderabad",
+      avatarUrl: "https://randomuser.me/api/portraits/men/75.jpg",
+      rating: 5
+    },
+    {
+      quote: "Taking a loan against my mutual funds through Fluidpe was a game-changer for my financial planning. Not only did I get a much lower interest rate, but I also didn't miss out on market gains during the loan period.",
+      author: "Maya Patel",
+      designation: "Finance Manager, Pune",
+      avatarUrl: "https://randomuser.me/api/portraits/women/90.jpg",
+      rating: 5
+    }
+  ];
 
   const blogPosts = [
     {
@@ -143,6 +197,50 @@ const Index = () => {
       author: "Deepa Reddy",
       category: "Risk Management",
       imageUrl: "https://images.unsplash.com/photo-1634128221889-82ed6efebfc3?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200"
+    }
+  ];
+
+  // FAQ items from voltmoney.in, adapted for Fluidpe
+  const faqItems = [
+    {
+      question: "What is Fluidpe?",
+      answer: "Fluidpe is a digital financial platform that enables investors to unlock the power of their mutual fund investments by providing instant loans against mutual funds portfolio. We offer a streamlined, 100% digital experience with no need to sell your investments, ensuring you continue to benefit from market growth while accessing liquidity."
+    },
+    {
+      question: "How does a loan against mutual funds work?",
+      answer: "When you take a loan against mutual funds, you pledge your mutual fund units as collateral. Your units are marked with a lien in favor of Fluidpe, but you retain ownership. You can borrow up to 80% of the value of your eligible mutual funds. Interest rates start from just 8.5% per annum. You continue to enjoy all benefits from your mutual funds, including any appreciation or dividends."
+    },
+    {
+      question: "What are the benefits of taking a loan against mutual funds with Fluidpe?",
+      answer: "Benefits include: Lower interest rates (starting at 8.5%) compared to personal loans and credit cards, no need to sell your investments, retain all benefits including market appreciation and dividends, 100% digital process with quick approval and disbursement, flexible repayment options, and no prepayment penalties."
+    },
+    {
+      question: "What mutual funds can I pledge for a loan?",
+      answer: "You can pledge equity funds, debt funds, balanced/hybrid funds, and ETFs for a loan with Fluidpe. The exact list of eligible funds may vary based on current market conditions and our risk assessment policies. Debt funds and large-cap equity funds generally have higher loan-to-value ratios compared to mid or small-cap funds."
+    },
+    {
+      question: "How long does it take to get a loan disbursed?",
+      answer: "With Fluidpe's fully digital process, you can get your loan disbursed within 24 hours of completing the application and documentation requirements. The process involves online verification of your mutual fund holdings, digital signing of loan agreements, and direct disbursement to your bank account."
+    },
+    {
+      question: "Is there a minimum or maximum loan amount?",
+      answer: "Yes, at Fluidpe, the minimum loan amount is ₹1 lakh and the maximum can go up to ₹5 crores, depending on the value and type of mutual funds in your portfolio."
+    },
+    {
+      question: "What happens if the value of my pledged mutual funds falls?",
+      answer: "If the value of your pledged mutual funds falls below a certain threshold (typically 120-130% of the loan amount), you'll receive a margin call asking you to either pledge additional funds or partially repay the loan to maintain the required margin. Our team will guide you through the process if this occurs."
+    },
+    {
+      question: "Can I continue to earn returns on pledged mutual funds?",
+      answer: "Yes, even when your mutual funds are pledged, you continue to receive all dividends, interest, and other benefits from your pledged mutual funds. The funds remain in your name, and only a lien is marked in favor of Fluidpe. Market appreciation in your fund value is also to your benefit."
+    },
+    {
+      question: "What are the repayment options available?",
+      answer: "Fluidpe offers multiple repayment options including interest-only payments with bullet repayment of principal at the end of tenure, equated monthly installments (EMI), and flexible repayment schedules based on your cash flow. You can also prepay the loan anytime without any penalties."
+    },
+    {
+      question: "What documents are required to apply for a loan against mutual funds?",
+      answer: "You'll need basic KYC documents (PAN card, Aadhaar card, address proof), bank account details for disbursement, and details of the mutual funds you wish to pledge. The entire documentation process is digital, and you can upload all required documents through our secure platform."
     }
   ];
 
@@ -294,19 +392,29 @@ const Index = () => {
         </div>
       </section>
       
-      <section id="features" className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <AnimatedElement>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">Why Choose Fluidpe</h2>
+      <section id="features" className="py-16 md:py-24 bg-gradient-to-b from-white to-fluidpe-light-teal/10 relative overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <div className="absolute -right-[10%] top-[20%] w-[600px] h-[600px] rounded-full bg-fluidpe-light-teal/20 blur-3xl opacity-60 animate-float"></div>
+          <div className="absolute -left-[5%] bottom-[10%] w-[500px] h-[500px] rounded-full bg-fluidpe-light-gold/20 blur-3xl opacity-50" style={{ animationDelay: '1.5s' }}></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <AnimatedElement animation="fade-up">
+            <div className="flex flex-col items-center justify-center mb-16">
+              <div className="bg-gradient-to-r from-fluidpe-teal/20 to-fluidpe-medium-teal/20 p-2 px-4 rounded-full mb-4">
+                <span className="text-fluidpe-teal text-sm font-semibold">Why our clients trust us</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">
+                Why Choose Fluidpe
+              </h2>
+              <div className="w-20 h-1 bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal rounded-full mb-6"></div>
+              <p className="text-lg md:text-xl text-gray-600 mb-6 max-w-3xl mx-auto text-center">
+                Unlock the full potential of your mutual fund investments with our innovative loan solutions
+              </p>
+            </div>
           </AnimatedElement>
           
-          <AnimatedElement delay={200}>
-            <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto text-center">
-              Unlock the full potential of your mutual fund investments with our innovative loan solutions
-            </p>
-          </AnimatedElement>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-2">
             <FeatureCard 
               icon={Wallet}
               title="Competitive Interest Rates"
@@ -319,6 +427,7 @@ const Index = () => {
               title="Quick Disbursals"
               description="Get funds in your account within 24 hours after approval, with minimal documentation requirements."
               delay={100}
+              animation="fade-down"
             />
             
             <FeatureCard 
@@ -326,6 +435,7 @@ const Index = () => {
               title="Retain Market Upside"
               description="Continue to benefit from potential market appreciation while accessing funds for your immediate needs."
               delay={200}
+              animation="fade-up"
             />
             
             <FeatureCard 
@@ -333,6 +443,7 @@ const Index = () => {
               title="Flexible Repayment Options"
               description="Choose from multiple repayment plans that suit your cash flow, with no prepayment penalties."
               delay={300}
+              animation="fade-right"
             />
             
             <FeatureCard 
@@ -340,15 +451,32 @@ const Index = () => {
               title="Higher Loan Amounts"
               description="Access up to 80% of your mutual fund portfolio value, with loan amounts ranging from ₹1 Lakh to ₹5 Crores."
               delay={400}
+              animation="fade-up"
             />
             
             <FeatureCard 
               icon={Briefcase}
               title="Wide Range of Acceptable Funds"
-              description="Pledge various mutual fund schemes including equity, debt, hybrid, and ETFs to secure your loan."
+              description="Pledge various mutual fund schemes including equity, debt, and hybrid funds to secure your loan with maximum flexibility."
               delay={500}
+              animation="fade-left"
             />
           </div>
+          
+          <AnimatedElement animation="fade-up" delay={600} className="mt-16 text-center">
+            <div className="inline-block bg-white px-6 py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-fluidpe-light-teal/30">
+              <div className="flex items-center justify-center gap-2 text-fluidpe-teal font-medium">
+                <Check className="h-5 w-5" />
+                <span>No hidden charges</span>
+                <div className="w-1 h-1 rounded-full bg-fluidpe-teal/30"></div>
+                <Check className="h-5 w-5" />
+                <span>Transparent process</span>
+                <div className="w-1 h-1 rounded-full bg-fluidpe-teal/30"></div>
+                <Check className="h-5 w-5" />
+                <span>Excellent support</span>
+              </div>
+            </div>
+          </AnimatedElement>
         </div>
       </section>
       
@@ -411,6 +539,7 @@ const Index = () => {
         </div>
       </section>
       
+      {/* Calculate Your Savings Section */}
       <section id="benefits" className="py-16 md:py-24 bg-white relative overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute right-[-5%] top-[10%] w-72 h-72 rounded-full bg-fluidpe-light-teal/30 blur-3xl"></div>
@@ -676,6 +805,47 @@ const Index = () => {
         </div>
       </section>
       
+      {/* Testimonials Section with Carousel */}
+      <section id="testimonials" className="py-16 md:py-24 bg-fluidpe-light-teal relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute left-[-10%] top-[-5%] w-96 h-96 rounded-full bg-white blur-3xl opacity-60"></div>
+          <div className="absolute right-[-5%] bottom-[10%] w-80 h-80 rounded-full bg-fluidpe-light-gold blur-3xl opacity-40"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <AnimatedElement>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">What Our Customers Say</h2>
+          </AnimatedElement>
+          
+          <AnimatedElement delay={200}>
+            <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto text-center">
+              Join thousands of satisfied customers who've experienced the Fluidpe advantage
+            </p>
+          </AnimatedElement>
+          
+          <div className="mt-12 max-w-5xl mx-auto">
+            <Carousel className="w-full">
+              <CarouselContent>
+                {testimonials.slice(0, 4).map((testimonial, index) => (
+                  <CarouselItem key={index} className="md:basis-1/1">
+                    <TestimonialCard 
+                      quote={testimonial.quote}
+                      author={testimonial.author}
+                      designation={testimonial.designation}
+                      delay={0}
+                    />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="flex justify-center mt-8">
+                <CarouselPrevious className="relative static left-0 translate-y-0 mr-4" />
+                <CarouselNext className="relative static right-0 translate-y-0" />
+              </div>
+            </Carousel>
+          </div>
+        </div>
+      </section>
+      
       <section id="blogs" className="py-16 md:py-24 bg-fluidpe-light-gray">
         <div className="container mx-auto px-4">
           <AnimatedElement>
@@ -713,48 +883,7 @@ const Index = () => {
         </div>
       </section>
       
-      <section id="testimonials" className="py-16 md:py-24 bg-fluidpe-light-teal relative overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute left-[-10%] top-[-5%] w-96 h-96 rounded-full bg-white blur-3xl opacity-60"></div>
-          <div className="absolute right-[-5%] bottom-[10%] w-80 h-80 rounded-full bg-fluidpe-light-gold blur-3xl opacity-40"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <AnimatedElement>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">What Our Customers Say</h2>
-          </AnimatedElement>
-          
-          <AnimatedElement delay={200}>
-            <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto text-center">
-              Join thousands of satisfied customers who've experienced the Fluidpe advantage
-            </p>
-          </AnimatedElement>
-          
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <TestimonialCard 
-              quote="Fluidpe provided me with quick funds for my business expansion without having to sell my mutual fund investments. The process was smooth and transparent."
-              author="Rahul Sharma"
-              designation="Business Owner, Delhi"
-              delay={0}
-            />
-            
-            <TestimonialCard 
-              quote="I was surprised by how quickly I received the funds. The interest rate was much lower than other options, and I didn't have to liquidate my mutual funds during a market dip."
-              author="Priya Patel"
-              designation="IT Professional, Bangalore"
-              delay={200}
-            />
-            
-            <TestimonialCard 
-              quote="The flexible repayment options suited my irregular income pattern perfectly. Their customer service team was extremely helpful throughout the process."
-              author="Vikram Singh"
-              designation="Freelance Consultant, Mumbai"
-              delay={400}
-            />
-          </div>
-        </div>
-      </section>
-      
+      {/* Ready to Unlock Section */}
       <section className="py-16 md:py-24 bg-cta-pattern">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
@@ -797,41 +926,14 @@ const Index = () => {
           </AnimatedElement>
           
           <div className="mt-12 max-w-3xl mx-auto">
-            <FaqItem 
-              question="What mutual funds can I pledge for a loan?"
-              answer="You can pledge a wide range of mutual funds including equity funds, debt funds, hybrid funds, and ETFs. The exact list of eligible funds may vary based on current market conditions and our risk assessment policies."
-              delay={0}
-            />
-            
-            <FaqItem 
-              question="How much loan amount can I get against my mutual funds?"
-              answer="You can typically get up to 80% of the value of your pledged mutual funds, depending on the type and quality of funds. Debt funds and large-cap equity funds generally have higher loan-to-value ratios compared to mid or small-cap funds."
-              delay={100}
-            />
-            
-            <FaqItem 
-              question="What happens if the value of my pledged mutual funds falls?"
-              answer="If the value of your pledged mutual funds falls below a certain threshold (typically 120-130% of the loan amount), you'll receive a margin call asking you to either pledge additional funds or partially repay the loan to maintain the required margin."
-              delay={200}
-            />
-            
-            <FaqItem 
-              question="Can I continue to earn returns on pledged mutual funds?"
-              answer="Yes, you continue to receive all dividends, interest, and other benefits from your pledged mutual funds. The funds remain in your name, and only a lien is marked in favor of Fluidpe."
-              delay={300}
-            />
-            
-            <FaqItem 
-              question="What are the repayment options available?"
-              answer="We offer multiple repayment options including interest-only payments with bullet repayment of principal, equated monthly installments (EMI), and flexible repayment schedules. You can also prepay the loan anytime without any penalties."
-              delay={400}
-            />
-            
-            <FaqItem 
-              question="How long does it take to process my loan application?"
-              answer="Once you submit your application and pledge your mutual funds, the verification and approval process typically takes 24-48 hours. After approval, funds are disbursed to your bank account within the next business day."
-              delay={500}
-            />
+            {faqItems.slice(0, 6).map((item, index) => (
+              <FaqItem 
+                key={index}
+                question={item.question}
+                answer={item.answer}
+                delay={index * 100}
+              />
+            ))}
           </div>
         </div>
       </section>
