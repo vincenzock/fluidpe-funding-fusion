@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { 
   LineChart as LineChartIcon, PieChart as PieChartIcon, BarChart as BarChartIcon, Wallet, Clock, Shield, Award, 
@@ -556,4 +557,17 @@ const Index = () => {
         
         <div className="container mx-auto px-4 relative z-10">
           <AnimatedElement animation="fade-up">
-            <h2
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">
+              How It Works
+            </h2>
+          </AnimatedElement>
+        </div>
+      </section>
+      
+      <Footer />
+      <ScrollToTop />
+    </div>
+  );
+};
+
+export default Index;
