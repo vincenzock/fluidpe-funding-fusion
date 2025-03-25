@@ -74,7 +74,7 @@ const TestimonialsSection: React.FC = () => {
       >
         <CarouselContent>
           {testimonials.map((testimonial, index) => (
-            <CarouselItem key={index}>
+            <CarouselItem key={index} className="md:basis-1/4">
               <TestimonialCard
                 quote={testimonial.quote}
                 author={testimonial.author}
