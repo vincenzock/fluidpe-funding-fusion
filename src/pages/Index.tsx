@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { LineChart as LineChartIcon, PieChart as PieChartIcon, BarChart as BarChartIcon, Wallet, Clock, Shield, Award, TrendingUp, Percent, CreditCard, Briefcase, ArrowRight, CheckCircle, Check, Upload, FileText, Send, Star, TrendingDown, AlertTriangle, Lightbulb, Zap, Lock, FileCheck, Settings, Users, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -202,7 +203,9 @@ const Index = () => {
     question: "What documents are required to apply for a loan against mutual funds?",
     answer: "You'll need basic KYC documents (PAN card, Aadhaar card, address proof), bank account details for disbursement, and details of the mutual funds you wish to pledge. The entire documentation process is digital, and you can upload all required documents through our secure platform."
   }];
-  return <div className="overflow-x-hidden font-sans">
+  
+  return (
+    <div className="overflow-x-hidden font-sans">
       <Navbar />
       
       <section className="pt-28 md:pt-32 pb-16 md:pb-24 bg-hero-pattern relative">
@@ -406,4 +409,19 @@ const Index = () => {
           
           <AnimatedElement animation="fade-up" delay={600} className="mt-16 text-center">
             <div className="inline-block bg-white px-6 py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-fluidpe-light-teal/30">
-              <div className="flex items-center justify-center gap-2 text
+              <div className="flex items-center justify-center gap-2 text-fluidpe-teal">
+                <Lightbulb className="h-5 w-5" />
+                <span className="font-medium">Learn more about how our loan process works</span>
+              </div>
+            </div>
+          </AnimatedElement>
+        </div>
+      </section>
+      
+      <Footer />
+      <ScrollToTop />
+    </div>
+  );
+};
+
+export default Index;
