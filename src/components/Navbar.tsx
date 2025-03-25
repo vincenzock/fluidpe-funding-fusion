@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -115,7 +114,6 @@ const NavLinks = ({ mobile = false, onClick = () => {} }) => {
       <a href="#how-it-works" className={linkClasses} onClick={(e) => navigateToSection('how-it-works', e)}>How It Works</a>
       <a href="#benefits" className={linkClasses} onClick={(e) => navigateToSection('benefits', e)}>Interest Calculator</a>
       <a href="#faq" className={linkClasses} onClick={(e) => navigateToSection('faq', e)}>FAQ</a>
-      <Link to="/blog" className={linkClasses} onClick={onClick}>Blog</Link>
     </>
   );
 };
