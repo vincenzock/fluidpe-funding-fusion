@@ -1,16 +1,22 @@
 
 import React, { useEffect, useRef } from 'react';
 
+type AnimationType = 'fade-up' | 'fade-down' | 'fade-left' | 'fade-right' | 'zoom-in' | 'zoom-out' | 'flip' | 'bounce';
+
 interface AnimatedElementProps {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  animation?: AnimationType;
+  duration?: number;
 }
 
 const AnimatedElement: React.FC<AnimatedElementProps> = ({ 
   children, 
   className = '',
-  delay = 0
+  delay = 0,
+  animation = 'fade-up',
+  duration = 700
 }) => {
   const elementRef = useRef<HTMLDivElement>(null);
   
@@ -21,6 +27,7 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({
           if (entry.isIntersecting) {
             setTimeout(() => {
               entry.target.classList.add('visible');
+              entry.target.dataset.animation = animation;
             }, delay);
             observer.unobserve(entry.target);
           }
@@ -30,6 +37,7 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({
     );
     
     if (elementRef.current) {
+      elementRef.current.style.setProperty('--animation-duration', `${duration}ms`);
       observer.observe(elementRef.current);
     }
     
@@ -38,10 +46,14 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({
         observer.unobserve(elementRef.current);
       }
     };
-  }, [delay]);
+  }, [delay, animation, duration]);
   
   return (
-    <div ref={elementRef} className={`animate-on-scroll ${className}`}>
+    <div 
+      ref={elementRef} 
+      className={`animate-on-scroll ${className}`}
+      data-animation={animation}
+    >
       {children}
     </div>
   );
