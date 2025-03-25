@@ -15,7 +15,8 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ quote, author, design
   // Generate a unique but consistent avatar URL based on the author's name
   const getAvatarUrl = (name: string) => {
     const seed = name.replace(/\s+/g, '').toLowerCase();
-    return `https://api.dicebear.com/7.x/micah/svg?seed=${seed}&backgroundColor=b6e3f4,c0aede,d1d4f9`;
+    // Changed to use 'adventurer' style which has happier-looking faces
+    return `https://api.dicebear.com/7.x/adventurer/svg?seed=${seed}&mouth=smile,laugh&eyes=happy,wink&backgroundColor=b6e3f4,c0aede,d1d4f9`;
   };
   
   // Get initials for avatar fallback
