@@ -28,7 +28,9 @@ const Index = () => {
     const emi = principal * ratePerMonth * Math.pow(1 + ratePerMonth, tenure) / (Math.pow(1 + ratePerMonth, tenure) - 1);
     return Math.round(emi);
   };
+  
   const emi = calculateEMI();
+  
   const calculateSavings = () => {
     const personalLoanRate = 14; // 14% for personal loan
     const creditCardRate = 36; // 36% for credit card
@@ -36,6 +38,7 @@ const Index = () => {
     const ourInterest = loanAmount * (interestRate / 100) * (loanDuration / 12);
     const personalLoanInterest = loanAmount * (personalLoanRate / 100) * (loanDuration / 12);
     const creditCardInterest = loanAmount * (creditCardRate / 100) * (loanDuration / 12);
+    
     return {
       personalLoan: Math.round(personalLoanInterest - ourInterest),
       creditCard: Math.round(creditCardInterest - ourInterest),
@@ -44,15 +47,18 @@ const Index = () => {
       ourInterest: Math.round(ourInterest)
     };
   };
+  
   const savings = calculateSavings();
   const [hoverEffect, setHoverEffect] = useState(false);
   const [animationComplete, setAnimationComplete] = useState(false);
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       setAnimationComplete(true);
     }, 2000);
     return () => clearTimeout(timer);
   }, []);
+  
   const testimonials = [{
     quote: "I needed funds for my daughter's education but didn't want to sell my long-term mutual fund investments. Fluidpe offered me a loan at 9% interest rate compared to the 16% that my bank was offering for a personal loan. The process was completely digital and I received the funds within 24 hours!",
     author: "Rahul Mehta",
@@ -90,6 +96,7 @@ const Index = () => {
     avatarUrl: "https://randomuser.me/api/portraits/women/90.jpg",
     rating: 5
   }];
+  
   const blogPosts = [{
     id: 1,
     title: "How Mutual Fund Loans Are Transforming India's Financial Landscape",
@@ -171,6 +178,7 @@ const Index = () => {
     category: "Risk Management",
     imageUrl: "https://images.unsplash.com/photo-1634128221889-82ed6efebfc3?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200"
   }];
+  
   const faqItems = [{
     question: "What is Fluidpe?",
     answer: "Fluidpe is a digital financial platform that enables investors to unlock the power of their mutual fund investments by providing instant loans against mutual funds portfolio. We offer a streamlined, 100% digital experience with no need to sell your investments, ensuring you continue to benefit from market growth while accessing liquidity."
@@ -202,7 +210,9 @@ const Index = () => {
     question: "What documents are required to apply for a loan against mutual funds?",
     answer: "You'll need basic KYC documents (PAN card, Aadhaar card, address proof), bank account details for disbursement, and details of the mutual funds you wish to pledge. The entire documentation process is digital, and you can upload all required documents through our secure platform."
   }];
-  return <div className="overflow-x-hidden font-sans">
+  
+  return (
+    <div className="overflow-x-hidden font-sans">
       <Navbar />
       
       <section className="pt-28 md:pt-32 pb-16 md:pb-24 bg-hero-pattern relative">
@@ -800,7 +810,8 @@ const Index = () => {
       <Footer />
       
       <ScrollToTop />
-    </div>;
+    </div>
+  );
 };
-export default Index;
 
+export default Index;
