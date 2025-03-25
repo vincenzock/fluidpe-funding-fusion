@@ -191,11 +191,11 @@ const Index = () => {
               <AnimatedElement delay={800}>
                 <div className="mt-8 grid grid-cols-3 gap-4">
                   <div className="text-center backdrop-blur-sm bg-white/30 rounded-lg p-3 border border-white/50 shadow-sm">
-                    <p className="text-2xl md:text-3xl font-bold text-fluidpe-teal">₹50L+</p>
+                    <p className="text-2xl md:text-3xl font-bold text-fluidpe-teal">₹2.5Cr+</p>
                     <p className="text-sm text-gray-600">Loans Disbursed</p>
                   </div>
                   <div className="text-center backdrop-blur-sm bg-white/30 rounded-lg p-3 border border-white/50 shadow-sm">
-                    <p className="text-2xl md:text-3xl font-bold text-fluidpe-teal">150+</p>
+                    <p className="text-2xl md:text-3xl font-bold text-fluidpe-teal">500+</p>
                     <p className="text-sm text-gray-600">Happy Customers</p>
                   </div>
                   <div className="text-center backdrop-blur-sm bg-white/30 rounded-lg p-3 border border-white/50 shadow-sm">
