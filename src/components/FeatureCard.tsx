@@ -8,7 +8,7 @@ interface FeatureCardProps {
   title: string;
   description: string;
   delay: number;
-  animation?: 'fade-up' | 'fade-left' | 'fade-right' | 'zoom-in';
+  animation?: 'fade-up' | 'fade-left' | 'fade-right' | 'zoom-in' | 'fade-down';
   color?: string;
 }
 

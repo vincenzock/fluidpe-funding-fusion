@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { 
   LineChart as LineChartIcon, PieChart as PieChartIcon, BarChart as BarChartIcon, Wallet, Clock, Shield, Award, 
@@ -385,7 +384,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Enhanced Why Choose Fluidpe Section */}
       <section id="features" className="py-16 md:py-24 bg-gradient-to-b from-white to-fluidpe-light-teal/10 relative overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <div className="absolute -right-[10%] top-[20%] w-[600px] h-[600px] rounded-full bg-fluidpe-light-teal/20 blur-3xl opacity-60 animate-float"></div>
@@ -482,8 +480,8 @@ const Index = () => {
       
       <section id="how-it-works" className="py-20 bg-gradient-to-b from-white to-fluidpe-light-teal/20 relative overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute right-[-10%] bottom-[-5%] w-96 h-96 rounded-full bg-fluidpe-light-teal blur-3xl opacity-40"></div>
-          <div className="absolute left-[-5%] top-[10%] w-80 h-80 rounded-full bg-fluidpe-light-gold blur-3xl opacity-30"></div>
+          <div className="absolute right-[-10%] bottom-[-5%] w-96 h-96 rounded-full bg-fluidpe-light-teal blur-3xl"></div>
+          <div className="absolute left-[-5%] top-[10%] w-80 h-80 rounded-full bg-fluidpe-light-gold blur-3xl"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
@@ -533,7 +531,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Testimonials Section */}
       <section id="testimonials" className="py-16 md:py-24 bg-gradient-to-b from-fluidpe-light-teal/20 to-white relative overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute right-[-5%] top-[30%] w-72 h-72 rounded-full bg-fluidpe-light-teal/30 blur-3xl"></div>
@@ -572,7 +569,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* FAQ Section */}
       <section id="faq" className="py-16 md:py-24 bg-white relative overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute right-[-5%] top-[10%] w-72 h-72 rounded-full bg-fluidpe-light-teal/20 blur-3xl"></div>
@@ -608,7 +604,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* CTA Section */}
       <section id="cta" className="py-16 md:py-20 bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute right-[5%] top-[20%] w-72 h-72 rounded-full bg-white blur-xl"></div>
