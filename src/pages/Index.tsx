@@ -254,14 +254,6 @@ const Index = () => {
                     </span>
                     <span className="absolute inset-0 h-full w-full bg-gradient-to-r from-fluidpe-medium-teal to-fluidpe-teal opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                   </Button>
-                  <Button className="bg-white text-fluidpe-teal px-6 py-3 rounded-lg font-medium border border-fluidpe-teal/30 transition-all duration-300 hover:border-fluidpe-teal hover:bg-fluidpe-light-teal shadow-sm hover:shadow-md hover:-translate-y-1 group" size="lg">
-                    <span className="flex items-center">
-                      Learn More
-                      <div className={`ml-2 h-5 w-5 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 ${hoverEffect ? "bg-fluidpe-teal" : "bg-transparent"}`}>
-                        <ArrowRight className={`h-3 w-3 ${hoverEffect ? "text-white" : "text-fluidpe-teal"} transition-all duration-300`} />
-                      </div>
-                    </span>
-                  </Button>
                 </div>
               </AnimatedElement>
               
@@ -803,4 +795,3 @@ const Index = () => {
     </div>;
 };
 export default Index;
-
