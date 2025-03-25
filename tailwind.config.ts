@@ -159,6 +159,19 @@ export default {
 						transform: 'translateY(-15px)'
 					},
 				},
+				'glow': {
+					'0%, 100%': {
+						boxShadow: '0 0 5px rgba(0, 77, 77, 0.3), 0 0 10px rgba(0, 77, 77, 0.1)'
+					},
+					'50%': {
+						boxShadow: '0 0 15px rgba(0, 77, 77, 0.5), 0 0 20px rgba(0, 77, 77, 0.3)'
+					}
+				},
+				'text-blur-out': {
+					'0%': { filter: 'blur(0.01px)' },
+					'50%': { filter: 'blur(2px)', opacity: '0.6' },
+					'100%': { filter: 'blur(0.01px)' }
+				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -171,6 +184,8 @@ export default {
 				'slide-in-right': 'slide-in-right 0.5s ease-out forwards',
 				'shine': 'shine 8s ease-in-out infinite',
 				'float-slow': 'float-slow 6s ease-in-out infinite',
+				'glow': 'glow 3s ease-in-out infinite',
+				'text-blur': 'text-blur-out 8s ease-in-out infinite'
 			},
 			backgroundImage: {
 				'hero-pattern': 'linear-gradient(to bottom right, rgba(230, 243, 243, 0.8), rgba(255, 255, 255, 0.8))',
