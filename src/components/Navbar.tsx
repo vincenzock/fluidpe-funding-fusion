@@ -112,7 +112,7 @@ const NavLinks = ({ mobile = false, onClick = () => {} }) => {
         <Home className="h-4 w-4" />
         Home
       </Link>
-      <a href="#features" className={linkClasses} onClick={(e) => navigateToSection('features', e)}>Why Choose FluidPe</a>
+      <Link to="/#features" className={linkClasses} onClick={(e) => navigateToSection('features', e)}>Why Choose FluidPe</Link>
       <a href="#how-it-works" className={linkClasses} onClick={(e) => navigateToSection('how-it-works', e)}>How It Works</a>
       <a href="#benefits" className={linkClasses} onClick={(e) => navigateToSection('benefits', e)}>Benefits</a>
       <a href="#testimonials" className={linkClasses} onClick={(e) => navigateToSection('testimonials', e)}>Testimonials</a>
