@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -81,9 +81,23 @@ const Navbar = () => {
 };
 
 const NavLinks = ({ mobile = false, onClick = () => {} }) => {
+  const location = useLocation();
   const linkClasses = mobile
     ? "text-fluidpe-teal hover:text-fluidpe-medium-teal font-medium text-lg py-2"
     : "text-fluidpe-teal hover:text-fluidpe-medium-teal font-medium transition-colors duration-200";
+  
+  const isHomePage = location.pathname === '/';
+  
+  // Create section links that work properly from any page
+  const getSectionLink = (section) => {
+    if (isHomePage) {
+      // If we're on the home page, just use anchor links
+      return `#${section}`;
+    } else {
+      // If we're on another page, navigate to home page + section
+      return `/#${section}`;
+    }
+  };
     
   return (
     <>
@@ -91,11 +105,11 @@ const NavLinks = ({ mobile = false, onClick = () => {} }) => {
         <Home className="h-4 w-4" />
         Home
       </Link>
-      <a href="#features" className={linkClasses} onClick={onClick}>Features</a>
-      <a href="#how-it-works" className={linkClasses} onClick={onClick}>How It Works</a>
-      <a href="#benefits" className={linkClasses} onClick={onClick}>Benefits</a>
-      <a href="#testimonials" className={linkClasses} onClick={onClick}>Testimonials</a>
-      <a href="#faq" className={linkClasses} onClick={onClick}>FAQ</a>
+      <Link to={getSectionLink('features')} className={linkClasses} onClick={onClick}>Features</Link>
+      <Link to={getSectionLink('how-it-works')} className={linkClasses} onClick={onClick}>How It Works</Link>
+      <Link to={getSectionLink('benefits')} className={linkClasses} onClick={onClick}>Benefits</Link>
+      <Link to={getSectionLink('testimonials')} className={linkClasses} onClick={onClick}>Testimonials</Link>
+      <Link to={getSectionLink('faq')} className={linkClasses} onClick={onClick}>FAQ</Link>
       <Link to="/blog" className={linkClasses} onClick={onClick}>Blog</Link>
     </>
   );
