@@ -1,14 +1,9 @@
-
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { 
   LineChart as LineChartIcon, PieChart as PieChartIcon, BarChart as BarChartIcon, Wallet, Clock, Shield, Award, 
-  TrendingUp, Percent, CreditCard, Briefcase, ArrowRight, CheckCircle, Check, Upload, FileText, Send, Star,
-  TrendingDown, AlertTriangle
+  TrendingUp, Percent, CreditCard, Briefcase, ArrowRight, CheckCircle, Check, Upload, FileText, Send, Star
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Slider } from '@/components/ui/slider';
-import { Input } from '@/components/ui/input';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AnimatedElement from '@/components/AnimatedElement';
@@ -18,42 +13,14 @@ import TestimonialCard from '@/components/TestimonialCard';
 import FaqItem from '@/components/FaqItem';
 import ScrollToTop from '@/components/ScrollToTop';
 import BlogCard from '@/components/BlogCard';
+import LoanCalculator from '@/components/LoanCalculator';
+import SavingsComparison from '@/components/SavingsComparison';
 
 const Index = () => {
   const [loanAmount, setLoanAmount] = useState(500000); // ₹5 Lakh default
   const [loanDuration, setLoanDuration] = useState(24); // 24 months
   const [interestRate, setInterestRate] = useState(8.5); // 8.5% default
   
-  const calculateEMI = () => {
-    const principal = loanAmount;
-    const ratePerMonth = interestRate / 1200; // Monthly interest rate
-    const tenure = loanDuration; // in months
-    
-    const emi = principal * ratePerMonth * Math.pow(1 + ratePerMonth, tenure) / (Math.pow(1 + ratePerMonth, tenure) - 1);
-    return Math.round(emi);
-  };
-  
-  const emi = calculateEMI();
-  
-  const calculateSavings = () => {
-    const personalLoanRate = 14; // 14% for personal loan
-    const creditCardRate = 36; // 36% for credit card
-    
-    const ourInterest = loanAmount * (interestRate / 100) * (loanDuration / 12);
-    const personalLoanInterest = loanAmount * (personalLoanRate / 100) * (loanDuration / 12);
-    const creditCardInterest = loanAmount * (creditCardRate / 100) * (loanDuration / 12);
-    
-    return {
-      personalLoan: Math.round(personalLoanInterest - ourInterest),
-      creditCard: Math.round(creditCardInterest - ourInterest),
-      personalLoanExtra: Math.round(personalLoanInterest),
-      creditCardExtra: Math.round(creditCardInterest),
-      ourInterest: Math.round(ourInterest)
-    };
-  };
-  
-  const savings = calculateSavings();
-
   // Format large numbers for display
   const formatCurrency = (value: number) => {
     if (value >= 10000000) {
@@ -365,10 +332,57 @@ const Index = () => {
         </div>
       </section>
       
-      <section id="how-it-works" className="py-20 bg-gradient-to-b from-white to-fluidpe-light-teal/20 relative overflow-hidden">
+      <section id="calculator" className="py-16 md:py-24 bg-gradient-to-b from-white to-fluidpe-light-teal/20 relative overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute right-[-10%] bottom-[-5%] w-96 h-96 rounded-full bg-fluidpe-light-teal blur-3xl opacity-40"></div>
           <div className="absolute left-[-5%] top-[10%] w-80 h-80 rounded-full bg-fluidpe-light-gold blur-3xl opacity-30"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <AnimatedElement animation="fade-up">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center gradient-text-animate">
+              Calculate Your Savings with Loan Against Mutual Funds
+            </h2>
+          </AnimatedElement>
+          
+          <AnimatedElement delay={200} animation="fade-up">
+            <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto text-center">
+              See how much you can save compared to traditional financing options
+            </p>
+          </AnimatedElement>
+          
+          <div className="mt-12 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <AnimatedElement delay={100} animation="fade-up" className="h-full">
+                <LoanCalculator 
+                  onLoanAmountChange={setLoanAmount}
+                  onLoanDurationChange={setLoanDuration}
+                  onInterestRateChange={setInterestRate}
+                />
+              </AnimatedElement>
+              
+              <AnimatedElement delay={300} animation="fade-up" className="h-full">
+                <SavingsComparison 
+                  loanAmount={loanAmount}
+                  loanDuration={loanDuration}
+                  interestRate={interestRate}
+                />
+              </AnimatedElement>
+            </div>
+          </div>
+          
+          <AnimatedElement delay={500} className="mt-12 text-center">
+            <Button className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none group">
+              Apply for Loan Now <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+            </Button>
+          </AnimatedElement>
+        </div>
+      </section>
+      
+      <section id="how-it-works" className="py-20 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute right-[-5%] top-[10%] w-72 h-72 rounded-full bg-fluidpe-light-teal/30 blur-3xl"></div>
+          <div className="absolute left-[-5%] bottom-[10%] w-80 h-80 rounded-full bg-fluidpe-light-gold/30 blur-3xl"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
@@ -415,274 +429,6 @@ const Index = () => {
               icon={<Wallet className="w-10 h-10" />}
             />
           </div>
-          
-          <AnimatedElement delay={800} className="mt-12 text-center">
-            <Button className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none group">
-              Get Started Now <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-            </Button>
-          </AnimatedElement>
-        </div>
-      </section>
-      
-      <section id="benefits" className="py-16 md:py-24 bg-white relative overflow-hidden">
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute right-[-5%] top-[10%] w-72 h-72 rounded-full bg-fluidpe-light-teal/30 blur-3xl"></div>
-          <div className="absolute left-[-5%] bottom-[10%] w-80 h-80 rounded-full bg-fluidpe-light-gold/30 blur-3xl"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <AnimatedElement>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center gradient-text-animate">
-              Calculate Your Savings with Loan Against Mutual Funds
-            </h2>
-          </AnimatedElement>
-          
-          <AnimatedElement delay={200}>
-            <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto text-center">
-              See how much you can save compared to traditional financing options
-            </p>
-          </AnimatedElement>
-          
-          <div className="mt-12 max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <AnimatedElement delay={100} animation="fade-up" className="h-full">
-                <div className="premium-card h-full overflow-hidden">
-                  <div className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal px-6 py-4">
-                    <h3 className="text-xl font-semibold text-white flex items-center">
-                      <Wallet className="w-5 h-5 mr-2" /> Loan Calculator
-                    </h3>
-                    <p className="text-sm text-white/80">Adjust the sliders to see your potential savings</p>
-                  </div>
-                  
-                  <div className="p-6">
-                    <div className="space-y-6">
-                      <div className="space-y-2">
-                        <div className="flex justify-between">
-                          <label className="text-sm font-medium text-gray-700 flex items-center">
-                            <TrendingUp className="w-4 h-4 mr-1 text-fluidpe-teal" /> Loan Amount
-                          </label>
-                          <span className="text-sm font-medium text-fluidpe-teal">₹{loanAmount.toLocaleString()}</span>
-                        </div>
-                        <Slider 
-                          min={100000} 
-                          max={5000000} 
-                          step={100000} 
-                          value={[loanAmount]} 
-                          onValueChange={(value) => setLoanAmount(value[0])} 
-                          className="calculator-slider cursor-pointer"
-                        />
-                      </div>
-                      
-                      <div className="space-y-2">
-                        <div className="flex justify-between">
-                          <label className="text-sm font-medium text-gray-700 flex items-center">
-                            <Clock className="w-4 h-4 mr-1 text-fluidpe-teal" /> Duration (Months)
-                          </label>
-                          <span className="text-sm font-medium text-fluidpe-teal">{loanDuration} months</span>
-                        </div>
-                        <Slider 
-                          min={6} 
-                          max={60} 
-                          step={6} 
-                          value={[loanDuration]} 
-                          onValueChange={(value) => setLoanDuration(value[0])} 
-                          className="calculator-slider cursor-pointer"
-                        />
-                      </div>
-                      
-                      <div className="space-y-2">
-                        <div className="flex justify-between">
-                          <label className="text-sm font-medium text-gray-700 flex items-center">
-                            <Percent className="w-4 h-4 mr-1 text-fluidpe-teal" /> Interest Rate
-                          </label>
-                          <span className="text-sm font-medium text-fluidpe-teal">{interestRate}%</span>
-                        </div>
-                        <Slider 
-                          min={8.5} 
-                          max={12.99} 
-                          step={0.5} 
-                          value={[interestRate]} 
-                          onValueChange={(value) => setInterestRate(value[0])} 
-                          className="calculator-slider cursor-pointer"
-                        />
-                      </div>
-                    </div>
-                    
-                    <div className="mt-8 bg-gradient-to-br from-fluidpe-light-teal/50 to-fluidpe-light-gold/30 p-6 rounded-xl shadow-inner">
-                      <div className="flex justify-between items-center">
-                        <h4 className="text-lg font-semibold text-fluidpe-teal flex items-center">
-                          <Star className="w-5 h-5 mr-2 text-fluidpe-medium-teal" /> Your Loan Summary
-                        </h4>
-                        <div className="bg-fluidpe-teal text-white text-xs font-semibold px-3 py-1 rounded-full animate-pulse-soft">
-                          Best Rate!
-                        </div>
-                      </div>
-                      
-                      <div className="space-y-4 mt-4">
-                        <div className="flex justify-between items-center pb-3 border-b border-fluidpe-light-teal/30">
-                          <span className="text-gray-700 font-medium">Monthly EMI</span>
-                          <span className="text-2xl font-bold bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent animate-float-slow">
-                            ₹{calculateEMI().toLocaleString()}
-                          </span>
-                        </div>
-                        
-                        <div className="flex justify-between items-center pb-2 border-b border-fluidpe-light-teal/30">
-                          <span className="text-gray-700">Loan Amount</span>
-                          <span className="font-medium text-fluidpe-teal">₹{loanAmount.toLocaleString()}</span>
-                        </div>
-                        
-                        <div className="flex justify-between items-center pb-2 border-b border-fluidpe-light-teal/30">
-                          <span className="text-gray-700">Interest Rate</span>
-                          <div className="flex items-center">
-                            <span className="font-medium text-fluidpe-teal">{interestRate}% p.a.</span>
-                            <div className="ml-2 bg-green-100 text-green-700 text-xs font-medium px-2 py-0.5 rounded-full">
-                              Lowest!
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex justify-between items-center pb-2 border-b border-fluidpe-light-teal/30">
-                          <span className="text-gray-700">Tenure</span>
-                          <span className="font-medium text-fluidpe-teal">{loanDuration} months</span>
-                        </div>
-                        
-                        <div className="flex justify-between items-center">
-                          <span className="text-gray-700">Total Interest</span>
-                          <span className="font-medium text-green-600">₹{savings.ourInterest.toLocaleString()}</span>
-                        </div>
-                        
-                        <div className="mt-4 pt-2 border-t border-fluidpe-light-teal/30">
-                          <div className="flex flex-col gap-2">
-                            <p className="text-center text-fluidpe-medium-teal font-medium text-sm">
-                              <CheckCircle className="inline-block w-4 h-4 mr-1 text-green-500" /> No hidden charges
-                            </p>
-                            <p className="text-center text-fluidpe-medium-teal font-medium text-sm">
-                              <CheckCircle className="inline-block w-4 h-4 mr-1 text-green-500" /> No prepayment penalty
-                            </p>
-                            <p className="text-center text-fluidpe-medium-teal font-medium text-sm">
-                              <CheckCircle className="inline-block w-4 h-4 mr-1 text-green-500" /> Quick approval
-                            </p>
-                          </div>
-                          <div className="flex items-center justify-center mt-3 bg-green-50 p-3 rounded-lg border border-green-100">
-                            <span className="text-green-700 font-medium flex items-center">
-                              <Star className="w-4 h-4 mr-1 text-yellow-500" /> You save up to ₹{savings.creditCard.toLocaleString()} vs Credit Cards!
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </AnimatedElement>
-              
-              <AnimatedElement delay={300} animation="fade-up" className="h-full">
-                <div className="premium-card h-full overflow-hidden">
-                  <div className="bg-gradient-to-r from-fluidpe-light-teal to-fluidpe-light-gold/60 px-6 py-4">
-                    <h3 className="text-xl font-semibold text-fluidpe-teal flex items-center">
-                      <TrendingDown className="w-5 h-5 mr-2" /> Interest Cost Comparison
-                    </h3>
-                    <p className="text-sm text-gray-600">See how much you could save compared to other options</p>
-                  </div>
-                  
-                  <div className="p-6">
-                    <div className="space-y-6">
-                      <div className="bg-white shadow-sm rounded-lg p-5 border border-gray-100">
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="flex items-center">
-                            <div className="bg-fluidpe-light-teal/30 p-2 rounded-full">
-                              <Wallet className="h-5 w-5 text-fluidpe-teal" />
-                            </div>
-                            <span className="font-medium text-gray-800 ml-2">Fluidpe Mutual Fund Loan</span>
-                          </div>
-                          <div className="bg-green-100 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-full">
-                            Recommended
-                          </div>
-                        </div>
-                        <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                          <span className="text-sm text-gray-500">Interest Rate</span>
-                          <span className="font-semibold text-fluidpe-teal">{interestRate}%</span>
-                        </div>
-                        <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                          <span className="text-sm text-gray-500">Total Interest Cost</span>
-                          <span className="font-semibold text-fluidpe-teal">₹{savings.ourInterest.toLocaleString()}</span>
-                        </div>
-                        <div className="flex justify-between items-center py-2">
-                          <span className="text-sm text-gray-500">Your Savings</span>
-                          <span className="font-semibold text-green-600">Baseline</span>
-                        </div>
-                      </div>
-                      
-                      <div className="bg-white shadow-sm rounded-lg p-5 border border-gray-100">
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="flex items-center">
-                            <div className="bg-yellow-100 p-2 rounded-full">
-                              <CreditCard className="h-5 w-5 text-yellow-600" />
-                            </div>
-                            <span className="font-medium text-gray-800 ml-2">Personal Loan</span>
-                          </div>
-                          <div className="flex items-center">
-                            <AlertTriangle className="h-4 w-4 text-yellow-600 mr-1" />
-                            <span className="text-yellow-600 text-xs font-medium">High Interest</span>
-                          </div>
-                        </div>
-                        <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                          <span className="text-sm text-gray-500">Interest Rate</span>
-                          <span className="font-semibold text-yellow-600">14%</span>
-                        </div>
-                        <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                          <span className="text-sm text-gray-500">Total Interest Cost</span>
-                          <span className="font-semibold text-yellow-600">₹{savings.personalLoanExtra.toLocaleString()}</span>
-                        </div>
-                        <div className="flex justify-between items-center py-2">
-                          <span className="text-sm text-gray-500">Extra Cost vs Fluidpe</span>
-                          <span className="font-semibold text-red-500">+ ₹{savings.personalLoan.toLocaleString()}</span>
-                        </div>
-                      </div>
-                      
-                      <div className="bg-white shadow-sm rounded-lg p-5 border border-gray-100">
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="flex items-center">
-                            <div className="bg-red-100 p-2 rounded-full">
-                              <CreditCard className="h-5 w-5 text-red-600" />
-                            </div>
-                            <span className="font-medium text-gray-800 ml-2">Credit Card</span>
-                          </div>
-                          <div className="flex items-center">
-                            <AlertTriangle className="h-4 w-4 text-red-600 mr-1" />
-                            <span className="text-red-600 text-xs font-medium">Very High Interest</span>
-                          </div>
-                        </div>
-                        <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                          <span className="text-sm text-gray-500">Interest Rate</span>
-                          <span className="font-semibold text-red-600">36%</span>
-                        </div>
-                        <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                          <span className="text-sm text-gray-500">Total Interest Cost</span>
-                          <span className="font-semibold text-red-600">₹{savings.creditCardExtra.toLocaleString()}</span>
-                        </div>
-                        <div className="flex justify-between items-center py-2">
-                          <span className="text-sm text-gray-500">Extra Cost vs Fluidpe</span>
-                          <span className="font-semibold text-red-500">+ ₹{savings.creditCard.toLocaleString()}</span>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="mt-6 p-5 bg-gradient-to-r from-fluidpe-light-teal/30 to-fluidpe-light-gold/30 rounded-lg">
-                      <div className="flex items-center gap-3">
-                        <div className="bg-white rounded-full p-2 shadow-sm">
-                          <Check className="h-5 w-5 text-green-600" />
-                        </div>
-                        <div>
-                          <p className="font-medium text-fluidpe-teal">Your Potential Savings</p>
-                          <p className="text-sm text-gray-600">Save up to <span className="font-bold text-green-600">₹{savings.creditCard.toLocaleString()}</span> compared to credit card debt</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </AnimatedElement>
-            </div>
-          </div>
         </div>
       </section>
       
@@ -693,3 +439,4 @@ const Index = () => {
 };
 
 export default Index;
+
