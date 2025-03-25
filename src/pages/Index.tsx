@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   LineChart as LineChartIcon, PieChart as PieChartIcon, BarChart as BarChartIcon, Wallet, Clock, Shield, Award, 
-  TrendingUp, Percent, CreditCard, Briefcase, ArrowRight, CheckCircle, Check, Upload, FileText, Send, Star
+  TrendingUp, Percent, CreditCard, Briefcase, ArrowRight, CheckCircle, Check, Upload, FileText, Send, Star,
+  TrendingDown, AlertTriangle
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Slider } from '@/components/ui/slider';
+import { Input } from '@/components/ui/input';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AnimatedElement from '@/components/AnimatedElement';
@@ -13,25 +17,41 @@ import TestimonialCard from '@/components/TestimonialCard';
 import FaqItem from '@/components/FaqItem';
 import ScrollToTop from '@/components/ScrollToTop';
 import BlogCard from '@/components/BlogCard';
-import LoanCalculator from '@/components/LoanCalculator';
-import SavingsComparison from '@/components/SavingsComparison';
 
 const Index = () => {
   const [loanAmount, setLoanAmount] = useState(500000); // ₹5 Lakh default
   const [loanDuration, setLoanDuration] = useState(24); // 24 months
   const [interestRate, setInterestRate] = useState(8.5); // 8.5% default
   
-  // Format large numbers for display
-  const formatCurrency = (value: number) => {
-    if (value >= 10000000) {
-      return `₹${(value / 10000000).toFixed(2)} Cr`;
-    } else if (value >= 100000) {
-      return `₹${(value / 100000).toFixed(2)} Lakh`;
-    } else if (value >= 1000) {
-      return `₹${(value / 1000).toFixed(2)}K`;
-    }
-    return `₹${value}`;
+  const calculateEMI = () => {
+    const principal = loanAmount;
+    const ratePerMonth = interestRate / 1200; // Monthly interest rate
+    const tenure = loanDuration; // in months
+    
+    const emi = principal * ratePerMonth * Math.pow(1 + ratePerMonth, tenure) / (Math.pow(1 + ratePerMonth, tenure) - 1);
+    return Math.round(emi);
   };
+  
+  const emi = calculateEMI();
+  
+  const calculateSavings = () => {
+    const personalLoanRate = 14; // 14% for personal loan
+    const creditCardRate = 36; // 36% for credit card
+    
+    const ourInterest = loanAmount * (interestRate / 100) * (loanDuration / 12);
+    const personalLoanInterest = loanAmount * (personalLoanRate / 100) * (loanDuration / 12);
+    const creditCardInterest = loanAmount * (creditCardRate / 100) * (loanDuration / 12);
+    
+    return {
+      personalLoan: Math.round(personalLoanInterest - ourInterest),
+      creditCard: Math.round(creditCardInterest - ourInterest),
+      personalLoanExtra: Math.round(personalLoanInterest),
+      creditCardExtra: Math.round(creditCardInterest),
+      ourInterest: Math.round(ourInterest)
+    };
+  };
+  
+  const savings = calculateSavings();
 
   const blogPosts = [
     {
@@ -332,57 +352,10 @@ const Index = () => {
         </div>
       </section>
       
-      <section id="calculator" className="py-16 md:py-24 bg-gradient-to-b from-white to-fluidpe-light-teal/20 relative overflow-hidden">
+      <section id="how-it-works" className="py-20 bg-gradient-to-b from-white to-fluidpe-light-teal/20 relative overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute right-[-10%] bottom-[-5%] w-96 h-96 rounded-full bg-fluidpe-light-teal blur-3xl opacity-40"></div>
           <div className="absolute left-[-5%] top-[10%] w-80 h-80 rounded-full bg-fluidpe-light-gold blur-3xl opacity-30"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <AnimatedElement animation="fade-up">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center gradient-text-animate">
-              Calculate Your Savings with Loan Against Mutual Funds
-            </h2>
-          </AnimatedElement>
-          
-          <AnimatedElement delay={200} animation="fade-up">
-            <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto text-center">
-              See how much you can save compared to traditional financing options
-            </p>
-          </AnimatedElement>
-          
-          <div className="mt-12 max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <AnimatedElement delay={100} animation="fade-up" className="h-full">
-                <LoanCalculator 
-                  onLoanAmountChange={setLoanAmount}
-                  onLoanDurationChange={setLoanDuration}
-                  onInterestRateChange={setInterestRate}
-                />
-              </AnimatedElement>
-              
-              <AnimatedElement delay={300} animation="fade-up" className="h-full">
-                <SavingsComparison 
-                  loanAmount={loanAmount}
-                  loanDuration={loanDuration}
-                  interestRate={interestRate}
-                />
-              </AnimatedElement>
-            </div>
-          </div>
-          
-          <AnimatedElement delay={500} className="mt-12 text-center">
-            <Button className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none group">
-              Apply for Loan Now <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-            </Button>
-          </AnimatedElement>
-        </div>
-      </section>
-      
-      <section id="how-it-works" className="py-20 bg-white relative overflow-hidden">
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute right-[-5%] top-[10%] w-72 h-72 rounded-full bg-fluidpe-light-teal/30 blur-3xl"></div>
-          <div className="absolute left-[-5%] bottom-[10%] w-80 h-80 rounded-full bg-fluidpe-light-gold/30 blur-3xl"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
@@ -429,14 +402,445 @@ const Index = () => {
               icon={<Wallet className="w-10 h-10" />}
             />
           </div>
+          
+          <AnimatedElement delay={800} className="mt-12 text-center">
+            <Button className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none group">
+              Get Started Now <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+            </Button>
+          </AnimatedElement>
+        </div>
+      </section>
+      
+      <section id="benefits" className="py-16 md:py-24 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute right-[-5%] top-[10%] w-72 h-72 rounded-full bg-fluidpe-light-teal/30 blur-3xl"></div>
+          <div className="absolute left-[-5%] bottom-[10%] w-80 h-80 rounded-full bg-fluidpe-light-gold/30 blur-3xl"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <AnimatedElement>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center gradient-text-animate">
+              Calculate Your Savings with Loan Against Mutual Funds
+            </h2>
+          </AnimatedElement>
+          
+          <AnimatedElement delay={200}>
+            <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto text-center">
+              See how much you can save compared to traditional financing options
+            </p>
+          </AnimatedElement>
+          
+          <div className="mt-12 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <AnimatedElement delay={100} animation="fade-up" className="h-full">
+                <div className="premium-card h-full overflow-hidden">
+                  <div className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal px-6 py-4">
+                    <h3 className="text-xl font-semibold text-white flex items-center">
+                      <Wallet className="w-5 h-5 mr-2" /> Loan Calculator
+                    </h3>
+                    <p className="text-sm text-white/80">Adjust the sliders to see your potential savings</p>
+                  </div>
+                  
+                  <div className="p-6">
+                    <div className="space-y-6">
+                      <div className="space-y-2">
+                        <div className="flex justify-between">
+                          <label className="text-sm font-medium text-gray-700 flex items-center">
+                            <TrendingUp className="w-4 h-4 mr-1 text-fluidpe-teal" /> Loan Amount
+                          </label>
+                          <span className="text-sm font-medium text-fluidpe-teal">₹{loanAmount.toLocaleString()}</span>
+                        </div>
+                        <Slider 
+                          min={100000} 
+                          max={5000000} 
+                          step={100000} 
+                          value={[loanAmount]} 
+                          onValueChange={(value) => setLoanAmount(value[0])} 
+                          className="calculator-slider cursor-pointer"
+                        />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <div className="flex justify-between">
+                          <label className="text-sm font-medium text-gray-700 flex items-center">
+                            <Clock className="w-4 h-4 mr-1 text-fluidpe-teal" /> Duration (Months)
+                          </label>
+                          <span className="text-sm font-medium text-fluidpe-teal">{loanDuration} months</span>
+                        </div>
+                        <Slider 
+                          min={6} 
+                          max={60} 
+                          step={6} 
+                          value={[loanDuration]} 
+                          onValueChange={(value) => setLoanDuration(value[0])} 
+                          className="calculator-slider cursor-pointer"
+                        />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <div className="flex justify-between">
+                          <label className="text-sm font-medium text-gray-700 flex items-center">
+                            <Percent className="w-4 h-4 mr-1 text-fluidpe-teal" /> Interest Rate
+                          </label>
+                          <span className="text-sm font-medium text-fluidpe-teal">{interestRate}%</span>
+                        </div>
+                        <Slider 
+                          min={8.5} 
+                          max={12.99} 
+                          step={0.5} 
+                          value={[interestRate]} 
+                          onValueChange={(value) => setInterestRate(value[0])} 
+                          className="calculator-slider cursor-pointer"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="mt-8 bg-gradient-to-br from-fluidpe-light-teal/50 to-fluidpe-light-gold/30 p-6 rounded-xl shadow-inner">
+                      <div className="flex justify-between items-center">
+                        <h4 className="text-lg font-semibold text-fluidpe-teal flex items-center">
+                          <Star className="w-5 h-5 mr-2 text-fluidpe-medium-teal" /> Your Loan Summary
+                        </h4>
+                        <div className="bg-fluidpe-teal text-white text-xs font-semibold px-3 py-1 rounded-full animate-pulse-soft">
+                          Best Rate!
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-4 mt-4">
+                        <div className="flex justify-between items-center pb-3 border-b border-fluidpe-light-teal/30">
+                          <span className="text-gray-700 font-medium">Monthly EMI</span>
+                          <span className="text-2xl font-bold bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent animate-float-slow">
+                            ₹{calculateEMI().toLocaleString()}
+                          </span>
+                        </div>
+                        
+                        <div className="flex justify-between items-center pb-2 border-b border-fluidpe-light-teal/30">
+                          <span className="text-gray-700">Loan Amount</span>
+                          <span className="font-medium text-fluidpe-teal">₹{loanAmount.toLocaleString()}</span>
+                        </div>
+                        
+                        <div className="flex justify-between items-center pb-2 border-b border-fluidpe-light-teal/30">
+                          <span className="text-gray-700">Interest Rate</span>
+                          <div className="flex items-center">
+                            <span className="font-medium text-fluidpe-teal">{interestRate}% p.a.</span>
+                            <div className="ml-2 bg-green-100 text-green-700 text-xs font-medium px-2 py-0.5 rounded-full">
+                              Lowest!
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="flex justify-between items-center">
+                          <span className="text-gray-700">Tenure</span>
+                          <span className="font-medium text-fluidpe-teal">{loanDuration} months</span>
+                        </div>
+                        
+                        <div className="mt-4 pt-2 border-t border-fluidpe-light-teal/30 text-sm text-center">
+                          <p className="text-fluidpe-medium-teal font-medium">
+                            No hidden charges • No prepayment penalty • Quick approval
+                          </p>
+                          <div className="flex items-center justify-center mt-3 bg-green-50 p-2 rounded-lg border border-green-100">
+                            <span className="text-green-700 font-medium text-sm flex items-center">
+                              <Star className="w-4 h-4 mr-1 text-yellow-500" /> Total Interest: ₹{savings.ourInterest.toLocaleString()}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedElement>
+              
+              <AnimatedElement delay={300} animation="fade-up" className="h-full">
+                <div className="premium-card h-full overflow-hidden">
+                  <div className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal px-6 py-4">
+                    <h3 className="text-xl font-semibold text-white flex items-center">
+                      <CreditCard className="w-5 h-5 mr-2" /> Savings Comparison
+                    </h3>
+                    <p className="text-sm text-white/80">See how much you save with Fluidpe compared to other options</p>
+                  </div>
+                  
+                  <div className="p-6">
+                    <div className="overflow-hidden rounded-xl border border-fluidpe-light-teal/30 mb-6 shadow-md">
+                      <Table>
+                        <TableHeader className="bg-gradient-to-r from-fluidpe-light-teal/70 to-fluidpe-light-gold/50">
+                          <TableRow>
+                            <TableHead className="text-fluidpe-teal font-semibold">Loan Type</TableHead>
+                            <TableHead className="text-fluidpe-teal font-semibold">Interest Rate</TableHead>
+                            <TableHead className="text-fluidpe-teal font-semibold">Total Interest</TableHead>
+                            <TableHead className="text-fluidpe-teal font-semibold">Comparison</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          <TableRow className="bg-gradient-to-r from-fluidpe-light-teal/30 to-transparent">
+                            <TableCell className="font-medium">
+                              <div className="flex items-center">
+                                <Star className="h-4 w-4 text-yellow-500 mr-1.5" />
+                                <span>Fluidpe Loan Against Mutual Funds</span>
+                              </div>
+                            </TableCell>
+                            <TableCell className="font-medium text-fluidpe-teal">{interestRate}%</TableCell>
+                            <TableCell>₹{savings.ourInterest.toLocaleString()}</TableCell>
+                            <TableCell className="font-semibold text-green-600">
+                              <div className="flex items-center">
+                                <CheckCircle className="h-4 w-4 mr-1.5 text-green-500" />
+                                <span>Best Option</span>
+                              </div>
+                            </TableCell>
+                          </TableRow>
+                          <TableRow className="hover:bg-fluidpe-light-teal/10 transition-colors">
+                            <TableCell className="font-medium">Personal Loan</TableCell>
+                            <TableCell>14%</TableCell>
+                            <TableCell>₹{savings.personalLoanExtra.toLocaleString()}</TableCell>
+                            <TableCell className="font-semibold text-red-600">
+                              <AnimatedElement animation="fade-in" className="flex items-center">
+                                <TrendingDown className="h-4 w-4 mr-1.5 text-red-500" />
+                                <span>-₹{savings.personalLoan.toLocaleString()}</span>
+                              </AnimatedElement>
+                            </TableCell>
+                          </TableRow>
+                          <TableRow className="hover:bg-fluidpe-light-teal/10 transition-colors">
+                            <TableCell className="font-medium">Credit Card</TableCell>
+                            <TableCell>36%</TableCell>
+                            <TableCell>₹{savings.creditCardExtra.toLocaleString()}</TableCell>
+                            <TableCell className="font-semibold text-red-600">
+                              <AnimatedElement animation="fade-in" className="flex items-center">
+                                <TrendingDown className="h-4 w-4 mr-1.5 text-red-500" />
+                                <span>-₹{savings.creditCard.toLocaleString()}</span>
+                              </AnimatedElement>
+                            </TableCell>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
+                    </div>
+                    
+                    <div className="mt-6 mb-4">
+                      <h4 className="text-lg font-semibold text-fluidpe-teal mb-4 flex items-center">
+                        <Award className="w-5 h-5 mr-2" /> Highest Savings Potential
+                      </h4>
+                      <div className="savings-highlight p-4 bg-gradient-to-r from-green-50 to-fluidpe-light-teal/30 rounded-xl border border-green-100 shadow-md">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className="text-gray-700 font-medium">By choosing Fluidpe instead of Credit Card financing:</p>
+                            <p className="text-xl font-bold text-green-600 mt-2 flex items-center">
+                              <CheckCircle className="h-5 w-5 mr-2 text-green-500" />
+                              You save ₹{savings.creditCard.toLocaleString()}
+                            </p>
+                            <p className="text-xs text-green-600 mt-1">That's {Math.round((savings.creditCard/(loanAmount * (36/100) * (loanDuration/12)))*100)}% in interest savings!</p>
+                          </div>
+                          <div className="bg-white rounded-full p-3 shadow-md">
+                            <TrendingUp className="h-8 w-8 text-green-500" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6 grid grid-cols-1 gap-4">
+                      <AnimatedElement delay={200} className="p-4 rounded-xl border shadow-md bg-red-50 border-red-100">
+                        <div className="flex items-center">
+                          <div className="bg-red-100 rounded-full p-2 mr-4">
+                            <AlertTriangle className="h-5 w-5 text-red-500" />
+                          </div>
+                          <div>
+                            <h4 className="text-md font-semibold text-red-700">Avoid Credit Card Financing</h4>
+                            <p className="text-xs text-red-600">
+                              You'll pay <span className="font-bold">₹{savings.creditCard.toLocaleString()}</span> more in interest with credit cards at 36% rate
+                            </p>
+                          </div>
+                        </div>
+                      </AnimatedElement>
+                      
+                      <AnimatedElement delay={300} className="p-4 rounded-xl border shadow-md bg-red-50/50 border-red-100/50">
+                        <div className="flex items-center">
+                          <div className="bg-red-100 rounded-full p-2 mr-4">
+                            <AlertTriangle className="h-5 w-5 text-red-500" />
+                          </div>
+                          <div>
+                            <h4 className="text-md font-semibold text-red-700">Personal Loans Cost More</h4>
+                            <p className="text-xs text-red-600">
+                              You'll pay <span className="font-bold">₹{savings.personalLoan.toLocaleString()}</span> more in interest with personal loans at 14% rate
+                            </p>
+                          </div>
+                        </div>
+                      </AnimatedElement>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedElement>
+            </div>
+            
+            <AnimatedElement delay={600} className="mt-12 text-center">
+              <Button className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none group">
+                Apply for Loan Against Mutual Funds <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </Button>
+            </AnimatedElement>
+          </div>
+        </div>
+      </section>
+      
+      <section id="blogs" className="py-16 md:py-24 bg-fluidpe-light-gray">
+        <div className="container mx-auto px-4">
+          <AnimatedElement>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">
+              Financial Insights & Resources
+            </h2>
+          </AnimatedElement>
+          
+          <AnimatedElement delay={200}>
+            <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto text-center">
+              Stay informed with our latest articles on mutual funds, investments, and financial planning
+            </p>
+          </AnimatedElement>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {blogPosts.slice(0, 6).map((post, index) => (
+              <BlogCard
+                key={post.id}
+                title={post.title}
+                excerpt={post.excerpt}
+                date={post.date}
+                author={post.author}
+                category={post.category}
+                imageUrl={post.imageUrl}
+                delay={index * 100}
+              />
+            ))}
+          </div>
+          
+          <AnimatedElement delay={400} className="mt-12 text-center">
+            <Button className="bg-white text-fluidpe-teal px-6 py-3 rounded-lg font-medium border border-fluidpe-teal/30 transition-all duration-300 hover:border-fluidpe-teal hover:bg-fluidpe-light-teal hover:shadow-md group">
+              View All Articles <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+            </Button>
+          </AnimatedElement>
+        </div>
+      </section>
+      
+      <section id="testimonials" className="py-16 md:py-24 bg-fluidpe-light-teal relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute left-[-10%] top-[-5%] w-96 h-96 rounded-full bg-white blur-3xl opacity-60"></div>
+          <div className="absolute right-[-5%] bottom-[10%] w-80 h-80 rounded-full bg-fluidpe-light-gold blur-3xl opacity-40"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <AnimatedElement>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">What Our Customers Say</h2>
+          </AnimatedElement>
+          
+          <AnimatedElement delay={200}>
+            <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto text-center">
+              Join thousands of satisfied customers who've experienced the Fluidpe advantage
+            </p>
+          </AnimatedElement>
+          
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <TestimonialCard 
+              quote="Fluidpe provided me with quick funds for my business expansion without having to sell my mutual fund investments. The process was smooth and transparent."
+              author="Rahul Sharma"
+              designation="Business Owner, Delhi"
+              delay={0}
+            />
+            
+            <TestimonialCard 
+              quote="I was surprised by how quickly I received the funds. The interest rate was much lower than other options, and I didn't have to liquidate my mutual funds during a market dip."
+              author="Priya Patel"
+              designation="IT Professional, Bangalore"
+              delay={200}
+            />
+            
+            <TestimonialCard 
+              quote="The flexible repayment options suited my irregular income pattern perfectly. Their customer service team was extremely helpful throughout the process."
+              author="Vikram Singh"
+              designation="Freelance Consultant, Mumbai"
+              delay={400}
+            />
+          </div>
+        </div>
+      </section>
+      
+      <section className="py-16 md:py-24 bg-cta-pattern">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <AnimatedElement>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-fluidpe-teal">
+                Ready to Unlock the Value of Your Mutual Fund Portfolio?
+              </h2>
+            </AnimatedElement>
+            
+            <AnimatedElement delay={200}>
+              <p className="text-lg text-gray-600 mb-8">
+                Apply now to get a personalized quote and access funds without selling your mutual fund investments. Our experts are ready to help you every step of the way.
+              </p>
+            </AnimatedElement>
+            
+            <AnimatedElement delay={400}>
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <Button className="bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-none" size="lg">
+                  Apply Now
+                </Button>
+                <Button className="bg-white text-fluidpe-teal px-6 py-3 rounded-lg font-medium border border-fluidpe-teal/30 transition-all duration-300 hover:border-fluidpe-teal hover:bg-fluidpe-light-teal shadow-sm hover:shadow-md hover:-translate-y-1" size="lg">
+                  Talk to an Advisor
+                </Button>
+              </div>
+            </AnimatedElement>
+          </div>
+        </div>
+      </section>
+      
+      <section id="faq" className="py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <AnimatedElement>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">Frequently Asked Questions</h2>
+          </AnimatedElement>
+          
+          <AnimatedElement delay={200}>
+            <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto text-center">
+              Find answers to common questions about loans against mutual funds
+            </p>
+          </AnimatedElement>
+          
+          <div className="mt-12 max-w-3xl mx-auto">
+            <FaqItem 
+              question="What mutual funds can I pledge for a loan?"
+              answer="You can pledge a wide range of mutual funds including equity funds, debt funds, hybrid funds, and ETFs. The exact list of eligible funds may vary based on current market conditions and our risk assessment policies."
+              delay={0}
+            />
+            
+            <FaqItem 
+              question="How much loan amount can I get against my mutual funds?"
+              answer="You can typically get up to 80% of the value of your pledged mutual funds, depending on the type and quality of funds. Debt funds and large-cap equity funds generally have higher loan-to-value ratios compared to mid or small-cap funds."
+              delay={100}
+            />
+            
+            <FaqItem 
+              question="What happens if the value of my pledged mutual funds falls?"
+              answer="If the value of your pledged mutual funds falls below a certain threshold (typically 120-130% of the loan amount), you'll receive a margin call asking you to either pledge additional funds or partially repay the loan to maintain the required margin."
+              delay={200}
+            />
+            
+            <FaqItem 
+              question="Can I continue to earn returns on pledged mutual funds?"
+              answer="Yes, you continue to receive all dividends, interest, and other benefits from your pledged mutual funds. The funds remain in your name, and only a lien is marked in favor of Fluidpe."
+              delay={300}
+            />
+            
+            <FaqItem 
+              question="What are the repayment options available?"
+              answer="We offer multiple repayment options including interest-only payments with bullet repayment of principal, equated monthly installments (EMI), and flexible repayment schedules. You can also prepay the loan anytime without any penalties."
+              delay={400}
+            />
+            
+            <FaqItem 
+              question="How long does it take to process my loan application?"
+              answer="Once you submit your application and pledge your mutual funds, the verification and approval process typically takes 24-48 hours. After approval, funds are disbursed to your bank account within the next business day."
+              delay={500}
+            />
+          </div>
         </div>
       </section>
       
       <Footer />
+      
       <ScrollToTop />
     </div>
   );
 };
 
 export default Index;
-
