@@ -208,15 +208,17 @@ const Index = () => {
       answer: "You'll need basic KYC documents (PAN card, Aadhaar card, address proof), bank account details for disbursement, and details of the mutual funds you wish to pledge. The entire documentation process is digital, and you can upload all required documents through our secure platform."
     }
   ];
-  return <div className="overflow-x-hidden font-sans">
+
+  return (
+    <div className="overflow-x-hidden font-sans">
       <Navbar />
       
       <section className="pt-28 md:pt-32 pb-16 md:pb-24 bg-hero-pattern relative">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <div className="absolute right-[-10%] top-[10%] w-72 h-72 rounded-full bg-fluidpe-light-teal blur-3xl opacity-60 animate-float"></div>
           <div className="absolute left-[-5%] bottom-[5%] w-80 h-80 rounded-full bg-fluidpe-light-gold blur-3xl opacity-40 animate-float" style={{
-          animationDelay: '2s'
-        }}></div>
+            animationDelay: '2s'
+          }}></div>
           
           <div className={`absolute left-[20%] top-[25%] w-32 h-32 rounded-full bg-blue-200/20 blur-xl opacity-30 transition-all duration-1000 ${hoverEffect ? 'scale-150' : 'scale-100'}`}></div>
           <div className={`absolute right-[25%] bottom-[20%] w-40 h-40 rounded-full bg-green-200/20 blur-xl opacity-30 transition-all duration-1000 delay-300 ${hoverEffect ? 'scale-125 translate-x-10' : 'scale-100'}`}></div>
@@ -283,7 +285,7 @@ const Index = () => {
                   </div>
                   <div className="text-center backdrop-blur-sm bg-white/30 rounded-lg p-3 border border-white/50 shadow-sm transition-all duration-300 hover:bg-white/50 hover:shadow-md group cursor-pointer">
                     <p className="text-2xl md:text-3xl font-bold text-fluidpe-teal group-hover:scale-110 transition-transform duration-300">8.5%</p>
-                    <p className="text-sm text-gray-600 group-hover:text-fluidpe-teal/70 transition-colors duration-300">Interest Rate</p
+                    <p className="text-sm text-gray-600 group-hover:text-fluidpe-teal/70 transition-colors duration-300">Interest Rate</p>
                   </div>
                 </div>
               </AnimatedElement>
@@ -308,8 +310,8 @@ const Index = () => {
                 </div>
                 
                 <div className="absolute -bottom-6 -right-6 bg-white rounded-lg shadow-lg p-4 animate-float transition-all duration-300 hover:shadow-xl hover:bg-fluidpe-light-teal/30" style={{
-                animationDelay: '1s'
-              }}>
+                  animationDelay: '1s'
+                }}>
                   <div className="flex items-center gap-3">
                     <div className="bg-green-100 rounded-full p-2 transition-colors duration-300 group-hover:bg-green-200">
                       <TrendingUp className="h-5 w-5 text-green-600" />
@@ -322,8 +324,8 @@ const Index = () => {
                 </div>
                 
                 <div className="absolute -top-6 -left-6 bg-white rounded-lg shadow-lg p-4 animate-float transition-all duration-300 hover:shadow-xl hover:bg-fluidpe-light-teal/30" style={{
-                animationDelay: '1.5s'
-              }}>
+                  animationDelay: '1.5s'
+                }}>
                   <div className="flex items-center gap-3">
                     <div className="bg-blue-100 rounded-full p-2 transition-colors duration-300 group-hover:bg-blue-200">
                       <Percent className="h-5 w-5 text-blue-600" />
@@ -376,8 +378,8 @@ const Index = () => {
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <div className="absolute -right-[10%] top-[20%] w-[600px] h-[600px] rounded-full bg-fluidpe-light-teal/20 blur-3xl opacity-60 animate-float"></div>
           <div className="absolute -left-[5%] bottom-[10%] w-[500px] h-[500px] rounded-full bg-fluidpe-light-gold/20 blur-3xl opacity-50" style={{
-          animationDelay: '1.5s'
-        }}></div>
+            animationDelay: '1.5s'
+          }}></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
@@ -412,3 +414,16 @@ const Index = () => {
           
           <AnimatedElement animation="fade-up" delay={600} className="mt-16 text-center">
             <div className="inline-block bg-white px-6 py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-fluidpe-light-teal/30">
+              {/* Content for this block */}
+            </div>
+          </AnimatedElement>
+        </div>
+      </section>
+      
+      <Footer />
+      <ScrollToTop />
+    </div>
+  );
+};
+
+export default Index;
