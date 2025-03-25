@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { LineChart as LineChartIcon, PieChart as PieChartIcon, BarChart as BarChartIcon, Wallet, Clock, Shield, Award, TrendingUp, Percent, CreditCard, Briefcase, ArrowRight, CheckCircle, Check, Upload, FileText, Send, Star, TrendingDown, AlertTriangle, Lightbulb, Zap, Lock, FileCheck, Settings, Users, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -221,7 +220,7 @@ const Index = () => {
           <div className="absolute right-[-10%] top-[10%] w-72 h-72 rounded-full bg-fluidpe-light-teal blur-3xl opacity-60 animate-float"></div>
           <div className="absolute left-[-5%] bottom-[5%] w-80 h-80 rounded-full bg-fluidpe-light-gold blur-3xl opacity-40 animate-float" style={{
           animationDelay: '2s'
-          }}></div>
+        }}></div>
           
           <div className={`absolute left-[20%] top-[25%] w-32 h-32 rounded-full bg-blue-200/20 blur-xl opacity-30 transition-all duration-1000 ${hoverEffect ? 'scale-150' : 'scale-100'}`}></div>
           <div className={`absolute right-[25%] bottom-[20%] w-40 h-40 rounded-full bg-green-200/20 blur-xl opacity-30 transition-all duration-1000 delay-300 ${hoverEffect ? 'scale-125 translate-x-10' : 'scale-100'}`}></div>
@@ -312,9 +311,7 @@ const Index = () => {
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500"></div>
                 </div>
                 
-                <div className="absolute -bottom-6 -right-6 bg-white rounded-lg shadow-lg p-4 animate-float transition-all duration-300 hover:shadow-xl hover:bg-fluidpe-light-teal/30" style={{
-                animationDelay: '1s'
-                }}>
+                <div className="absolute -bottom-6 -right-6 bg-white rounded-lg shadow-lg p-4 animate-float transition-all duration-300 hover:shadow-xl hover:bg-fluidpe-light-teal/30" style={{animationDelay: '1s'}}>
                   <div className="flex items-center gap-3">
                     <div className="bg-green-100 rounded-full p-2 transition-colors duration-300 group-hover:bg-green-200">
                       <TrendingUp className="h-5 w-5 text-green-600" />
@@ -326,9 +323,7 @@ const Index = () => {
                   </div>
                 </div>
                 
-                <div className="absolute -top-6 -left-6 bg-white rounded-lg shadow-lg p-4 animate-float transition-all duration-300 hover:shadow-xl hover:bg-fluidpe-light-teal/30" style={{
-                animationDelay: '1.5s'
-                }}>
+                <div className="absolute -top-6 -left-6 bg-white rounded-lg shadow-lg p-4 animate-float transition-all duration-300 hover:shadow-xl hover:bg-fluidpe-light-teal/30" style={{animationDelay: '1.5s'}}>
                   <div className="flex items-center gap-3">
                     <div className="bg-blue-100 rounded-full p-2 transition-colors duration-300 group-hover:bg-blue-200">
                       <Percent className="h-5 w-5 text-blue-600" />
@@ -380,9 +375,7 @@ const Index = () => {
       <section id="features" className="py-16 md:py-24 bg-gradient-to-b from-white to-fluidpe-light-teal/10 relative overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <div className="absolute -right-[10%] top-[20%] w-[600px] h-[600px] rounded-full bg-fluidpe-light-teal/20 blur-3xl opacity-60 animate-float"></div>
-          <div className="absolute -left-[5%] bottom-[10%] w-[500px] h-[500px] rounded-full bg-fluidpe-light-gold/20 blur-3xl opacity-50" style={{
-          animationDelay: '1.5s'
-          }}></div>
+          <div className="absolute -left-[5%] bottom-[10%] w-[500px] h-[500px] rounded-full bg-fluidpe-light-gold/20 blur-3xl opacity-50" style={{animationDelay: '1.5s'}}></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
@@ -417,10 +410,8 @@ const Index = () => {
           
           <AnimatedElement animation="fade-up" delay={600} className="mt-16 text-center">
             <div className="inline-block bg-white px-6 py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-fluidpe-light-teal/30">
-              <p className="text-gray-600">Ready to experience the financial freedom of loans against mutual funds?</p>
-              <Button className="mt-4 bg-fluidpe-teal hover:bg-fluidpe-medium-teal text-white">
-                Apply Now
-              </Button>
+              <h3 className="text-xl font-semibold text-fluidpe-teal mb-2">Start Your Journey Today</h3>
+              <p className="text-gray-600 mb-4">Experience the future of mutual fund financing</p>
             </div>
           </AnimatedElement>
         </div>
