@@ -53,6 +53,7 @@ const Index = () => {
     }, 2000);
     return () => clearTimeout(timer);
   }, []);
+  
   const testimonials = [
     {
       quote: "I needed funds for my daughter's education but didn't want to sell my long-term mutual fund investments. Fluidpe offered me a loan at 9% interest rate compared to the 16% that my bank was offering for a personal loan. The process was completely digital and I received the funds within 24 hours!",
@@ -92,6 +93,7 @@ const Index = () => {
       rating: 5
     }
   ];
+  
   const blogPosts = [
     {
       id: 1,
@@ -175,6 +177,7 @@ const Index = () => {
       imageUrl: "https://images.unsplash.com/photo-1634128221889-82ed6efebfc3?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200"
     }
   ];
+  
   const faqItems = [
     {
       question: "What is Fluidpe?",
@@ -208,7 +211,9 @@ const Index = () => {
       answer: "You'll need basic KYC documents (PAN card, Aadhaar card, address proof), bank account details for disbursement, and details of the mutual funds you wish to pledge. The entire documentation process is digital, and you can upload all required documents through our secure platform."
     }
   ];
-  return <div className="overflow-x-hidden font-sans">
+
+  return (
+    <div className="overflow-x-hidden font-sans">
       <Navbar />
       
       <section className="pt-28 md:pt-32 pb-16 md:pb-24 bg-hero-pattern relative">
@@ -283,7 +288,7 @@ const Index = () => {
                   </div>
                   <div className="text-center backdrop-blur-sm bg-white/30 rounded-lg p-3 border border-white/50 shadow-sm transition-all duration-300 hover:bg-white/50 hover:shadow-md group cursor-pointer">
                     <p className="text-2xl md:text-3xl font-bold text-fluidpe-teal group-hover:scale-110 transition-transform duration-300">8.5%</p>
-                    <p className="text-sm text-gray-600 group-hover:text-fluidpe-teal/70 transition-colors duration-300">Interest Rate</p
+                    <p className="text-sm text-gray-600 group-hover:text-fluidpe-teal/70 transition-colors duration-300">Interest Rate</p>
                   </div>
                 </div>
               </AnimatedElement>
@@ -412,3 +417,16 @@ const Index = () => {
           
           <AnimatedElement animation="fade-up" delay={600} className="mt-16 text-center">
             <div className="inline-block bg-white px-6 py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-fluidpe-light-teal/30">
+              {/* Content for this div */}
+            </div>
+          </AnimatedElement>
+        </div>
+      </section>
+
+      <Footer />
+      <ScrollToTop />
+    </div>
+  );
+};
+
+export default Index;
