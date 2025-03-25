@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -88,14 +87,21 @@ const NavLinks = ({ mobile = false, onClick = () => {} }) => {
   
   const isHomePage = location.pathname === '/';
   
-  // Create section links that work properly from any page
-  const getSectionLink = (section) => {
-    if (isHomePage) {
-      // If we're on the home page, just use anchor links
-      return `#${section}`;
-    } else {
-      // If we're on another page, navigate to home page + section
-      return `/#${section}`;
+  const navigateToSection = (section, event) => {
+    event.preventDefault();
+    
+    if (!isHomePage) {
+      window.location.href = `/#${section}`;
+      return;
+    }
+    
+    const sectionElement = document.getElementById(section);
+    if (sectionElement) {
+      sectionElement.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    if (onClick) {
+      onClick();
     }
   };
     
@@ -105,11 +111,11 @@ const NavLinks = ({ mobile = false, onClick = () => {} }) => {
         <Home className="h-4 w-4" />
         Home
       </Link>
-      <Link to={getSectionLink('features')} className={linkClasses} onClick={onClick}>Features</Link>
-      <Link to={getSectionLink('how-it-works')} className={linkClasses} onClick={onClick}>How It Works</Link>
-      <Link to={getSectionLink('benefits')} className={linkClasses} onClick={onClick}>Benefits</Link>
-      <Link to={getSectionLink('testimonials')} className={linkClasses} onClick={onClick}>Testimonials</Link>
-      <Link to={getSectionLink('faq')} className={linkClasses} onClick={onClick}>FAQ</Link>
+      <a href="#features" className={linkClasses} onClick={(e) => navigateToSection('features', e)}>Features</a>
+      <a href="#how-it-works" className={linkClasses} onClick={(e) => navigateToSection('how-it-works', e)}>How It Works</a>
+      <a href="#benefits" className={linkClasses} onClick={(e) => navigateToSection('benefits', e)}>Benefits</a>
+      <a href="#testimonials" className={linkClasses} onClick={(e) => navigateToSection('testimonials', e)}>Testimonials</a>
+      <a href="#faq" className={linkClasses} onClick={(e) => navigateToSection('faq', e)}>FAQ</a>
       <Link to="/blog" className={linkClasses} onClick={onClick}>Blog</Link>
     </>
   );
