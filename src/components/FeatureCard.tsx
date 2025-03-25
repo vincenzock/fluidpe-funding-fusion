@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { LucideIcon } from 'lucide-react';
 import AnimatedElement from './AnimatedElement';
 
@@ -21,18 +21,43 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   color = 'bg-gradient-to-br from-fluidpe-light-teal to-fluidpe-light-gold/30'
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (cardRef.current) {
+      const rect = cardRef.current.getBoundingClientRect();
+      setMousePosition({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top
+      });
+    }
+  };
 
   return (
     <AnimatedElement delay={delay} animation={animation} className="w-full" interactive>
       <div 
+        ref={cardRef}
         className={`feature-card h-full rounded-xl p-6 shadow-md transition-all duration-500 
         ${color} hover:shadow-xl border border-transparent relative overflow-hidden`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        onMouseMove={handleMouseMove}
       >
         {/* Animated background blob */}
         <div className={`absolute -right-20 -bottom-20 w-40 h-40 rounded-full bg-white/20 opacity-0 
           transition-all duration-700 ${isHovered ? 'opacity-20 scale-150' : ''}`}></div>
+        
+        {/* Dynamic cursor-following shine effect */}
+        <div 
+          className={`absolute inset-0 opacity-0 transition-opacity duration-300 
+            ${isHovered ? 'opacity-100' : ''} pointer-events-none`}
+          style={{
+            background: isHovered
+              ? `radial-gradient(circle 80px at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.25), transparent)`
+              : ''
+          }}
+        ></div>
         
         {/* Shine effect overlay */}
         <div 
