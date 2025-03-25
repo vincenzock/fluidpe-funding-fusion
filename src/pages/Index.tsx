@@ -14,6 +14,7 @@ import FaqItem from '@/components/FaqItem';
 import ScrollToTop from '@/components/ScrollToTop';
 import BlogCard from '@/components/BlogCard';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+
 const Index = () => {
   const [loanAmount, setLoanAmount] = useState(500000); // ₹5 Lakh default
   const [loanDuration, setLoanDuration] = useState(24); // 24 months
@@ -228,12 +229,8 @@ const Index = () => {
               </AnimatedElement>
               
               <AnimatedElement delay={200}>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent relative group">
-                  <span className="relative z-10 inline-block">Unlock the</span>{" "}
-                  <span className={`relative z-10 inline-block transition-transform duration-500 ${hoverEffect ? "translate-y-[-5px]" : ""}`}>Power</span>{" "}
-                  <span className="relative z-10 inline-block">of Your</span>{" "}
-                  <span className="">Mutual Funds</span>
-                  <div className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal transition-all duration-700 ${hoverEffect ? "w-full" : "w-0"}`}></div>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-fluidpe-teal to-fluidpe-medium-teal bg-clip-text text-transparent">
+                  Unlock the Power of Your Mutual Funds
                 </h1>
               </AnimatedElement>
               
