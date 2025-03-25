@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { 
   LineChart as LineChartIcon, PieChart as PieChartIcon, BarChart as BarChartIcon, Wallet, Clock, Shield, Award, 
@@ -208,20 +209,34 @@ const Index = () => {
             
             <AnimatedElement delay={300} className="relative">
               <div className="relative z-10">
-                <div className="relative overflow-hidden rounded-2xl shadow-xl">
-                  <div className="absolute w-full h-full bg-gradient-to-br from-fluidpe-teal to-fluidpe-medium-teal opacity-90"></div>
-                  <img 
-                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200" 
-                    alt="Trading Dashboard" 
-                    className="w-full h-auto mix-blend-overlay"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-white text-center p-6">
-                      <h3 className="text-2xl font-bold mb-2">Loan Against Mutual Funds</h3>
-                      <p className="mb-4">Unlock liquidity from your portfolio</p>
-                      <div className="inline-block bg-white/20 backdrop-blur-sm rounded-lg p-4">
-                        <p className="text-white/90 text-sm mb-1">Loan Amount</p>
-                        <p className="text-3xl font-bold">₹25,00,000</p>
+                <div className="glass-card p-5 rounded-2xl shadow-2xl overflow-hidden">
+                  <div className="relative">
+                    <img 
+                      src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200" 
+                      alt="Financial Dashboard" 
+                      className="w-full h-auto rounded-lg object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-br from-fluidpe-teal/80 to-fluidpe-medium-teal/80 mix-blend-multiply rounded-lg"></div>
+                    
+                    <div className="absolute inset-0 flex flex-col justify-center items-center p-8 text-white">
+                      <h3 className="text-2xl font-bold mb-4 text-center">Unlock Liquidity Without Selling</h3>
+                      <div className="grid grid-cols-2 gap-6 w-full max-w-md">
+                        <div className="bg-white/20 backdrop-blur-md rounded-lg p-4 text-center">
+                          <p className="text-sm mb-1 opacity-80">Maximum Loan</p>
+                          <p className="text-2xl font-bold">₹5 Crore</p>
+                        </div>
+                        <div className="bg-white/20 backdrop-blur-md rounded-lg p-4 text-center">
+                          <p className="text-sm mb-1 opacity-80">Min. Interest</p>
+                          <p className="text-2xl font-bold">8.5% p.a.</p>
+                        </div>
+                        <div className="bg-white/20 backdrop-blur-md rounded-lg p-4 text-center">
+                          <p className="text-sm mb-1 opacity-80">Processing</p>
+                          <p className="text-2xl font-bold">24 Hours</p>
+                        </div>
+                        <div className="bg-white/20 backdrop-blur-md rounded-lg p-4 text-center">
+                          <p className="text-sm mb-1 opacity-80">Documentation</p>
+                          <p className="text-2xl font-bold">Minimal</p>
+                        </div>
                       </div>
                     </div>
                   </div>
