@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
 
-type AnimationType = 'fade-up' | 'fade-down' | 'fade-left' | 'fade-right' | 'zoom-in' | 'zoom-out' | 'flip' | 'bounce' | 'fade-in' | 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right';
+type AnimationType = 'fade-up' | 'fade-down' | 'fade-left' | 'fade-right' | 'zoom-in' | 'zoom-out' | 'flip' | 'bounce' | 'fade-in';
 
 interface AnimatedElementProps {
   children: React.ReactNode;
@@ -10,7 +10,6 @@ interface AnimatedElementProps {
   animation?: AnimationType;
   duration?: number;
   threshold?: number;
-  infinite?: boolean;
 }
 
 const AnimatedElement: React.FC<AnimatedElementProps> = ({ 
@@ -19,8 +18,7 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({
   delay = 0,
   animation = 'fade-up',
   duration = 700,
-  threshold = 0.1,
-  infinite = false
+  threshold = 0.1
 }) => {
   const elementRef = useRef<HTMLDivElement>(null);
   
@@ -34,13 +32,8 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({
               // Cast to HTMLElement to access dataset property
               const targetElement = entry.target as HTMLElement;
               targetElement.dataset.animation = animation;
-              if (infinite) {
-                targetElement.dataset.infinite = 'true';
-              }
             }, delay);
-            if (!infinite) {
-              observer.unobserve(entry.target);
-            }
+            observer.unobserve(entry.target);
           }
         });
       }, 
@@ -57,14 +50,13 @@ const AnimatedElement: React.FC<AnimatedElementProps> = ({
         observer.unobserve(elementRef.current);
       }
     };
-  }, [delay, animation, duration, threshold, infinite]);
+  }, [delay, animation, duration, threshold]);
   
   return (
     <div 
       ref={elementRef} 
       className={`animate-on-scroll ${className}`}
       data-animation={animation}
-      data-infinite={infinite ? 'true' : 'false'}
     >
       {children}
     </div>
