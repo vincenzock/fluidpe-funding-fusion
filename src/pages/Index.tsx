@@ -441,7 +441,7 @@ const Index = () => {
             
             <div className="mt-10 border-t border-fluidpe-light-teal/30 pt-8">
               <h3 className="text-xl font-semibold mb-4 text-fluidpe-teal flex items-center">
-                <LineChartLucide className="w-5 h-5 mr-2" /> Growth Comparison
+                <LineChartIcon className="w-5 h-5 mr-2" /> Growth Comparison
               </h3>
               <p className="text-gray-600 mb-6">
                 See how keeping your investments while taking a loan against securities 
@@ -642,3 +642,4 @@ const Index = () => {
 };
 
 export default Index;
+
