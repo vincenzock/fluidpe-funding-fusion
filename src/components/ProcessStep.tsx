@@ -20,7 +20,7 @@ const ProcessStep: React.FC<ProcessStepProps> = ({ number, title, description, d
           </div>
         )}
         
-        <div className="bg-gradient-to-br from-fluidpe-teal to-fluidpe-medium-teal rounded-full text-white font-bold w-12 h-12 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-md">
+        <div className="bg-fluidpe-teal rounded-full text-white font-bold w-12 h-12 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-md">
           {number}
         </div>
         
